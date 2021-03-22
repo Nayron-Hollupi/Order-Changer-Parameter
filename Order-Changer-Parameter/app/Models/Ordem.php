@@ -28,6 +28,6 @@ class Ordem extends Model implements AuthenticatableContract, AuthorizableContra
      * @var array
      */
     protected $hidden = [
-        'password',
+      
     ];
 }

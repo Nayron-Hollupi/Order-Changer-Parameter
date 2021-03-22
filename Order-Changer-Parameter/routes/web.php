@@ -13,6 +13,46 @@
 |
 */
 
+
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+  
+});
+//Cadastro dos usuarios
+$router->get('/usuarios', 'UsuarioController@usuario'); 
+
+$router->group(['prefix' => 'usuario'], function() use($router){
+
+    $router->post('/cadastrar', 'UsuarioController@cadastrar'); 
+    $router->get('/{id}', 'UsuarioController@mostrarUsuario'); 
+    $router->get('/{id}/atualizar', 'UsuarioController@atualizarUsuario'); 
+    $router->put('/{id}/atualizar', 'UsuarioController@atualizarUsuario');
+    $router->delete('/{id}/deletar', 'UsuarioController@deletarUsuario');
+});
+
+
+
+//Cadastro das Maquinas
+
+$router->get('/maquinas', 'MaquinasController@maquinas'); 
+
+$router->group(['prefix' => 'maquinas'], function() use($router){
+
+    $router->post('/cadastrar', 'MaquinasController@cadastrar'); 
+    $router->get('/{id}', 'MaquinasController@mostrarMaquinas'); 
+    $router->get('/{id}/atualizar', 'MaquinasController@atualizarMaquinas'); 
+    $router->put('/{id}/atualizar', 'MaquinasController@atualizarMaquinas');
+    $router->delete('/{id}/deletar', 'MaquinasController@deletarMaquinas');
+});
+
+//Cadastrar Ordens
+
+$router->get('/ordens', 'OrdemController@ordem'); 
+
+$router->group(['prefix' => 'ordem'], function() use($router){
+
+    $router->post('/cadastrar', 'OrdemController@cadastrar'); 
+    $router->get('/{id}', 'OrdemController@mostrarOrdem'); 
+    $router->get('/{id}/atualizar', 'OrdemController@atualizarOrdem'); 
+    $router->put('/{id}/atualizar', 'OrdemController@atualizarOrdem');
+    $router->delete('/{id}/deletar', 'OrdemController@deletarOrdem');
 });
