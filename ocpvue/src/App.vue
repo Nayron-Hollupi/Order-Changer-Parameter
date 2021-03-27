@@ -1,8 +1,9 @@
 <template>
-<div id="home">
-    
+
+<div v-if="page == 0" @click="page = 1" id="home">  
 </div>
- <div id="background">
+
+ <div v-if="page == 1" id="background">
   <Login />
  </div>
 </template>
@@ -11,7 +12,11 @@
 import Login from './components/Login.vue'
 
 export default {
-  name: 'App',
+  name: 'App',data(){
+  return{
+      page: 0
+  }
+  },
   components: {
     Login
   }
@@ -25,6 +30,7 @@ export default {
   background-position: center;
   width: 100%;
   height: 100vh;
+ 
 }
 
 #home{
@@ -32,7 +38,7 @@ export default {
     width: 100%;
     height: 100vh;
     background:  url("./assets/home.jpg") no-repeat ;
-    background-position: 10% 50%;
+    background-position: 10% 40%;
     background-size: cover;
 }
 </style>

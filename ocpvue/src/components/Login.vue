@@ -49,13 +49,13 @@ text-align: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 20px;
+  margin-top: 0px;
 
 }
 
 .box {
   width: 300px;
-height: 350px;
+height: 300px;
 
 }
 
