@@ -20,6 +20,9 @@ class UsuarioController extends Controller
     public function __construct(JWTAuth $jwt)
     {
         $this->jwt = $jwt;
+        $this->middleware('auth:api', [
+            'except' =>['usuarioLogin', 'cadastrar', 'atualizarUsuario', 'deletarUsuario']
+        ]);
     }
 
     public function usuarioLogin(Request $request){
@@ -30,12 +33,22 @@ class UsuarioController extends Controller
             
         ]);
 
-        if(! $token = $this->jwt->attempt($request->only('usuario', 'password'))){
+        if(! $token = $this->jwt->claims(['usuario' => $request->usuario])->attempt($request->only('usuario', 'password'))){
             return response()->json(['Usuario não Encontrado'], 404);
         }
          return response()->json(compact('token'));
     }
 
+
+    public function mostrarToken(){
+              $usuario = Auth::user();
+              return response()->json($usuario);
+    }
+    
+    public function usuarioLogout(){
+        Auth::logout();
+        return response()->json("Usuario deslogou com sucesso!");
+    }
 
     public function usuario(){
         return response()->json(Usuario::all());
