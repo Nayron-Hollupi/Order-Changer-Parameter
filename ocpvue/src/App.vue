@@ -6,6 +6,10 @@
  <div v-if="page == 1" id="background">
   <Login />
  </div>
+
+ <div v-if="page == 2" >
+  <menu />
+ </div>
 </template>
 
 <script>
@@ -14,7 +18,7 @@ import Login from './components/Login.vue'
 export default {
   name: 'App',data(){
   return{
-      page: 0
+      page: 2
   }
   },
   components: {

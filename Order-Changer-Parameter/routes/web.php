@@ -17,6 +17,10 @@
 $router->get('/', function () use ($router) {
   
 });
+
+ //Login
+$router->post('/login','UsuarioController@usuarioLogin');
+
 //Cadastro dos usuarios
 $router->get('/usuarios', 'UsuarioController@usuario'); 
 

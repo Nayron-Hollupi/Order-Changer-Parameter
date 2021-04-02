@@ -27,19 +27,6 @@ $app = require __DIR__.'/../bootstrap/app.php';
 
 $app->run();
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Home</title>
-  <link rel="stylesheet" type="text/css" href="ocp.css">
-</head>
-<body >
-<a href="/Login.php">
-  <div class="logo" >
-  </div>
-</a>
 
-</body>
-</html>
 
 

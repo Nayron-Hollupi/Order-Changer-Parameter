@@ -4,18 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\JWTAuth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
+
+    protected $jwt;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(JWTAuth $jwt)
     {
-        //
+        $this->jwt = $jwt;
     }
+
+    public function usuarioLogin(Request $request){
+
+        $this->validate($request,[
+            'usuario' => 'required',
+            'password' => 'required'
+            
+        ]);
+
+        if(! $token = $this->jwt->attempt($request->only('usuario', 'password'))){
+            return response()->json(['Usuario não Encontrado'], 404);
+        }
+         return response()->json(compact('token'));
+    }
+
 
     public function usuario(){
         return response()->json(Usuario::all());
@@ -27,14 +47,15 @@ class UsuarioController extends Controller
             'nivel' => 'required|min:1|max:100',
             'password' => 'required',
             'verificado' => 'required'
+          
         ]);
 
         $usuario = new Usuario;
         $usuario->usuario = $request->usuario;
         $usuario->nivel = $request->nivel;
-        $usuario->password = $request->password;
+        $usuario->password = Hash::make($request->password);
         $usuario->verificado = $request->verificado;
-
+     
 
         //Salvar usuario
         $usuario->save();
