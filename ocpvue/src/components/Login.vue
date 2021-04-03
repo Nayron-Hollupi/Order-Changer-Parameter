@@ -1,20 +1,20 @@
 <template>
- <form id="app" @submit="checkForm" action="" method="post">
+ <form >
 <div class="container">
   <div class ="box"> 
     <div class="form-group">
     <h1>{{title}}</h1>
     </div>
     <div class="form-group">
-    <input id="name"  class="form-control"  type="text"  placeholder="Seu login">
+    <input  class="form-control"  type="text" v-model="usuarioField" placeholder="Seu login">
     </div>
  
     <div class="form-group">
-    <input id="password"  class="form-control"  type="text" placeholder="Sua senha" >
+    <input  class="form-control"  v-model="passwordField" type="text" placeholder="Sua senha" >
     </div>
 
     <div class="form-group">
-    <button type="submit" @click="login" class="btn btn-primary mb-2 form-control">Enviar</button>
+    <button type="submit" @click="Login" class="btn btn-primary mb-2 form-control">Enviar</button>
     </div>
   </div>
 </div>
@@ -25,14 +25,34 @@
 <script>
 export default {
   name: 'Login',
+   usuarioField: "",
+  passwordField: "",
   data(){
     return{
-    title: "Login"
+    title: "Login",
+   
    } },
   props: {
     msg: String
-  }
+  },
+  methods:{ 
+    Login: function(){
+  // Simple POST request with a JSON body using fetch
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+ 
+      usuario: this.usuarioField.value,
+      password: this.passwordField.value })
+  };
+  fetch("http://localhost:8001/login", requestOptions)
+    .then(res =>res.json())
+  .then(resData => console.log(resData))
+  .catch(erro => console.log(erro));
 }
+  } 
+  }
 
 </script>
 
@@ -61,3 +81,11 @@ height: 300px;
 }
 
 </style>
+
+
+ 
+
+
+
+
+  
