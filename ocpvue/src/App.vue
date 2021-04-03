@@ -18,7 +18,7 @@ import Login from './components/Login.vue'
 export default {
   name: 'App',data(){
   return{
-      page: 2
+      page: 0
   }
   },
   components: {

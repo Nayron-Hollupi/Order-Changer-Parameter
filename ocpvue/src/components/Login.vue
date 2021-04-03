@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group">
-    <button type="submit" @click="page == 2" class="btn btn-primary mb-2 form-control">Enviar</button>
+    <button type="submit" @click="login" class="btn btn-primary mb-2 form-control">Enviar</button>
     </div>
   </div>
 </div>
@@ -33,6 +33,7 @@ export default {
     msg: String
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
