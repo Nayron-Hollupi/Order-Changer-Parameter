@@ -37,19 +37,20 @@ export default {
   },
   methods:{ 
     Login: function(){
+      
   // Simple POST request with a JSON body using fetch
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ 
+ // const requestOptions = {
+  //  method: "POST",
+  //  headers: { "Content-Type": "application/json" },
+  //  body: JSON.stringify({ 
  
-      usuario: this.usuarioField.value,
-      password: this.passwordField.value })
-  };
-  fetch("http://localhost:8001/login", requestOptions)
-    .then(res =>res.json())
-  .then(resData => console.log(resData))
-  .catch(erro => console.log(erro));
+  //    usuario: this.usuarioField.value,
+    //  password: this.passwordField.value })
+ // };
+  //fetch("http://localhost:8001/login", requestOptions)
+ //   .then(res =>res.json())
+  //.then(resData => console.log(resData))
+ // .catch(erro => console.log(erro));
 }
   } 
   }
