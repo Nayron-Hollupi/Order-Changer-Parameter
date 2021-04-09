@@ -1,16 +1,18 @@
 <template>
- <form >
+ <form  id="background"  method="post"  @submit.prevent="Login">
+
 <div class="container">
   <div class ="box"> 
     <div class="form-group">
     <h1>{{title}}</h1>
     </div>
     <div class="form-group">
-    <input  class="form-control"  type="text" v-model="usuarioField" placeholder="Seu login">
+    <input  class="form-control" id="usuario" type="text" required v-model="usuarioField" placeholder="Seu login">
     </div>
  
     <div class="form-group">
-    <input  class="form-control"  v-model="passwordField" type="text" placeholder="Sua senha" >
+    <input  class="form-control"  id="password"  required 
+    v-model="passwordField" type="text" placeholder="Sua senha" >
     </div>
 
     <div class="form-group">
@@ -37,6 +39,7 @@ export default {
   },
   methods:{ 
     Login: function(){
+        
       
   // Simple POST request with a JSON body using fetch
  // const requestOptions = {
@@ -52,12 +55,12 @@ export default {
   //.then(resData => console.log(resData))
  // .catch(erro => console.log(erro));
 }
-  } 
+  }
   }
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 .container {
 width: 100vw;
@@ -80,7 +83,14 @@ text-align: center;
 height: 300px;
 
 }
-
+#background{
+    background:  url("../assets/OCP.png") no-repeat ;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+ 
+}
 </style>
 
 
@@ -88,5 +98,3 @@ height: 300px;
 
 
 
-
-  
