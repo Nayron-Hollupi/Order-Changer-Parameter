@@ -18,7 +18,6 @@ class CreateUsuariosTable extends Migration
             $table->string('usuario', 50);
             $table->string('nivel');
             $table->string('password');
-            $table->boolean('verificado');
             $table->timestamps();
         });
     }

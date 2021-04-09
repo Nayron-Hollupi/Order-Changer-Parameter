@@ -59,15 +59,13 @@ class UsuarioController extends Controller
             'usuario' => 'required|min:5|max:40',
             'nivel' => 'required|min:1|max:100',
             'password' => 'required',
-            'verificado' => 'required'
-          
         ]);
 
         $usuario = new Usuario;
         $usuario->usuario = $request->usuario;
         $usuario->nivel = $request->nivel;
         $usuario->password = Hash::make($request->password);
-        $usuario->verificado = $request->verificado;
+      
      
 
         //Salvar usuario
