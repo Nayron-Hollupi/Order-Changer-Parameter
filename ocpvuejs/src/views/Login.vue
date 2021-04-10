@@ -41,7 +41,7 @@ export default {
     Login: function(){
         
       
-  // Simple POST request with a JSON body using fetch
+ 
  // const requestOptions = {
   //  method: "POST",
   //  headers: { "Content-Type": "application/json" },
@@ -50,7 +50,7 @@ export default {
   //    usuario: this.usuarioField.value,
     //  password: this.passwordField.value })
  // };
-  //fetch("http://localhost:8001/login", requestOptions)
+  //fetch("http://localhost:800/login", requestOptions)
  //   .then(res =>res.json())
   //.then(resData => console.log(resData))
  // .catch(erro => console.log(erro));

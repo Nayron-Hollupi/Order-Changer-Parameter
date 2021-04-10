@@ -22,7 +22,6 @@ class OrdemController extends Controller
 
     public function cadastrar(Request $request){
       
-
         $ordem = new Ordem;
         $ordem->Setor = $request->Setor;
         $ordem->Maquina = $request->Maquina;

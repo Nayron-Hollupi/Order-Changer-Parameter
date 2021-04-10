@@ -80,8 +80,8 @@ class UsuarioController extends Controller
     public function atualizarUsuario($id, Request $request){
 
         $usuario = Usuario::find($id);
-        $usuario->email = $request->email;
         $usuario->usuario = $request->usuario;
+        $usuario->nivel = $request->nivel;
         $usuario->password = $request->password;
 
         //Salvar novamento
