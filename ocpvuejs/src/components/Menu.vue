@@ -1,12 +1,7 @@
 <template>
-
   <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
       <div class="sidebar-brand">
         <a href="#">Order Change Parameter</a>
-        <div id="close-sidebar">
-          <i class="fas fa-times"></i>
-        </div>
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
@@ -23,7 +18,7 @@
           </span>
           <span class="user-role">Analista</span>
           <span class="user-status">
-            <i class="fa fa-circle"> </i>
+           
             <span>Online</span>
           </span>
         </div>
@@ -41,7 +36,6 @@
 
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="icon-home"></i>
               <span @click="Ordens()">Ordens</span>
             </a>
             <div
@@ -68,7 +62,7 @@
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="far fa-gem"></i>
+              
               <span @click="Maquinas()">Maquinas</span>
             </a>
             <div
@@ -93,7 +87,7 @@
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
-              <i class="fa fa-chart-line"></i>
+             
               <span @click="Usuarios()">Usuario</span>
             </a>
             <div
@@ -118,8 +112,7 @@
           </li>
         </ul>
       </div>
-      <!-- sidebar-menu  -->
-    </div>
+ 
   </nav>
 </template>
 
@@ -162,11 +155,6 @@ body {
   left: 0px;
 }
 
-@media screen and (min-width: 768px) {
-  .page-wrapper.toggled .page-content {
-    padding-left: 300px;
-  }
-}
 /*----------------show sidebar button----------------*/
 #show-sidebar {
   position: fixed;
@@ -199,19 +187,6 @@ body {
 
 .sidebar-wrapper a {
   text-decoration: none;
-}
-
-/*----------------sidebar-content----------------*/
-
-.sidebar-content {
-  max-height: calc(100% - 30px);
-  height: calc(100% - 30px);
-  overflow-y: auto;
-  position: relative;
-}
-
-.sidebar-content.desktop {
-  overflow-y: hidden;
 }
 
 /*--------------------sidebar-brand----------------------*/
@@ -271,11 +246,6 @@ body {
   margin-top: 4px;
 }
 
-.sidebar-wrapper .sidebar-header .user-info .user-status i {
-  font-size: 8px;
-  margin-right: 4px;
-  color: #5cb85c;
-}
 
 /*----------------------sidebar-menu-------------------------*/
 
@@ -361,90 +331,40 @@ body {
   margin-left: 5px;
 }
 
-.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .badge,
-.sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a .label {
-  float: right;
-  margin-top: 0px;
-}
-
 .sidebar-wrapper .sidebar-menu .sidebar-submenu {
   display: none;
 }
 
-.sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a:after {
-  transform: rotate(90deg);
-  right: 17px;
-}
 
-/*------scroll bar---------------------*/
 
-::-webkit-scrollbar {
-  width: 5px;
-  height: 7px;
-}
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #525965;
-  border: 0px none #ffffff;
-  border-radius: 0px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #525965;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #525965;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-track:hover {
-  background: transparent;
-}
-::-webkit-scrollbar-track:active {
-  background: transparent;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
+/*-----------------------------chiller-theme--------------------------*/
 
-/*-----------------------------chiller-theme-------------------------------------------------*/
-
-.chiller-theme .sidebar-wrapper {
+.sidebar-wrapper {
   background: #31353d;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-header,
-.chiller-theme .sidebar-wrapper .sidebar-search,
-.chiller-theme .sidebar-wrapper .sidebar-menu {
+.sidebar-wrapper .sidebar-header,
+.sidebar-wrapper .sidebar-menu {
   border-top: 1px solid #3a3f48;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
-.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
+.sidebar-wrapper 
+ {
   border-color: transparent;
   box-shadow: none;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role,
-.chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-status,
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
-.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text,
-.chiller-theme .sidebar-wrapper .sidebar-brand > a,
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
-.chiller-theme .sidebar-footer > a {
+.sidebar-wrapper .sidebar-header .user-info .user-role,
+.sidebar-wrapper .sidebar-header .user-info .user-status,
+.sidebar-wrapper .sidebar-search .input-group-text,
+.sidebar-wrapper .sidebar-brand > a,
+.sidebar-wrapper .sidebar-menu ul li a {
   color: #818896;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover > a,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a,
-.chiller-theme .sidebar-wrapper .sidebar-header .user-info,
-.chiller-theme .sidebar-wrapper .sidebar-brand > a:hover,
-.chiller-theme .sidebar-footer > a:hover i {
+.sidebar-wrapper .sidebar-menu ul li:hover > a,
+.sidebar-wrapper .sidebar-header .user-info,
+.sidebar-wrapper .sidebar-brand > a:hover {
   color: #b8bfce;
 }
 
@@ -456,27 +376,21 @@ body {
   color: #ffffff;
 }
 
-.chiller-theme .sidebar-wrapper ul li:hover a i,
-.chiller-theme
-  .sidebar-wrapper
-  .sidebar-dropdown
-  .sidebar-submenu
-  li
-  a:hover:before,
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus + span,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
-  color: #16c7ff;
-  text-shadow: 0px 0px 10px rgba(22, 199, 255, 0.5);
-}
 
-.chiller-theme .sidebar-wrapper .sidebar-menu ul li a i,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
-.chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
-.chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
+/*----color submenu------*/
+ .sidebar-menu .sidebar-dropdown div {
   background: #3a3f48;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
+/*---Color  menu -----*/
+  .header-menu span {
   color: #e7e7e7;
+}
+
+/* --- esconder  o menu-------------*/
+@media screen and (min-width: 768px) {
+  .page-wrapper.toggled .page-content {
+    padding-left: 300px;
+  }
 }
 </style>
