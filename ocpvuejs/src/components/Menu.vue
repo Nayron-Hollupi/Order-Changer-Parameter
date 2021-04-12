@@ -5,25 +5,17 @@
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img
-            class="img-responsive img-rounded"
+          <img class="img-responsive img-rounded"
             src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-            alt="User picture"
-          />
+            alt="User picture"/>
         </div>
         <div class="user-info">
-          <span class="user-name"
-            >Usuario
-            <strong>Nayron</strong>
-          </span>
+          <span class="user-name">Usuario
+            <strong>Nayron</strong> </span>
           <span class="user-role">Analista</span>
-          <span class="user-status">
-           
-            <span>Online</span>
-          </span>
+          <span class="user-status"> Online </span>
         </div>
       </div>
-
       <div class="sidebar-menu">
         <ul>
           <li class="header-menu">
@@ -31,46 +23,30 @@
           </li>
           <li class="sidebar-dropdown">
             <router-link to="/Dashboard"><span>Dashboard</span></router-link>
-            <i class="bi bi-house-door-fill"></i>
           </li>
-
           <li class="sidebar-dropdown">
             <a href="#">
               <span @click="Ordens()">Ordens</span>
             </a>
-            <div
-              :class="{ 'sidebar-submenu': !ordens, 'sidebar-submenu': ordens }"
-            >
+            <div :class="{ 'sidebar-submenu': !ordens, 'sidebar-submenu': ordens }" >
               <ul>
                 <li>
-                  <router-link to="/Abrir-Ordem"
-                    ><span>Abrir ordem</span></router-link
-                  >
+                  <router-link to="/Abrir-Ordem"><span>Abrir ordem</span></router-link>
                 </li>
                 <li>
-                  <router-link to="/Ordens-Abertas"
-                    ><span>Abertas</span></router-link
-                  >
+                  <router-link to="/Ordens-Abertas"><span>Abertas</span></router-link>
                 </li>
                 <li>
-                  <router-link to="/Ordens-Finalizadas"
-                    ><span>Finalizadas</span></router-link
-                  >
+                  <router-link to="/Ordens-Finalizadas"><span>Finalizadas</span></router-link >
                 </li>
               </ul>
             </div>
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
-              
               <span @click="Maquinas()">Maquinas</span>
             </a>
-            <div
-              :class="{
-                'sidebar-submenu': !maquinas,
-                'sidebar-submenu': maquinas,
-              }"
-            >
+            <div :class="{'sidebar-submenu': !maquinas,'sidebar-submenu': maquinas,}">
               <ul>
                 <li>
                   <router-link to="/Visualizar-maquinas"
@@ -87,15 +63,10 @@
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
-             
               <span @click="Usuarios()">Usuario</span>
             </a>
             <div
-              :class="{
-                'sidebar-submenu': !usuarios,
-                'sidebar-submenu': usuarios,
-              }"
-            >
+              :class="{'sidebar-submenu': !usuarios,'sidebar-submenu': usuarios,}" >
               <ul>
                 <li>
                   <router-link to="/Visualizar-usuario"
@@ -154,19 +125,6 @@ body {
 .page-wrapper.toggled .sidebar-wrapper {
   left: 0px;
 }
-
-/*----------------show sidebar button----------------*/
-#show-sidebar {
-  position: fixed;
-  left: 0;
-  top: 10px;
-  border-radius: 0 4px 4px 0px;
-  width: 35px;
-  transition-delay: 0.3s;
-}
-.page-wrapper.toggled #show-sidebar {
-  left: -40px;
-}
 /*----------------sidebar-wrapper----------------*/
 
 .sidebar-wrapper {
@@ -203,10 +161,6 @@ body {
   flex-grow: 1;
 }
 
-.sidebar-wrapper .sidebar-brand #close-sidebar {
-  cursor: pointer;
-  font-size: 20px;
-}
 /*--------------------sidebar-header----------------------*/
 
 .sidebar-wrapper .sidebar-header {
@@ -278,28 +232,6 @@ body {
   border-radius: 4px;
 }
 
-.sidebar-wrapper .sidebar-menu ul li a:hover > i::before {
-  display: inline-block;
-  animation: swing ease-in-out 0.5s 1 alternate;
-}
-
-.sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f105";
-  font-style: normal;
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  background: 0 0;
-  position: absolute;
-  right: 15px;
-  top: 14px;
-}
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu ul {
   padding: 5px 0;
@@ -348,34 +280,16 @@ body {
   border-top: 1px solid #3a3f48;
 }
 
-.sidebar-wrapper 
- {
-  border-color: transparent;
-  box-shadow: none;
-}
-
-.sidebar-wrapper .sidebar-header .user-info .user-role,
 .sidebar-wrapper .sidebar-header .user-info .user-status,
-.sidebar-wrapper .sidebar-search .input-group-text,
 .sidebar-wrapper .sidebar-brand > a,
 .sidebar-wrapper .sidebar-menu ul li a {
   color: #818896;
 }
 
 .sidebar-wrapper .sidebar-menu ul li:hover > a,
-.sidebar-wrapper .sidebar-header .user-info,
-.sidebar-wrapper .sidebar-brand > a:hover {
-  color: #b8bfce;
-}
-
-.page-wrapper.chiller-theme.toggled #close-sidebar {
-  color: #bdbdbd;
-}
-
-.page-wrapper.chiller-theme.toggled #close-sidebar:hover {
+.sidebar-wrapper .sidebar-header .user-info{
   color: #ffffff;
 }
-
 
 /*----color submenu------*/
  .sidebar-menu .sidebar-dropdown div {
