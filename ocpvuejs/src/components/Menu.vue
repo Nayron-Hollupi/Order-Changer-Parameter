@@ -1,4 +1,5 @@
 <template>
+
   <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-brand">
         <a href="#">Order Change Parameter</a>
@@ -119,7 +120,24 @@ export default {
 <style scoped >
 body {
   font-size: 0.9rem;
+    
 }
+/*---Color  menu -----*/
+.sidebar-header .user-info .user-status,
+.sidebar-brand > a,
+.sidebar-menu ul li a {
+color: #ffffff;
+}
+
+.sidebar-menu ul li:hover > a,
+ .sidebar-header .user-info{
+  color: #ffffff;
+}
+
+  .header-menu span {
+  color: #e7e7e7;
+}
+
 /*----------------toggeled sidebar----------------*/
 
 .page-wrapper.toggled .sidebar-wrapper {
@@ -280,26 +298,13 @@ body {
   border-top: 1px solid #3a3f48;
 }
 
-.sidebar-wrapper .sidebar-header .user-info .user-status,
-.sidebar-wrapper .sidebar-brand > a,
-.sidebar-wrapper .sidebar-menu ul li a {
-  color: #818896;
-}
 
-.sidebar-wrapper .sidebar-menu ul li:hover > a,
-.sidebar-wrapper .sidebar-header .user-info{
-  color: #ffffff;
-}
 
 /*----color submenu------*/
  .sidebar-menu .sidebar-dropdown div {
   background: #3a3f48;
 }
 
-/*---Color  menu -----*/
-  .header-menu span {
-  color: #e7e7e7;
-}
 
 /* --- esconder  o menu-------------*/
 @media screen and (min-width: 768px) {
