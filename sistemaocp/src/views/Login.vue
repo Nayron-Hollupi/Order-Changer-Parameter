@@ -1,5 +1,5 @@
 <template>
- <form  id="background"  method="post"  @submit.prevent="Login">
+ <form    method="post"  @submit.prevent="Login">
 
 <div class="container">
   <div class ="box"> 
@@ -7,7 +7,15 @@
     <h1>{{title}}</h1>
     </div>
     <div class="form-group">
-      <input type="text" class="email input" name="email" placeholder="Username" >
+    <md-field>
+  <label>Initial Value</label>
+  <md-input v-model="initial"></md-input>
+</md-field>
+<md-field>
+  <label>Type here!</label>
+  <md-input v-model="type"></md-input>
+  <span class="md-helper-text">Helper text</span>
+</md-field>
     <input  class="form-control" id="usuario" type="text" required v-model="usuarioField" placeholder="Seu login">
     </div>
  
@@ -22,32 +30,7 @@
   </div>
 </div>
 
-  
-     <div class="shape shape1"></div>
-     <div class="shape shape2"></div>
-     <div class="login login__form">
-       <div class="container cont__login">
-        
-        
-        <input type="submit" class="btn btn__login">
-       </div>           
-         
-     </div>
-      <div class="register login__form">
-        <div class="container">
-          <input type="text" class="email input" name="email" placeholder="Email Address" >
-          <input type="password" class="password input" name="password" placeholder = "Password">
-          <input type="password" class="password pwtwo input" name="pwrepeat" placeholder = "Repeat Password">
-          <input type="submit" class="btn btn__register">
-        </div>
-     </div>
-     
- <div class="cta">
-       <h2 class="cta__heading">Login to your account!</h2>
-       <p class="cta__text">to get full access to our awesome product!</p>
-       
-        <button class="btn cta__btn"><p class="cta__btn--text1">Dont have an Account?</p> <p class="cta__btn--text2">Click Here to register!</p></button>
-     </div>
+
    </form>
 </template>
 
@@ -60,7 +43,10 @@ export default {
     return{
     title: "Login",
    
-   } },
+   } },  data: () => ({
+      initial: 'Initial Value',
+      type: null
+    }),
   props: {
     msg: String
   },
