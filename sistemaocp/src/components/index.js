@@ -5,7 +5,7 @@ import StatsCard from "./Cards/StatsCard.vue";
 
 // Tables
 import NavTabsTable from "./Tables/NavTabsTable.vue";
-import OrderedTable from "./Tables/OrderedTable.vue";
+import MaquinasTable from "./Tables/MaquinasTable.vue";
 import AnalistaTable from "./Tables/AnalistaTable.vue";
 import GestorTable from "./Tables/GestorTable.vue";
 import TecnicoTable from "./Tables/TecnicoTable.vue";
@@ -16,9 +16,10 @@ export {
   NavTabsCard,
   StatsCard,
   NavTabsTable,
-  OrderedTable,
+  MaquinasTable,
   AnalistaTable,
   GestorTable,
   TecnicoTable
+ 
 
 };

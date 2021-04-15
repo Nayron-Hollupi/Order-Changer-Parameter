@@ -12,10 +12,7 @@
         <md-icon>person</md-icon>
         <p>Usuários</p>
       </sidebar-link>
-      <sidebar-link to="/Relatorios">
-        <md-icon>content_paste</md-icon>
-        <p>Relatórios</p>
-      </sidebar-link>
+      
       <sidebar-link to="/Maquinas">
         <md-icon>precision_manufacturing</md-icon>
         <p>Máquinas</p>
@@ -24,7 +21,10 @@
         <md-icon>file_copy</md-icon>
         <p>Ordens</p>
       </sidebar-link>
-     
+     <sidebar-link to="/Relatorios">
+        <md-icon>content_paste</md-icon>
+        <p>Relatórios</p>
+      </sidebar-link>
    
       <sidebar-link to="/upgrade" class="active-pro">
         <md-icon>logout</md-icon>

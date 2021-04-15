@@ -2,40 +2,53 @@
   <div class="content">
     <div class="md-layout">
       <div class="md-layout-item">
-        <md-card class="md-card-plain">
-          <md-card-header data-background-color="green">
-            <h4 class="title">Material Design Icons</h4>
-            <p class="category">
-              Handcrafted by our friends from
-              <a target="_blank" href="https://design.google.com/icons/"
-                >Google</a
-              >
-            </p>
-          </md-card-header>
-
-          <md-card-content>
-            <div class="iframe-container hidden-sm">
-              <iframe src="https://vuematerial.io/components/icon">
-                <p>Your browser does not support iframes.</p>
-              </iframe>
+      <notifications></notifications>
+      <md-card>
+        <md-card-header data-background-color="green">
+          <h4 class="title" style="text-align:center">Ordens</h4>
+        </md-card-header>
+        <md-card-content>
+          <div class="md-layout">
+            <div class="md-layout-item md-size-100">
+              <div class="places-buttons text-center">
+               
+                <md-button class="md-success" @click="notifyVue('top','left')">Abrir Ordem</md-button>
+                <md-button class="md-danger" @click="notifyVue('top','center')">Ordens Abertas</md-button>
+                <md-button class="md-warning" @click="notifyVue('top','right')">Ordens em andamento</md-button>
+                <md-button class="md-info" @click="notifyVue('bottom','left')">Ordens Finalizadas</md-button>
+              </div>
             </div>
-            <div class="hidden-md">
-              <h5>
-                The icons are visible on Desktop mode inside an iframe. Since
-                the iframe is not working on Mobile and Tablets please visit the
-                icons on their original page on Google. Check the
-                <a href="https://design.google.com/icons/" target="_blank"
-                  >Material Icons</a
-                >
-              </h5>
-            </div>
-          </md-card-content>
-        </md-card>
+          </div>
+        </md-card-content>
+      </md-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data () {
+    return {
+      type: ['', 'info', 'success', 'warning', 'danger'],
+      notifications: {
+        topCenter: false
+      }
+    }
+  },
+  methods: {
+    notifyVue (verticalAlign, horizontalAlign) {
+      var color = Math.floor((Math.random() * 4) + 1)
+      this.$notify(
+        {
+          message: 'Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer.',
+          icon: 'add_alert',
+          horizontalAlign: horizontalAlign,
+          verticalAlign: verticalAlign,
+          type: this.type[color]
+        })
+    }
+  }
+}
+
 </script>
