@@ -3,12 +3,10 @@ import Layout from "@/pages/Layout/Menu.vue";
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import Dashboard from "@/pages/Dashboard.vue";
-import UserProfile from "@/pages/UserProfile.vue";
-import TableList from "@/pages/TableList.vue";
-import Typography from "@/pages/Typography.vue";
-import Icons from "@/pages/Icons.vue";
-import Maps from "@/pages/Maps.vue";
-import Notifications from "@/pages/Notifications.vue";
+import Usuarios from "@/pages/Usuarios.vue";
+import Relatorios from "@/pages/Relatorios.vue";
+import Maquinas from "@/pages/Maquinas.vue";
+import Ordens from "@/pages/Ordens.vue";
 import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 
 const routes = [
@@ -34,38 +32,27 @@ const routes = [
       },
      
       {
-        path: "user",
-        name: "User Profile",
-        component: UserProfile
+        path: "usuarios",
+        name: "Usuarios",
+        component: Usuarios
       },
       {
-        path: "table",
-        name: "Table List",
-        component: TableList
+        path: "relatorios",
+        name: "Relatorios",
+        component: Relatorios
       },
       {
-        path: "typography",
-        name: "Typography",
-        component: Typography
+        path: "maquinas",
+        name: "Maquinas",
+        component: Maquinas
       },
       {
-        path: "icons",
-        name: "Icons",
-        component: Icons
+        path: "ordens",
+        name: "Ordens",
+        component: Ordens
       },
-      {
-        path: "maps",
-        name: "Maps",
-        meta: {
-          hideFooter: true
-        },
-        component: Maps
-      },
-      {
-        path: "notifications",
-        name: "Notifications",
-        component: Notifications
-      },
+  
+     
       {
         path: "upgrade",
         name: "Upgrade to PRO",

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="md-layout">
-      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
+      <div class="md-layout-item md-large-size-100 md-xlarge-size-100 md-size-100">
       
         <chart-card
           :chart-data="dailySalesChart.data"

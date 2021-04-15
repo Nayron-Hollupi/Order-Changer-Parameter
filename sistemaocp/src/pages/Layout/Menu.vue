@@ -1,4 +1,5 @@
 <template>
+
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     
 
@@ -7,30 +8,24 @@
         <md-icon>space_dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
-      <sidebar-link to="/user">
+      <sidebar-link to="/usuarios">
         <md-icon>person</md-icon>
         <p>Usuários</p>
       </sidebar-link>
-      <sidebar-link to="/table">
+      <sidebar-link to="/Relatorios">
         <md-icon>content_paste</md-icon>
         <p>Relatórios</p>
       </sidebar-link>
-      <sidebar-link to="/typography">
+      <sidebar-link to="/Maquinas">
         <md-icon>precision_manufacturing</md-icon>
         <p>Máquinas</p>
       </sidebar-link>
-      <sidebar-link to="/icons">
+      <sidebar-link to="/Ordens">
         <md-icon>file_copy</md-icon>
         <p>Ordens</p>
       </sidebar-link>
-      <sidebar-link to="/maps">
-        <md-icon>precision_manufacturing</md-icon>
-        <p>Maps</p>
-      </sidebar-link>
-      <sidebar-link to="/notifications">
-        <md-icon>notifications</md-icon>
-        <p>Notifications</p>
-      </sidebar-link>
+     
+   
       <sidebar-link to="/upgrade" class="active-pro">
         <md-icon>logout</md-icon>
         <p>Sair</p>

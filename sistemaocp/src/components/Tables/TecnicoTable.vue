@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "simple-table",
+  name: "tecnico-table",
   props: {
     tableHeaderColor: {
       type: String,
@@ -26,7 +26,7 @@ export default {
       users: [
         {
           name: "Dakota Rice",
-          salary: "$36,738",
+          salary: "$36,735",
           country: "Niger",
           city: "Oud-Turnhout"
         },
