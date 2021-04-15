@@ -1,4 +1,4 @@
-import Layout from "@/pages/Layout/Layout.vue";
+import Layout from "@/pages/Layout/Menu.vue";
 
 import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";

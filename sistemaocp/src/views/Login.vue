@@ -1,32 +1,22 @@
 <template>
- <form    method="post"  @submit.prevent="Login">
+ <form   id="background"  method="post"  @submit.prevent="Login">
 
-<div class="container">
+<div  class="container">
   <div class ="box"> 
-    <div class="form-group">
+    <div class="mb-3">
     <h1>{{title}}</h1>
     </div>
-    <div class="form-group">
-    <md-field>
-  <label>Initial Value</label>
-  <md-input v-model="initial"></md-input>
-</md-field>
-<md-field>
-  <label>Type here!</label>
-  <md-input v-model="type"></md-input>
-  <span class="md-helper-text">Helper text</span>
-</md-field>
-    <input  class="form-control" id="usuario" type="text" required v-model="usuarioField" placeholder="Seu login">
-    </div>
+    <div class="mb-3">
+          <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
  
-    <div class="form-group">
-    <input  class="form-control"  id="password"  required 
-    v-model="passwordField" type="text" placeholder="Sua senha" >
     </div>
-
-    <div class="form-group">
-    <button type="submit" @click="Login" class="btn btn-primary mb-2 form-control">Enviar</button>
-    </div>
+ <div class="mb-3">
+   <input type="password" class="form-control" id="exampleInputPassword1">
+</div>
+ 
+    <div class="d-grid gap-2">
+  <button class="btn btn-primary" type="button">Button</button>
+</div>
   </div>
 </div>
 
@@ -35,6 +25,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Login',
    usuarioField: "",
@@ -43,10 +34,7 @@ export default {
     return{
     title: "Login",
    
-   } },  data: () => ({
-      initial: 'Initial Value',
-      type: null
-    }),
+   } },
   props: {
     msg: String
   },
@@ -74,10 +62,10 @@ export default {
 </script>
 
 
-<style scoped>
+<style scoped >
 .container {
 width: 100vw;
-height: 100vh;
+height: 80vh;
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -86,7 +74,7 @@ text-align: center;
  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #000000;
   margin-top: 0px;
 
 }
@@ -97,12 +85,12 @@ height: 300px;
 
 }
 #background{
-    background:  url("../assets/OCP.png") no-repeat ;
+  background:  url("../assets/OCP1.png") no-repeat ;
   background-size: contain;
   background-position: center;
   width: 100%;
   height: 100vh;
- 
+ background-color: #c0bfbf;
 }
 </style>
 

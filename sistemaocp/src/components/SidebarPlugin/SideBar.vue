@@ -13,7 +13,7 @@
       </a>
 
       <a
-        href="https://www.creative-tim.com/product/vue-material-dashboard"
+        href=""
         target="_blank"
         class="simple-text logo-normal"
       >
@@ -23,7 +23,7 @@
     <div class="sidebar-wrapper">
       <slot name="content"></slot>
       <md-list class="nav">
-        <!--By default vue-router adds an active class to each route link. This way the links are colored when clicked-->
+     
         <slot>
           <sidebar-link
             v-for="(link, index) in sidebarLinks"
@@ -47,15 +47,15 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Vue MD"
+      default: "OCP"
     },
     sidebarBackgroundImage: {
       type: String,
-      default: require("@/assets/img/sidebar-2.jpg")
+      default: require("@/assets/img/industria4.0.png")
     },
     imgLogo: {
       type: String,
-      default: require("@/assets/img/vue-logo.png")
+      default: require("@/assets/favicon.png")
     },
     sidebarItemColor: {
       type: String,
