@@ -57,12 +57,16 @@ class UsuarioController extends Controller
     public function cadastrar(Request $request){
         $this->validate($request,[
             'usuario' => 'required|min:5|max:40',
+            'email' => 'required',
+            'registro' => 'required|min:2|max:5',
             'nivel' => 'required|min:1|max:100',
             'password' => 'required',
         ]);
 
         $usuario = new Usuario;
         $usuario->usuario = $request->usuario;
+        $usuario->email = $request->email;
+        $usuario->registro = $request->registro;
         $usuario->nivel = $request->nivel;
         $usuario->password = Hash::make($request->password);
       
@@ -81,6 +85,8 @@ class UsuarioController extends Controller
 
         $usuario = Usuario::find($id);
         $usuario->usuario = $request->usuario;
+        $usuario->email = $request->email;
+        $usuario->registro = $request->registro;
         $usuario->nivel = $request->nivel;
         $usuario->password = $request->password;
 

@@ -13,7 +13,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Digite o nome do Usuário</label>
-              <md-input v-model="username" type="text"></md-input>
+              <md-input v-model="name" type="text"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -25,7 +25,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Digite o Email</label>
-              <md-input v-model="emailadress" type="email"></md-input>
+              <md-input v-model="email" type="email"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -37,7 +37,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Digite o Registro do Usuário</label>
-              <md-input v-model="firstname" type="text"></md-input>
+              <md-input v-model="registro" type="text"></md-input>
             </md-field>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
@@ -49,7 +49,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
            <div class="md-layout-item">
         <md-field>
-          <md-select v-model="country" name="country" id="country" placeholder="Selecione o tipo de Usuário">
+          <md-select v-model="nivel" name="nivel" id="nivel" placeholder="Selecione o tipo de Usuário">
             <md-option value="0">Analista</md-option>
             <md-option value="1">Gestor</md-option>
             <md-option value="2">Tecnico</md-option>
@@ -66,7 +66,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Digite a senha</label>
-              <md-input v-model="address" type="text"></md-input>
+              <md-input v-model="password" type="text"></md-input>
             </md-field>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
@@ -94,19 +94,14 @@ export default {
   },
   data() {
     return {
-      username: null,
-      disabled: null,
-      emailadress: null,
-      lastname: null,
-      firstname: null,
-      address: null,
-      city: null,
-      country: null,
-      code: null,
-      aboutme:
-        "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+      name: null,
+    email: null,
+    registro: null,
+    nivel: null,
+    password: null
     };
   }
+
 };
 </script>
 <style></style>

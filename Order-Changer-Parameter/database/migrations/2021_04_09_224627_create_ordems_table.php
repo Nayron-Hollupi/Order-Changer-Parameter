@@ -40,3 +40,4 @@ class CreateOrdemsTable extends Migration
         Schema::dropIfExists('ordems');
     }
 }
+
