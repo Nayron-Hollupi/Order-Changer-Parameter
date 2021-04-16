@@ -11,11 +11,18 @@
           <div class="md-layout">
             <div class="md-layout-item md-size-100">
               <div class="places-buttons text-center">
-               
-                <md-button class="md-success" @click="notifyVue('top','left')">Abrir Ordem</md-button>
-                <md-button class="md-danger" @click="notifyVue('top','center')">Ordens Abertas</md-button>
-                <md-button class="md-warning" @click="notifyVue('top','right')">Ordens em andamento</md-button>
-                <md-button class="md-info" @click="notifyVue('bottom','left')">Ordens Finalizadas</md-button>
+                 <sidebar-link to="ordens/abrir">
+                <md-button class="md-success" >Abrir Ordem</md-button>
+                </sidebar-link>
+               <sidebar-link to="ordens/abertas">
+               <md-button class="md-danger" >Ordens Abertas</md-button>
+                </sidebar-link>
+                 <sidebar-link to="ordens/Andamento">
+                <md-button class="md-warning" >Ordens em andamento</md-button>
+                </sidebar-link>
+                 <sidebar-link to="ordens/Finalizadas">
+             <md-button class="md-info" >Ordens Finalizadas</md-button>
+                </sidebar-link>
               </div>
             </div>
           </div>
@@ -30,25 +37,8 @@
 export default {
   data () {
     return {
-      type: ['', 'info', 'success', 'warning', 'danger'],
-      notifications: {
-        topCenter: false
-      }
-    }
-  },
-  methods: {
-    notifyVue (verticalAlign, horizontalAlign) {
-      var color = Math.floor((Math.random() * 4) + 1)
-      this.$notify(
-        {
-          message: 'Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer.',
-          icon: 'add_alert',
-          horizontalAlign: horizontalAlign,
-          verticalAlign: verticalAlign,
-          type: this.type[color]
-        })
+
     }
   }
 }
-
 </script>

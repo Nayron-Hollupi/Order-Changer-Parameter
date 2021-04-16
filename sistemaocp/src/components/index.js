@@ -9,7 +9,7 @@ import MaquinasTable from "./Tables/MaquinasTable.vue";
 import AnalistaTable from "./Tables/AnalistaTable.vue";
 import GestorTable from "./Tables/GestorTable.vue";
 import TecnicoTable from "./Tables/TecnicoTable.vue";
-
+import OrdemTable from "./Tables/OrdemTable.vue";
 
 export {
   ChartCard,
@@ -19,7 +19,8 @@ export {
   MaquinasTable,
   AnalistaTable,
   GestorTable,
-  TecnicoTable
+  TecnicoTable,
+  OrdemTable
  
 
 };
