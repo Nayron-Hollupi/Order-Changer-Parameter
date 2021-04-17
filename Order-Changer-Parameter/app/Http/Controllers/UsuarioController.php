@@ -21,7 +21,7 @@ class UsuarioController extends Controller
     {
         $this->jwt = $jwt;
         $this->middleware('auth:api', [
-            'except' =>['usuarioLogin', 'cadastrar', 'atualizarUsuario', 'deletarUsuario']
+            'except' =>['usuarioLogin', 'cadastrar', 'atualizarUsuario', 'deletarUsuario', 'mostrarUsuario']
         ]);
     }
 

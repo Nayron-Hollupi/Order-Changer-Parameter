@@ -23,7 +23,7 @@ class CreateOrdemsTable extends Migration
             $table->string('Data_fim');
             $table->string('Laudo_tecnico');
             $table->string('Peças_utilizadas');
-            $table->string('Observações');
+            $table->string('Observações');//Resumo do problema//
             $table->string('Status');
             $table->timestamps();
 

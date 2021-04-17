@@ -7,13 +7,19 @@ import Usuarios from "@/pages/Usuarios.vue";
 import Relatorios from "@/pages/Relatorios.vue";
 import Maquinas from "@/pages/Maquinas.vue";
 import Ordens from "@/pages/Ordens.vue";
-import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
+
+
+
+import Logout from "@/pages/Logout.vue";
 import CadastrarUsuario from "@/pages/CadastrarUsuario.vue";
 import CadastrarMaquina from "@/pages/CadastrarMaquina.vue";
 import AbrirOrdem from "@/pages/AbrirOrdem.vue";
 import OrdemAbertas from "@/pages/OrdemAbertas.vue";
 import OrdemAndamento from "@/pages/OrdemAndamento.vue";
 import OrdemFinalizadas from "@/pages/OrdemFinalizadas.vue";
+import VisualizarRelatorio from "@/pages/VisualizarRelatorio.vue";
+import EscreverRelatorio from "@/pages/EscreverRelatorio.vue";
+
 const routes = [
   {
     path: "/",
@@ -58,9 +64,9 @@ const routes = [
       },
  
       {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO
+        path: "logout",
+        name: "Logout",
+        component: Logout
       },
       {
         path: "usuario/cadastrar",
@@ -91,6 +97,16 @@ const routes = [
         path: "ordens/Finalizadas",
         name: "Ordem Finalizadas",
         component: OrdemFinalizadas
+      },
+      {
+        path: "relatorios/visualizar",
+        name: " Visualizar Relatorios",
+        component: VisualizarRelatorio
+      },
+      {
+        path: "relatorios/escrever",
+        name: "Escrever Relatorio",
+        component: EscreverRelatorio
       }
          
     ]

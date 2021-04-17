@@ -10,7 +10,7 @@ import AnalistaTable from "./Tables/AnalistaTable.vue";
 import GestorTable from "./Tables/GestorTable.vue";
 import TecnicoTable from "./Tables/TecnicoTable.vue";
 import OrdemTable from "./Tables/OrdemTable.vue";
-
+import RelatorioTable from "./Tables/RelatorioTable.vue";
 export {
   ChartCard,
   NavTabsCard,
@@ -20,7 +20,8 @@ export {
   AnalistaTable,
   GestorTable,
   TecnicoTable,
-  OrdemTable
+  OrdemTable,
+  RelatorioTable
  
 
 };

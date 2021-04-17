@@ -26,21 +26,37 @@ export default {
       selected: [],
       users: [
         {
-          name: "Nayron Victor Hollupi",
-          registro: "8987",
-          email: "nayron@ocp.com.br",
-
+       
         }
 
       ]
     };
   },
-  
-  mounted () {
-    axios
-      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-      .then(response => (this.info = response))
+ mounted () {
+   this.axios.post('http://localhost:8000/usurios/1', this.data, {
+   headers: {
+          // remove headers
+        }
+      }).then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.log(err.response);
+      });
   }
+  
+  
+ // const requestOptions = {
+  //  method: "POST",
+  //  headers: { "Content-Type": "application/json" },
+  //  body: JSON.stringify({ 
+ 
+  //    usuario: this.usuarioField.value,
+    //  password: this.passwordField.value })
+ // };
+  //fetch("http://localhost:800/login", requestOptions)
+ //   .then(res =>res.json())
+  //.then(resData => console.log(resData))
+ // .catch(erro => console.log(erro));
   
 };
 </script>
