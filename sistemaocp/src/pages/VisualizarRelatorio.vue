@@ -1,7 +1,9 @@
 <template>
   <form>
+
+    
     <md-card>
-      <md-card-header   style="text-align:center">
+      <md-card-header data-background-color="blue" style="text-align:center">
         <h4 class="title">Relatorio </h4>
         <p class="category">Cu-00011 </p>
       </md-card-header>
@@ -10,66 +12,62 @@
         <div class="md-layout">
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Company (disabled)</label>
-              <md-input v-model="disabled" disabled></md-input>
+              <label>Numero da ordem</label>
+              <md-input v-model="numero" ></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>User Name</label>
-              <md-input v-model="username" type="text"></md-input>
+              <label>Setor</label>
+              <md-input v-model="setor" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Email Address</label>
-              <md-input v-model="emailadress" type="email"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>First Name</label>
-              <md-input v-model="firstname" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-            <md-field>
-              <label>Last Name</label>
-              <md-input v-model="lastname" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-100">
-            <md-field>
-              <label>Adress</label>
-              <md-input v-model="address" type="text"></md-input>
+              <label>Maquina</label>
+              <md-input v-model="maquina" type="email"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>City</label>
-              <md-input v-model="city" type="text"></md-input>
+              <label>Registro do tecnico</label>
+              <md-input v-model="registro_do_tecnico " type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Country</label>
-              <md-input v-model="country" type="text"></md-input>
+              <label>Inicio</label>
+              <md-input v-model="Data_inicio" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Postal Code</label>
-              <md-input v-model="code" type="number"></md-input>
+              <label>Fim </label>
+              <md-input v-model="Data_fim" type="text"></md-input>
             </md-field>
           </div>
+          
+    
           <div class="md-layout-item md-size-100">
-            <md-field maxlength="5">
-              <label>About Me</label>
-              <md-textarea v-model="aboutme"></md-textarea>
+            <md-field maxlength="1">
+              <label>Laudo Tecnico</label>
+              <md-textarea v-model="Laudo_tecnico"></md-textarea>
+            </md-field>
+          </div>
+            <div class="md-layout-item md-size-100">
+            <md-field maxlength="1">
+              <label>Resumo do Problema</label>
+              <md-textarea v-model="Resumo_do_problema"></md-textarea>
+            </md-field>
+          </div>
+            <div class="md-layout-item md-size-100">
+            <md-field maxlength="1">
+              <label>Peças utilizadas</label>
+              <md-textarea v-model="Peças_utilizadas"></md-textarea>
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Update Profile</md-button>
+            <md-button class="md-raised md-info">Salva Relatorio</md-button>
           </div>
         </div>
       </md-card-content>
@@ -96,8 +94,7 @@ export default {
       city: null,
       country: null,
       code: null,
-      aboutme:
-        "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+      aboutme: null
     };
   }
 };

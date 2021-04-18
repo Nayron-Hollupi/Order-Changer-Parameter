@@ -33,7 +33,7 @@ export default {
     };
   },
  mounted () {
-   this.axios.post('http://localhost:8000/usurios/1', this.data, {
+   this.axios.post('http://localhost:8000/usuarios/1', this.data, {
    headers: {
           // remove headers
         }

@@ -10,6 +10,7 @@
         <div class="logo-img">
           <img :src="imgLogo" alt="" />
         </div>
+      
       </a>
 
       <a
@@ -36,6 +37,7 @@
       </md-list>
     </div>
   </div>
+  
 </template>
 <script>
 import SidebarLink from "./SidebarLink.vue";

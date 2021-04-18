@@ -150,25 +150,21 @@
 import {
   StatsCard,
   ChartCard,
- // NavTabsCard,
- // NavTabsTable,
- // OrderedTable
+
 } from "@/components";
 
 export default {
   components: {
     StatsCard,
     ChartCard,
-   // NavTabsCard,
-   // NavTabsTable,
-   // OrderedTable
+ 
   },
   data() {
     return {
       dailySalesChart: {
         data: {
-          labels: ["J", "F", "M", "A", "M", "J", "J","A", "S", "O", "N", "D"],
-          series: [[12, 17, 7, 17, 23, 18, 38,55,80,90,50,2]]
+          labels: ["Ja", "Fe", "Ma", "Ab", "Ma", "Ju", "Jul","Ag", "Se", "Ou", "No", "De"],
+          series: [[5, 13,20, 27, 15, 18, 38,55,8,9,50,2]]
           
         },
         options: {
