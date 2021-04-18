@@ -31,7 +31,7 @@ class OrdemController extends Controller
         $ordem->Data_fim = $request->Data_fim;
         $ordem->Laudo_tecnico = $request->Laudo_tecnico;
         $ordem->Peças_utilizadas = $request->Peças_utilizadas;
-        $ordem->Observações = $request->Observações;
+        $ordem->Resumo_do_problema = $request->Observações;
         $ordem->Status = $request->Status;
 
         $ordem->save();
@@ -53,7 +53,7 @@ class OrdemController extends Controller
         $ordem->Data_fim = $request->Data_fim;
         $ordem->Laudo_tecnico = $request->Laudo_tecnico;
         $ordem->Peças_utilizadas = $request->Peças_utilizadas;
-        $ordem->Observações = $request->Observações;
+        $ordem->Resumo_do_problema = $request->Observações;
         $ordem->Status = $request->Status;
 
         $ordem->save();

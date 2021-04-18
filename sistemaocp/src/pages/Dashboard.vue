@@ -9,7 +9,7 @@
           :chart-type="'Line'"
           data-background-color="blue"
         >   <template slot="content">
-            <h4 class="title">Manutenção preventiva</h4>
+            <h4 class="title">Manutenção Corretiva</h4>
             <p class="category">
               <span class="text-success"
                 ><i class="fas fa-long-arrow-alt-up"></i> 55%
@@ -18,16 +18,6 @@
             </p>
           </template>
 
-
-
-          
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>access_time</md-icon>
-              updated 4 minutes ago
-            </div>
-          </template>
         </chart-card>
       </div>
 
@@ -40,18 +30,13 @@
           data-background-color="red"
         >
           <template slot="content">
-            <h4 class="title">Email Subscription</h4>
+            <h4 class="title">Previsão manutenção preventiva </h4>
             <p class="category">
               Last Campaign Performance
             </p>
           </template>
 
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>access_time</md-icon>
-              updated 10 days ago
-            </div>
-          </template>
+  
         </chart-card>
       </div>
 
@@ -63,18 +48,13 @@
           data-background-color="green"
         >
           <template slot="content">
-            <h4 class="title">Completed Tasks</h4>
+            <h4 class="title">Manutençã preventiva real</h4>
             <p class="category">
               Last Campaign Performance
             </p>
           </template>
 
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>access_time</md-icon>
-              campaign sent 26 minutes ago
-            </div>
-          </template>
+    
         </chart-card>
       </div>
 
@@ -140,8 +120,6 @@
           </template>
         </stats-card>
       </div>
-      
-    
     </div>
   </div>
 </template>

@@ -7,10 +7,10 @@
 
       <md-card-content>
         <div class="md-layout">
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
                 <div class="md-layout-item">
         <md-field>
           <md-select v-model="country" name="country" id="country" placeholder="Selecione o Setor">
@@ -21,13 +21,13 @@
         </md-field>
       </div>
           </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
+            <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
+            <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
                     <div class="md-layout-item">
         <md-field>
           <md-select v-model="country" name="country" id="country" placeholder="Selecione a Maquina">
@@ -38,13 +38,13 @@
         </md-field>
       </div>
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
+           <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
+            <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
            <md-field>
           <md-select v-model="country" name="country" id="country" placeholder="Selecione a Tag">
             <md-option value="0"> CU-0001 </md-option>
@@ -53,25 +53,25 @@
           </md-select>
         </md-field>
           </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
+            <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
+            <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Digite o Problema</label>
               <md-input v-model="firstname" type="text"></md-input>
             </md-field>
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
+           <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
+           <div class="md-layout-item md-small-size-100 md-size-40">
            
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
+           <div class="md-layout-item md-small-size-100 md-size-25">
                <md-button class="md-raised md-info">Criar Ordem</md-button>
           </div>
         </div>
@@ -90,17 +90,11 @@ export default {
   },
   data() {
     return {
-      username: null,
-      disabled: null,
-      emailadress: null,
-      lastname: null,
-      firstname: null,
-      address: null,
+    
       city: null,
       country: null,
       code: null,
-      aboutme:
-        "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+    
     };
   }
 };

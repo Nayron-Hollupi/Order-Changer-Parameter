@@ -19,7 +19,7 @@ class Ordem extends Model implements AuthenticatableContract, AuthorizableContra
      * @var array
      */
     protected $fillable = [
-        'Setor', 'Maquina','Registro_do_tecnico','Causa_do_problema','Data_inicio','Data_fim','Laudo_tecnico','Peças_Utilizadas','Observações','Status'
+        'Setor', 'Maquina','Registro_do_tecnico','Causa_do_problema','Data_inicio','Data_fim','Laudo_tecnico','Peças_Utilizadas','Resumo_do_problema','Status'
     ];
 
     /**
