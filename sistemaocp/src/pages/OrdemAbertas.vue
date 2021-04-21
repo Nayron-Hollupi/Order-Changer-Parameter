@@ -18,14 +18,44 @@
 </template>
 
 <script>
-import { OrdemTable } from "@/components";
+import axios from 'axios';
 
 export default {
   components: {
-  
-    OrdemTable
-   
-   
+
+  },
+  data(){
+    return{
+      ordem: []
+    }
+  },
+  created: function(){
+    axios
   }
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

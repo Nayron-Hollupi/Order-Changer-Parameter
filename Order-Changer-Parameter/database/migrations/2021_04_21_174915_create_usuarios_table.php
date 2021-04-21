@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -18,7 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('usuario', 50);
             $table->string('email');
             $table->string('registro');
-            $table->string('nivel');
+            $table->Integer('nivel');
             $table->string('password');
             $table->timestamps();
         });
@@ -34,4 +35,3 @@ class CreateUsuariosTable extends Migration
         Schema::dropIfExists('usuarios');
     }
 }
-

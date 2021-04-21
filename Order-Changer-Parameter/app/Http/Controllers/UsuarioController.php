@@ -50,9 +50,7 @@ class UsuarioController extends Controller
         return response()->json("Usuario deslogou com sucesso!");
     }
 
-    public function usuario(){
-        return response()->json(Usuario::all());
-    }
+
 
     public function cadastrar(Request $request){
         $this->validate($request,[
@@ -77,9 +75,20 @@ class UsuarioController extends Controller
         return response()->json($usuario);
     }
 
-    public function mostrarUsuario($id){
-        return response()->json(Usuario::find($id));
+    public function mostrarUsuario($nivel){
+        if (Usuario::where('nivel', $nivel)->exists()) {
+            $usuario = Usuario::where('nivel', $nivel)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($usuario, 200);
+          }
+    
+        //    return response()->json( Usuario::where('nivel' == $id));
     }
+
+   
+    public function usuario(){
+        return response()->json(Usuario::all());
+    }
+    
 
     public function atualizarUsuario($id, Request $request){
 

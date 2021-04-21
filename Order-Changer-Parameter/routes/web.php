@@ -31,7 +31,7 @@ $router->get('/usuarios', 'UsuarioController@usuario');
 $router->group(['prefix' => 'usuario'], function() use($router){
 
     $router->post('/cadastrar', 'UsuarioController@cadastrar'); 
-    $router->get('/{id}', 'UsuarioController@mostrarUsuario'); 
+    $router->get('/{nivel}', 'UsuarioController@mostrarUsuario'); 
     $router->get('/{id}/atualizar', 'UsuarioController@atualizarUsuario'); 
     $router->put('/{id}/atualizar', 'UsuarioController@atualizarUsuario');
     $router->delete('/{id}/deletar', 'UsuarioController@deletarUsuario');
@@ -64,3 +64,4 @@ $router->group(['prefix' => 'ordem'], function() use($router){
     $router->put('/{id}/atualizar', 'OrdemController@atualizarOrdem');
     $router->delete('/{id}/deletar', 'OrdemController@deletarOrdem');
 });
+
