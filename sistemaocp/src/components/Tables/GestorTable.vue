@@ -7,7 +7,6 @@
         <md-table-cell md-label="email">{{ item.email }}</md-table-cell>
         <md-table-cell >  <button type="button" class="btn btn-warning me-md-6">Editar</button></md-table-cell>
      <md-table-cell >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
-      
       </md-table-row>
     </md-table>
   </div>
@@ -27,6 +26,11 @@ export default {
       selected: [],
       users: [
     
+        {
+           name: "Daniel Sadala     ",
+          registro: "7512",
+          email: "Daniel@ocp.com.br"
+        },
         {
            name: "Daniel Sadala     ",
           registro: "7512",

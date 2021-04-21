@@ -1,6 +1,8 @@
 <template>
   <div class="content">
-     <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
+    
+    <div class="md-layout">
+       <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
         <sidebar-link to="/usuario/cadastrar"> 
       <md-card>
        <div class="d-grid gap-2 col-12 mx-auto">
@@ -9,61 +11,62 @@
  </md-card>
       </sidebar-link>
       </div>
-    <div class="md-layout">
-    
-       
-      
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
-      >
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
         <md-card>
           <md-card-header data-background-color="green">
             <h4 class="title" style="text-align:center">Lista de Analistas cadastrados</h4>
           </md-card-header>
           <md-card-content>
-            <analista-table table-header-color="green"></analista-table>
+            <div table-header-color="green">  <md-table  :table-header-color="tableHeaderColor">
+   
+      <md-table-row slot="md-table-row"  v-for="(usuario,id) in usuarios" :key="id"  > 
+        <md-table-cell md-label="Registro">{{usuario.registro | analista}}</md-table-cell>
+        <md-table-cell md-label="Usuario">{{usuario.usuario}}</md-table-cell>
+        <md-table-cell md-label="email">{{usuario.email}}</md-table-cell>
+     <md-table-cell >  <button type="button" class="btn btn-warning me-md-6">Editar</button></md-table-cell>
+     <md-table-cell >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+  </md-table-row>
+    </md-table></div>
              
           </md-card-content>
         </md-card>
       </div>
 
-        <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
-        <md-card>
-          <md-card-header data-background-color="green">
-            <h4 class="title" style="text-align:center">Lista de Gestores cadastrados</h4>
-          </md-card-header>
-          <md-card-content>
-            <gestor-table table-header-color="green"></gestor-table>
-             
-          </md-card-content>
-        </md-card>
-      </div>
-
-
-         <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
-        <md-card>
-          <md-card-header data-background-color="green">
-            <h4 class="title" style="text-align:center">Lista de Tecnicos cadastrados</h4>
-          </md-card-header>
-          <md-card-content>
-            <tecnico-table table-header-color="green"></tecnico-table>
-             
-          </md-card-content>
-        </md-card>
-      </div>
+      
     </div>
   </div>
 </template>
 
 <script>
-import { AnalistaTable, GestorTable, TecnicoTable } from "@/components";
-
+import axios from 'axios';
 export default {
+  
   components: {
-    GestorTable,
-    AnalistaTable,
-    TecnicoTable
-   
+ 
+  },
+   props:{
+      usuario: String,
+      registro: String,
+      email: String,
+      nivel: String,
+       tableHeaderColor: {
+      type: String,
+      default: ""
   }
+  },
+    data() {
+    return {
+      usuarios: [] 
+    }
+  },
+  created: function(){
+ axios.get("http://localhost:8000/usuarios")
+ .then(res => { 
+   console.log(res);
+   this.usuarios = res.data;
+
+ })
+
+ }
 };
 </script>
