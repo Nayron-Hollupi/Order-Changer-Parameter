@@ -68,7 +68,7 @@
         <md-table-cell md-label="Usuario"  >{{usuario.usuario}}</md-table-cell>
         <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
      <md-table-cell  >  <button type="button" class="btn btn-warning me-md-6">Editar</button></md-table-cell>
-     <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+     <md-table-cell   >  <button type="button" @click="excluir(usuario.id)" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
   </md-table-row>
     </md-table></div>
              
@@ -121,6 +121,15 @@ export default {
    this.tecnicos = res.data; 
  })
  },  
+  methods:{
+    cadastrar: function(){
+    axios.post( "http://localhost:8000/{id}/cadastrar")
+   .then(res => {
+     console.log(res);
+     this.maquinas = res.data;
+   })
+    }
+  }
       };
 </script>
 

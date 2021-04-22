@@ -13,7 +13,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Digite o nome do Usuário</label>
-              <md-input v-model="name" type="text"></md-input>
+              <md-input v-model="usuario" type="text"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -76,30 +76,39 @@
            
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
-               <md-button class="md-raised md-info">Cadastrar</md-button>
+               <md-button @click="cadastrar($event)" class="md-raised md-info">Cadastrar</md-button>
           </div>
         </div>
       </md-card-content>
     </md-card>
   </form>
 </template>
+
+
+
 <script>
+import axios from 'axios';
 export default {
-  name: "edit-profile-form",
   props: {
-    dataBackgroundColor: {
-      type: String,
-      default: ""
-    }
+   
   },
   data() {
     return {
-      name: null,
-    email: null,
-    registro: null,
-    nivel: null,
-    password: null
+      usuario: "",
+    email: "",
+    registro: "",
+    nivel: "",
+    password: ""
     };
+  },
+  methods:{
+    cadastrar: function($event){
+    axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
+   .then(res => {
+     console.log(res);
+     this.usuarios = res.data;
+   })
+    }
   }
 
 };

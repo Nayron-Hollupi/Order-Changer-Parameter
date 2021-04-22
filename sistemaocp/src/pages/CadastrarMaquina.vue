@@ -13,7 +13,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Digite o Setor</label>
-              <md-input v-model="username" type="text"></md-input>
+              <md-input v-model="Setor" type="text"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -25,7 +25,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Digite o Tag</label>
-              <md-input v-model="emailadress" type="email"></md-input>
+              <md-input v-model="Tag" type="text"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -37,7 +37,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Maquina</label>
-              <md-input v-model="firstname" type="text"></md-input>
+              <md-input v-model="Maquina" type="text"></md-input>
             </md-field>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
@@ -47,36 +47,35 @@
            
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
-               <md-button class="md-raised md-info">Cadastrar</md-button>
+               <md-button  @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
           </div>
         </div>
       </md-card-content>
     </md-card>
   </form>
 </template>
+
 <script>
+import axios from 'axios';
 export default {
-  name: "edit-profile-form",
   props: {
-    dataBackgroundColor: {
-      type: String,
-      default: ""
-    }
+   
   },
   data() {
     return {
-      username: null,
-      disabled: null,
-      emailadress: null,
-      lastname: null,
-      firstname: null,
-      address: null,
-      city: null,
-      country: null,
-      code: null,
-      aboutme:
-        "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+     Setor: "",
+     Tag: "",
+     Maquina: ""
     };
+  },
+  methods:{
+    cadastrar: function(){
+    axios.post( "http://localhost:8000/maquinas/cadastrar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina})
+   .then(res => {
+     console.log(res);
+     this.maquinas = res.data;
+   })
+    }
   }
 };
 </script>

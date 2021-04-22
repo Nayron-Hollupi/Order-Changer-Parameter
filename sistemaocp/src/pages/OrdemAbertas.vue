@@ -29,9 +29,7 @@ export default {
       ordem: []
     }
   },
-  created: function(){
-    axios
-  }
+  
 };
 </script>
 
