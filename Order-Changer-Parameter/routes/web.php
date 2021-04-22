@@ -34,7 +34,7 @@ $router->group(['prefix' => 'usuario'], function() use($router){
     $router->get('/{nivel}', 'UsuarioController@mostrarUsuario'); 
     $router->get('/{id}/atualizar', 'UsuarioController@atualizarUsuario'); 
     $router->put('/{id}/atualizar', 'UsuarioController@atualizarUsuario');
-    $router->delete('/{id}/deletar', 'UsuarioController@deletarUsuario');
+    $router->delete('/deletar/{id}', 'UsuarioController@deletarUsuario');
 });
 
 
@@ -63,5 +63,18 @@ $router->group(['prefix' => 'ordem'], function() use($router){
     $router->get('/{id}/atualizar', 'OrdemController@atualizarOrdem'); 
     $router->put('/{id}/atualizar', 'OrdemController@atualizarOrdem');
     $router->delete('/{id}/deletar', 'OrdemController@deletarOrdem');
+});
+
+//Cadastrar Relatorios
+
+$router->get('/relatorios', 'RelatoriosController@relatorios'); 
+
+$router->group(['prefix' => 'relatorio'], function() use($router){
+
+    $router->post('/cadastrar', 'RelatoriosController@cadastrar'); 
+    $router->get('/{id}', 'RelatoriosController@mostrar'); 
+    $router->get('/{id}/atualizar', 'RelatoriosController@atualizarRelatorio'); 
+    $router->put('/{id}/atualizar', 'RelatoriosController@atualizarRelatorio');
+    $router->delete('/{id}/deletar', 'RelatoriosController@deletarRelatorio');
 });
 

@@ -25,13 +25,8 @@ class OrdemController extends Controller
         $ordem = new Ordem;
         $ordem->Setor = $request->Setor;
         $ordem->Maquina = $request->Maquina;
-        $ordem->Registro_do_tecnico = $request->Registro_do_tecnico;
-        $ordem->Causa_do_problema = $request->Causa_do_problema;
-        $ordem->Data_inicio = $request->Data_inicio;
-        $ordem->Data_fim = $request->Data_fim;
-        $ordem->Laudo_tecnico = $request->Laudo_tecnico;
-        $ordem->Peças_utilizadas = $request->Peças_utilizadas;
-        $ordem->Resumo_do_problema = $request->Observações;
+        $ordem->Tag = $request->Tag;
+        $ordem->Problema = $request->Problema;
         $ordem->Status = $request->Status;
 
         $ordem->save();
@@ -47,14 +42,10 @@ class OrdemController extends Controller
         $ordem = Ordem::find($id);
         $ordem->Setor = $request->Setor;
         $ordem->Maquina = $request->Maquina;
-        $ordem->Registro_do_tecnico = $request->Registro_do_tecnico;
-        $ordem->Causa_do_problema = $request->Causa_do_problema;
-        $ordem->Data_inicio = $request->Data_inicio;
-        $ordem->Data_fim = $request->Data_fim;
-        $ordem->Laudo_tecnico = $request->Laudo_tecnico;
-        $ordem->Peças_utilizadas = $request->Peças_utilizadas;
-        $ordem->Resumo_do_problema = $request->Observações;
+        $ordem->Tag = $request->Tag;
+        $ordem->Problema = $request->Problema;
         $ordem->Status = $request->Status;
+
 
         $ordem->save();
 

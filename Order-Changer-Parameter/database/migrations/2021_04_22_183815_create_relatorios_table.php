@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdemsTable extends Migration
+class CreateRelatoriosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreateOrdemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ordems', function (Blueprint $table) {
+        Schema::create('relatorios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Setor');
             $table->string('Maquina');
-            $table->string('Registro_do_tecnico');
-            $table->string('Causa_do_problema');
+            $table->string('Tag');
+            $table->integer('Registro');
             $table->string('Data_inicio');
             $table->string('Data_fim');
-            $table->string('Laudo_tecnico');
-            $table->string('Peças_utilizadas');
-            $table->string('Resumo_do_problema');
-            $table->string('Status');
+            $table->string('Laudo');
+            $table->string('Problema');
+            $table->string('Resumo');
+            $table->string('Pecas');
+            $table->integer('Status');
             $table->timestamps();
         });
     }
@@ -36,6 +37,6 @@ class CreateOrdemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordems');
+        Schema::dropIfExists('relatorios');
     }
 }

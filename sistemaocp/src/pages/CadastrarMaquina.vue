@@ -70,7 +70,7 @@ export default {
   },
   methods:{
     cadastrar: function(){
-    axios.post( "http://localhost:8000/maquinas/cadastrar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina})
+    axios.post( "http://localhost:8000/maquinas/cadastrar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina })
    .then(res => {
      console.log(res);
      this.maquinas = res.data;

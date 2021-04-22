@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Ordem extends Model implements AuthenticatableContract, AuthorizableContract
+class Relatorios extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
 
@@ -19,7 +19,8 @@ class Ordem extends Model implements AuthenticatableContract, AuthorizableContra
      * @var array
      */
     protected $fillable = [
-        'Setor', 'Maquina','Tag','Problema','Status'
+        'Setor', 'Maquina','Tag','Registro','Data_inicio','Data_fim',
+        'Laudo','Problema','Resumo','Pecas','Status'
     ];
 
     /**
@@ -28,6 +29,6 @@ class Ordem extends Model implements AuthenticatableContract, AuthorizableContra
      * @var array
      */
     protected $hidden = [
-      
+     
     ];
 }

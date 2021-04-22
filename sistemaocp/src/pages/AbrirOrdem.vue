@@ -7,16 +7,15 @@
 
       <md-card-content>
         <div class="md-layout">
+          
           <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
                 <div class="md-layout-item">
         <md-field>
-          <md-select v-model="country" name="country" id="country" placeholder="Selecione o Setor">
-            <md-option value="0">Ferramentaria </md-option>
-            <md-option value="1">Usunagem</md-option>
-            <md-option value="2">Fundição</md-option>
+          <md-select v-model="Setor" name="setor" id="setor"   placeholder="Selecione o Setor">
+            <md-option v-for="(maquina,id) in maquinas" :key="id"  >{{maquina.Setor}}</md-option>
           </md-select>
         </md-field>
       </div>
@@ -27,29 +26,14 @@
             <div class="md-layout-item md-small-size-100 md-size-25">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50">
-                    <div class="md-layout-item">
-        <md-field>
-          <md-select v-model="country" name="country" id="country" placeholder="Selecione a Maquina">
-            <md-option value="0">Romi D 800  </md-option>
-            <md-option value="1">Romi D 600 </md-option>
-            <md-option value="2">Romi D 800 </md-option>
-          </md-select>
-        </md-field>
-      </div>
-          </div>
-           <div class="md-layout-item md-small-size-100 md-size-25">
+        
            
-          </div>
-            <div class="md-layout-item md-small-size-100 md-size-25">
-           
-          </div>
+         
           <div class="md-layout-item md-small-size-100 md-size-50">
            <md-field>
-          <md-select v-model="country" name="country" id="country" placeholder="Selecione a Tag">
-            <md-option value="0"> CU-0001 </md-option>
-            <md-option value="1"> CU-0002</md-option>
-            <md-option value="2">CU-0005</md-option>
+          <md-select v-model="Tag" name="Tag" id="Tag"   placeholder="Selecione a Tag">
+             <md-option  v-for="(maquina,id) in maquinas" :key="id">{{maquina.Tag}}</md-option>
+           
           </md-select>
         </md-field>
           </div>
@@ -62,7 +46,7 @@
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Digite o Problema</label>
-              <md-input v-model="firstname" type="text"></md-input>
+              <md-input v-model="Problema" type="text"></md-input>
             </md-field>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-25">
@@ -72,7 +56,7 @@
            
           </div>
            <div class="md-layout-item md-small-size-100 md-size-25">
-               <md-button class="md-raised md-info">Criar Ordem</md-button>
+               <md-button   @click="cadastrar()" class="md-raised md-info">Criar Ordem</md-button>
           </div>
         </div>
       </md-card-content>
@@ -80,22 +64,32 @@
   </form>
 </template>
 <script>
+import axios from 'axios';
 export default {
-  name: "edit-profile-form",
   props: {
-    dataBackgroundColor: {
-      type: String,
-      default: ""
+   
+  },
+ data() {
+    return {
+      selected: "",
+     maquinas: []
+    };
+  },
+  methods:{
+    cadastrar: function(){
+    axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina, Problema:this.Problema})
+   .then(res => {
+     console.log(res);
+    
+   })
     }
   },
-  data() {
-    return {
-    
-      city: null,
-      country: null,
-      code: null,
-    
-    };
+ created: function(){
+    axios.get("http://localhost:8000/maquinas")
+    .then(res => {
+      console.log(res);
+      this.maquinas = res.data;
+    })
   }
 };
 </script>

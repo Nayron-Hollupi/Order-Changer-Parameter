@@ -76,7 +76,7 @@
            
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
-               <md-button @click="cadastrar($event)" class="md-raised md-info">Cadastrar</md-button>
+               <md-button @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
           </div>
         </div>
       </md-card-content>
@@ -102,7 +102,7 @@ export default {
     };
   },
   methods:{
-    cadastrar: function($event){
+    cadastrar: function(){
     axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
@@ -110,7 +110,6 @@ export default {
    })
     }
   }
-
 };
 </script>
 <style></style>
