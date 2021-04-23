@@ -77,14 +77,17 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
 import axios from 'axios';
+
+
 export default {
   
   components: {
- 
+    
   },
    props:{
       usuario: String,
@@ -105,7 +108,8 @@ export default {
     }
   },
   created: function(){
- axios.get("http://localhost:8000/usuario/0")
+     
+ axios.get("http://localhost:8000/usuario/0" )
  .then(res => { 
    console.log(res);
    this.analistas = res.data; 

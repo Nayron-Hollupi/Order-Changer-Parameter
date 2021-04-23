@@ -54,15 +54,15 @@ $router->group(['prefix' => 'maquinas'], function() use($router){
 
 //Cadastrar Ordens
 
-$router->get('/ordens', 'OrdemController@ordem'); 
+$router->get('/ordens', 'OrdemsController@ordem'); 
 
 $router->group(['prefix' => 'ordem'], function() use($router){
 
-    $router->post('/cadastrar', 'OrdemController@cadastrar'); 
-    $router->get('/{id}', 'OrdemController@mostrarOrdem'); 
-    $router->get('/{id}/atualizar', 'OrdemController@atualizarOrdem'); 
-    $router->put('/{id}/atualizar', 'OrdemController@atualizarOrdem');
-    $router->delete('/{id}/deletar', 'OrdemController@deletarOrdem');
+    $router->post('/cadastrar', 'OrdemsController@cadastrar'); 
+    $router->get('/{id}', 'OrdemsController@mostrarOrdem'); 
+    $router->get('/{id}/atualizar', 'OrdemsController@atualizarOrdem'); 
+    $router->put('/{id}/atualizar', 'OrdemsController@atualizarOrdem');
+    $router->delete('/{id}/deletar', 'OrdemsController@deletarOrdem');
 });
 
 //Cadastrar Relatorios

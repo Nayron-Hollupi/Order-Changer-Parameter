@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ordem;
+use App\Models\Ordems;
 use Illuminate\Http\Request;
 
-class OrdemController extends Controller
+class OrdemsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,12 +17,12 @@ class OrdemController extends Controller
         //
     }
     public function ordem(){
-        return response()->json(Ordem::all());
+        return response()->json(Ordems::all());
     }
 
     public function cadastrar(Request $request){
       
-        $ordem = new Ordem;
+        $ordem = new Ordems;
         $ordem->Setor = $request->Setor;
         $ordem->Maquina = $request->Maquina;
         $ordem->Tag = $request->Tag;
@@ -34,12 +34,12 @@ class OrdemController extends Controller
     }
 
     public function mostrarOrdem($id){
-        return response()->json(Ordem::find($id));
+        return response()->json(Ordems::find($id));
     }
 
     public function atualizarOrdem($id, Request $request){
 
-        $ordem = Ordem::find($id);
+        $ordem = Ordems::find($id);
         $ordem->Setor = $request->Setor;
         $ordem->Maquina = $request->Maquina;
         $ordem->Tag = $request->Tag;
@@ -54,7 +54,7 @@ class OrdemController extends Controller
     }
 
     public function deletarOrdem($id){
-        $ordem = Ordem::find($id);
+        $ordem = Ordems::find($id);
         $ordem->delete();
         return response()->json('Deletando com Sucesso', 200);
 
