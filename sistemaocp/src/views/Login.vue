@@ -1,9 +1,12 @@
 <template>
- <form   id="background"  method="post"  @submit.prevent="Login">
+ <form    method="post"  @submit.prevent="Login">
 
-<div  class="container">
- <md-card>   
-      <md-card-content  >
+
+<div class="container-box">
+<aside class="box"></aside>
+  <main class="box">
+  <md-card >   
+      <md-card-content style="padding: 80px;" >
           <div class="mb-3" style="text-align:center">
     <h1 >{{title}}</h1>
     </div>
@@ -27,7 +30,9 @@
         <br>
       </md-card-content>
     </md-card>
-  </div>
+  </main>
+</div>
+ 
 
 
 
@@ -60,35 +65,54 @@ export default {
 
 
 <style scoped >
-.container {
-width: 500px;
-height: 80vh;
+
+.container-box {
+  width: 100%;
+  height: 100%;
+/*   max-width: 700px; */
+  margin: 0 auto;
+  display: grid;
+  gap: 0px;
+  grid-template-rows: auto auto ;
+  grid-template-areas:
+    ' main aside aside'
+  ;
+}
+
+.box {
+  
+      background-color: #ffffff;
+}
+
+
+
+
+aside {
+  grid-area: aside;
+ background:  url("../assets/OCP1.png") no-repeat ;
+ background-size: contain;
+  background-position: center;
+  width: 100%;
+   height: 100vh;
+    background-color: #ffffff;
+}
+
+main {
+  grid-area: main;
 display: flex;
 flex-direction: row;
-justify-content: center;
-align-items: center;
 text-align: center;
  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000000;
-  margin-top: 0px;
+  margin-top: 0px ;
+   width: 100%;
+  
 
 }
 
-.box {
-  width: 300px;
-height: 300px;
 
-}
-#background{
-  background:  url("../assets/OCP1.png")  ;
-  background-size: auto;
-  background-position: center;
-  width: 100%;
-  height: 100vh;
- background-color: #ffffff;
-}
 </style>
 
 
