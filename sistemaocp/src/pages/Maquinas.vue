@@ -38,8 +38,10 @@
         <md-table-cell md-label="Registro" >{{maquina.Setor}}</md-table-cell>
         <md-table-cell md-label="Usuario"  >{{maquina.Tag}}</md-table-cell>
         <md-table-cell md-label="email" >{{maquina.Maquina}}</md-table-cell>
-     <md-table-cell  >  <button type="button" class="btn btn-warning me-md-6">Editar</button></md-table-cell>
-     <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+  <md-table-cell  >   <sidebar-link to="maquinas/editar">
+             <md-button class="md-warning" >Editar</md-button>
+                </sidebar-link></md-table-cell>
+                 <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
   </md-table-row>
     </md-table></div>
           </md-card-content>

@@ -28,8 +28,9 @@
         <md-table-cell md-label="Registro" >{{usuario.registro}}</md-table-cell>
         <md-table-cell md-label="Usuario"  >{{usuario.usuario}}</md-table-cell>
         <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
-     <md-table-cell  >  <button type="button" class="btn btn-warning me-md-6">Editar</button></md-table-cell>
-     <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+   <md-table-cell  >   <sidebar-link to="usuarios/editar">
+             <md-button class="md-warning" >Editar</md-button>
+                </sidebar-link></md-table-cell>   <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
   </md-table-row>
     </md-table></div>
              
@@ -51,7 +52,9 @@
         <md-table-cell md-label="Registro" >{{usuario.registro}}</md-table-cell>
         <md-table-cell md-label="Usuario"  >{{usuario.usuario}}</md-table-cell>
         <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
-     <md-table-cell  >  <button type="button" class="btn btn-warning me-md-6">Editar</button></md-table-cell>
+     <md-table-cell  >   <sidebar-link to="usuarios/editar">
+             <md-button class="md-warning" >Editar</md-button>
+                </sidebar-link></md-table-cell>
      <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
   </md-table-row>
     </md-table></div>  
@@ -71,8 +74,9 @@
         <md-table-cell md-label="Registro" >{{usuario.registro}}</md-table-cell>
         <md-table-cell md-label="Usuario"  >{{usuario.usuario}}</md-table-cell>
         <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
-     <md-table-cell  >  <button type="button" class="btn btn-warning me-md-6">Editar</button></md-table-cell>
-     <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+ <md-table-cell  >   <sidebar-link to="usuarios/editar">
+             <md-button class="md-warning" >Editar</md-button>
+                </sidebar-link></md-table-cell>  <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
   </md-table-row>
     </md-table></div>
              
@@ -118,12 +122,17 @@ export default {
     return {
       analistas: [],
       gestores: [],
-      tecnicos: []
+      tecnicos: [],
+
 
     }
   },
   created: function(){
-     
+    axios.post("http://localhost:8000/auth", {token:this.token} )
+ .then(res => { 
+   console.log(res);
+  
+ }),
  axios.get("http://localhost:8000/usuario/0" )
  .then(res => { 
    console.log(res);
@@ -139,8 +148,11 @@ export default {
    console.log(res);
    this.tecnicos = res.data; 
  })
+  
  }
-      };
+     
+
+ };
 </script>
 
 

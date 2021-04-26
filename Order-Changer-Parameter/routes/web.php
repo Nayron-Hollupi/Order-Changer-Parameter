@@ -22,7 +22,7 @@ $router->get('/', function () use ($router) {
 $router->post('/login','UsuarioController@usuarioLogin');
 
 //token
-$router->post('/info', 'UsuarioController@mostrarToken');
+$router->post('/auth', 'UsuarioController@auth');
 $router->post('logout', 'UsuarioController@usuarioLogout');
 
 //Cadastro dos usuarios

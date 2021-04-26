@@ -1,6 +1,5 @@
 <template>
-  <form>
-    <br>
+  <form><br>
      <header>
            <nav>
     <ol>
@@ -11,7 +10,7 @@
         <a href="http://localhost:8080/#/Maquinas">Maquinas</a>
       </li>
       <li>
-        <b >Cadastrar maquina</b>
+        <b >Editar maquina</b>
       </li>
       
     </ol>
@@ -19,7 +18,7 @@
     </header>
     <md-card>
       <md-card-header  data-background-color="green">
-        <h4 class="title" style="text-align:center">Cadastrar Maquina</h4>
+        <h4 class="title" style="text-align:center">Editar Maquina</h4>
       </md-card-header>
 
       <md-card-content>

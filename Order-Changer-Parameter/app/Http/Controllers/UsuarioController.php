@@ -21,7 +21,7 @@ class UsuarioController extends Controller
     {
         $this->jwt = $jwt;
         $this->middleware('auth:api', [
-            'except' =>['usuarioLogin', 'usuario','cadastrar', 'atualizarUsuario', 'deletarUsuario', 'mostrarUsuario']
+            'except' =>['usuarioLogin']
         ]);
     }
 
@@ -39,17 +39,17 @@ class UsuarioController extends Controller
          return response()->json(compact('token'));
     }
 
+    public function auth(){
+        $usuario = Auth::user();
+        return response()->json($usuario);
+}
 
-    public function mostrarToken(){
-              $usuario = Auth::user();
-              return response()->json($usuario);
-    }
-    
-    public function usuarioLogout(){
-        Auth::logout();
-        return response()->json("Usuario deslogou com sucesso!");
-    }
+public function usuarioLogout(){
+  Auth::logout();
+  return response()->json("Usuario deslogou com sucesso!");
+}
 
+  
 
 
     public function cadastrar(Request $request){

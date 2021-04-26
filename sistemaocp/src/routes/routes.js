@@ -19,6 +19,8 @@ import OrdemAndamento from "@/pages/OrdemAndamento.vue";
 import OrdemFinalizadas from "@/pages/OrdemFinalizadas.vue";
 import VisualizarRelatorio from "@/pages/VisualizarRelatorio.vue";
 import EscreverRelatorio from "@/pages/EscreverRelatorio.vue";
+import EditarUsuario from "@/pages/EditarUsuario.vue";
+import EditarMaquina from "@/pages/EditarMaquina.vue";
 
 const routes = [
   {
@@ -107,7 +109,17 @@ const routes = [
         path: "relatorios/escrever",
         name: "Escrever Relatorio",
         component: EscreverRelatorio
-      }
+      },
+{
+      path: "usuarios/editar",
+      name: "Editar Usuario",
+      component: EditarUsuario
+},
+{
+  path: "maquinas/editar",
+  name: "Editar Maquina",
+  component: EditarMaquina
+}
          
     ]
   }

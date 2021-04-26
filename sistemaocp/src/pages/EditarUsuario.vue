@@ -1,17 +1,17 @@
 <template>
   <form>
-    <br>
-     <header>
+        <header>
            <nav>
     <ol>
       <li>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
       </li>
         <li>
-        <a href="http://localhost:8080/#/Maquinas">Maquinas</a>
+        <a href="http://localhost:8080/#/usuarios">Usuarios</a>
       </li>
+    
       <li>
-        <b >Cadastrar maquina</b>
+        <b >Editar usuario</b>
       </li>
       
     </ol>
@@ -19,7 +19,7 @@
     </header>
     <md-card>
       <md-card-header  data-background-color="green">
-        <h4 class="title" style="text-align:center">Cadastrar Maquina</h4>
+        <h4 class="title" style="text-align:center">Cadastrar novo Usuario</h4>
       </md-card-header>
 
       <md-card-content>
@@ -29,8 +29,8 @@
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Digite o Setor</label>
-              <md-input v-model="Setor" type="text"></md-input>
+              <label>Digite o nome do Usuário</label>
+              <md-input v-model="usuario" type="text"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -41,8 +41,8 @@
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Digite o Tag</label>
-              <md-input v-model="Tag" type="text"></md-input>
+              <label>Digite o Email</label>
+              <md-input v-model="email" type="email"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -53,8 +53,37 @@
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Maquina</label>
-              <md-input v-model="Maquina" type="text"></md-input>
+              <label>Digite o Registro do Usuário</label>
+              <md-input v-model="registro" type="text"></md-input>
+            </md-field>
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+           <div class="md-layout-item">
+        <md-field>
+          <md-select v-model="nivel" name="nivel" id="nivel" placeholder="Selecione o tipo de Usuário">
+            <md-option value="0">Analista</md-option>
+            <md-option value="1">Gestor</md-option>
+            <md-option value="2">Tecnico</md-option>
+          </md-select>
+        </md-field>
+      </div>
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Digite a senha</label>
+              <md-input v-model="password" type="text"></md-input>
             </md-field>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
@@ -64,13 +93,15 @@
            
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
-               <md-button  @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
+               <md-button @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
           </div>
         </div>
       </md-card-content>
     </md-card>
   </form>
 </template>
+
+
 
 <script>
 import axios from 'axios';
@@ -80,17 +111,19 @@ export default {
   },
   data() {
     return {
-     Setor: "",
-     Tag: "",
-     Maquina: ""
+      usuario: "",
+    email: "",
+    registro: "",
+    nivel: "",
+    password: ""
     };
   },
   methods:{
     cadastrar: function(){
-    axios.post( "http://localhost:8000/maquinas/cadastrar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina })
+    axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
-     this.maquinas = res.data;
+     this.usuarios = res.data;
    })
     }
   }
@@ -178,4 +211,3 @@ b {
   font: inherit;
 }
 </style>
-
