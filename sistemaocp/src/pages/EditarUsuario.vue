@@ -19,7 +19,7 @@
     </header>
     <md-card>
       <md-card-header  data-background-color="green">
-        <h4 class="title" style="text-align:center">Cadastrar novo Usuario</h4>
+        <h4 class="title" style="text-align:center">Editar Usuario</h4>
       </md-card-header>
 
       <md-card-content>
@@ -120,7 +120,7 @@ export default {
   },
   methods:{
     cadastrar: function(){
-    axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
+    axios.put( "http://localhost:8000/usuario/" + id +"/atualizar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
      this.usuarios = res.data;

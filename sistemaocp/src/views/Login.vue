@@ -59,14 +59,7 @@ export default {
     
    })
     }
-  },
-    created: function(){
- axios.post("http://localhost:8000/auth", {token:this.token} )
- .then(res => { 
-   console.log(res);
-  
- })
- }
+  }
 }
 </script>
 

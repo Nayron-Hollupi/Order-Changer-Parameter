@@ -2,7 +2,7 @@
   <div class="content">
          <header>
            <nav>
-    <ol>
+    <ul>
       <li>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
       </li>
@@ -10,12 +10,12 @@
         <b >Usuarios</b>
       </li>
       
-    </ol>
+    </ul>
   </nav>
     </header>
     <div class="md-layout">
       <div class="md-layout-item">
-      <notifications></notifications>
+   
       <md-card>
         <md-card-header data-background-color="green">
           <h4 class="title" style="text-align:center">Ordens</h4>
@@ -23,7 +23,6 @@
         <md-card-content>
           <div class="md-layout">
             <div class="md-layout-item md-size-100">
-              <div class="places-buttons text-center">
                  <sidebar-link to="ordens/abrir">
                 <md-button class="md-success" >Abrir Ordem</md-button>
                 </sidebar-link>
@@ -36,7 +35,7 @@
                  <sidebar-link to="ordens/Finalizadas">
              <md-button class="md-info" >Ordens Finalizadas</md-button>
                 </sidebar-link>
-              </div>
+             
             </div>
           </div>
         </md-card-content>
@@ -79,7 +78,7 @@ nav {
   width: 100%;
 }
 
-ol {
+ul {
   display: table-row;
   list-style: none;
   text-align: center;

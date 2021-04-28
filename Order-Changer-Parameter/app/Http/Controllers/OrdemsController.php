@@ -33,8 +33,16 @@ class OrdemsController extends Controller
         return response()->json($ordem);
     }
 
-    public function mostrarOrdem($id){
-        return response()->json(Ordems::find($id));
+
+  
+
+    public function mostrarOrdem($Status){
+        if (Ordems::where('Status', $Status)->exists()) {
+            $ordem = Ordems::where('Status', $Status)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($ordem, 200);
+          }
+    
+       // return response()->json(Ordems::find($id));
     }
 
     public function atualizarOrdem($id, Request $request){

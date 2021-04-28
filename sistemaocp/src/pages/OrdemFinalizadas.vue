@@ -22,8 +22,16 @@
           <md-card-header data-background-color="blue">
             <h4 class="title" style="text-align:center">Ordens Finalizadas</h4>
           </md-card-header>
-          <md-card-content>
-            <ordem-table table-header-color="blue"></ordem-table>
+            <md-card-content>
+           <md-table >
+            <md-table-row slot="md-table-row"  v-for="(ordem,id) in ordems" :key="id"  > 
+        <md-table-cell md-label="id">{{ ordem.id }}</md-table-cell>
+        <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
+        <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
+   <md-table-cell >     <sidebar-link to="/relatorios/visualizar">
+       <button type="button" class="btn btn-success me-md-6">Visualiar relatorio</button>
+        </sidebar-link></md-table-cell>  
+  </md-table-row></md-table>
              
           </md-card-content>
         </md-card>
@@ -33,16 +41,28 @@
 </template>
 
 <script>
-import { OrdemTable } from "@/components";
+import axios from 'axios';
 
 export default {
   components: {
+
+  },
+  data(){
+    return{
+      ordems: []
+    }
+  },
+
+  created: function(){
   
-    OrdemTable
-   
-   
-  }
-};
+ axios.get("http://localhost:8000/ordem/0" )
+ .then(res => { 
+   console.log(res)
+   this.ordems = res.data; 
+ })
+  
+ }
+ };
 </script>
 <style scoped>
 :root {

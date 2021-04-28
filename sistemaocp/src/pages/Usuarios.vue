@@ -69,7 +69,7 @@
             <h4 class="title" style="text-align:center">Lista de Tecnicos cadastrados</h4>
           </md-card-header>
           <md-card-content>
-            <div table-header-color="green" >  <md-table  :table-header-color="tableHeaderColor">
+         <md-table >
       <md-table-row slot="md-table-row"  v-for="(usuario,id) in tecnicos" :key="id"  > 
         <md-table-cell md-label="Registro" >{{usuario.registro}}</md-table-cell>
         <md-table-cell md-label="Usuario"  >{{usuario.usuario}}</md-table-cell>
@@ -78,8 +78,7 @@
              <md-button class="md-warning" >Editar</md-button>
                 </sidebar-link></md-table-cell>  <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
   </md-table-row>
-    </md-table></div>
-             
+    </md-table>
           </md-card-content>
         </md-card>
       </div>

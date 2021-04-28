@@ -59,7 +59,7 @@ $router->get('/ordens', 'OrdemsController@ordem');
 $router->group(['prefix' => 'ordem'], function() use($router){
 
     $router->post('/cadastrar', 'OrdemsController@cadastrar'); 
-    $router->get('/{id}', 'OrdemsController@mostrarOrdem'); 
+    $router->get('/{Status}', 'OrdemsController@mostrarOrdem'); 
     $router->get('/{id}/atualizar', 'OrdemsController@atualizarOrdem'); 
     $router->put('/{id}/atualizar', 'OrdemsController@atualizarOrdem');
     $router->delete('/{id}/deletar', 'OrdemsController@deletarOrdem');
