@@ -85,8 +85,13 @@ public function usuarioLogout(){
     }
 
    
-    public function usuario(){
-        return response()->json(Usuario::all());
+    public function usuario($id){
+        if (Usuario::where('id', $id)->exists()) {
+            $usuario = Usuario::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($usuario, 200);
+          }
+        
+        //return response()->json(Usuario::all());
     }
     
 

@@ -26,10 +26,11 @@ $router->post('/auth', 'UsuarioController@auth');
 $router->post('logout', 'UsuarioController@usuarioLogout');
 
 //Cadastro dos usuarios
-$router->get('/usuarios', 'UsuarioController@usuario'); 
+
 
 $router->group(['prefix' => 'usuario'], function() use($router){
 
+    $router->get('/mostrar/{id}', 'UsuarioController@usuario'); 
     $router->post('/cadastrar', 'UsuarioController@cadastrar'); 
     $router->get('/{nivel}', 'UsuarioController@mostrarUsuario'); 
     $router->get('/{id}/atualizar', 'UsuarioController@atualizarUsuario'); 
@@ -59,10 +60,10 @@ $router->get('/ordens', 'OrdemsController@ordem');
 $router->group(['prefix' => 'ordem'], function() use($router){
 
     $router->post('/cadastrar', 'OrdemsController@cadastrar'); 
-    $router->get('/{Status}', 'OrdemsController@mostrarOrdem'); 
-    $router->get('/{id}/atualizar', 'OrdemsController@atualizarOrdem'); 
-    $router->put('/{id}/atualizar', 'OrdemsController@atualizarOrdem');
-    $router->delete('/{id}/deletar', 'OrdemsController@deletarOrdem');
+    $router->get('/{Status}', 'OrdemsController@mostrar'); 
+    $router->get('/{id}/atualizar', 'OrdemsController@atualizar'); 
+    $router->put('/{id}/atualizar', 'OrdemsController@atualizar');
+    $router->delete('/{id}/deletar', 'OrdemsController@deletar');
 });
 
 //Cadastrar Relatorios

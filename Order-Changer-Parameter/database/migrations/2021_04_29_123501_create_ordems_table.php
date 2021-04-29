@@ -16,11 +16,10 @@ class CreateOrdemsTable extends Migration
         Schema::create('ordems', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Setor');
-$table->string('Maquina');
-$table->string('Tag');
-$table->string('Problema');
-$table->integer('Status');
-$table->timestamps();
+            $table->string('Tag');
+            $table->string('Problema');
+            $table->integer('Status');
+            $table->timestamps();
         });
     }
 

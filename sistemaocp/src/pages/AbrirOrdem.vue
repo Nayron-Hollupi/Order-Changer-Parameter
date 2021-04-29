@@ -80,8 +80,11 @@
 <script>
 import axios from 'axios';
 export default {
+   components: {
+    
+  },
   props: {
-   
+  
   },
  data() {
     return {
@@ -91,7 +94,7 @@ export default {
   },
   methods:{
     cadastrar: function(){
-    axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag:this.Tag, Problema:this.Problema})
+    axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag:this.Tag, Problema:this.Problema, Status:this.Status})
    .then(res => {
      console.log(res);
     

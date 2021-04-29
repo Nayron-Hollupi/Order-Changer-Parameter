@@ -40,3 +40,4 @@ class CreateRelatoriosTable extends Migration
         Schema::dropIfExists('relatorios');
     }
 }
+

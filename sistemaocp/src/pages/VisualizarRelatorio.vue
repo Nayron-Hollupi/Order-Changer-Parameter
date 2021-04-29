@@ -1,7 +1,6 @@
 <template>
-  <form>
-    <br>
-   <header>
+    <div class="content">
+    <header>
            <nav>
     <ol>
       <li>
@@ -17,106 +16,83 @@
     </ol>
   </nav>
     </header>
+     <div class="md-layout">
     
-    <md-card>
-      <md-card-header data-background-color="blue" style="text-align:center">
-        <h4 class="title">Relatorio </h4>
-        <p class="category">Cu-00011 </p>
-      </md-card-header>
+      <!----  Apresentação  da lista dos analistas -----> 
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
+        <md-card>
+          <md-card-header data-background-color="green">
+            <h4 class="title" style="text-align:center">Lista de Analistas cadastrados</h4>
+          </md-card-header>
+          <md-card-content>
+            <div table-header-color="green" >  <md-table  :table-header-color="tableHeaderColor">
+   
+      <md-table-row slot="md-table-row"  v-for="(relatorio,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Numero" >Nº da solicitação: {{relatorio.id}}</md-table-cell>
+       
+ </md-table-row>
+   <md-table-row slot="md-table-row"  v-for="(relatorio,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Data Inicial:" >Data inicial: {{relatorio.Data_inicio}}</md-table-cell>
+        <md-table-cell md-label="Data final" >Data Final: {{relatorio.Data_fim}}</md-table-cell>
+ </md-table-row>
 
-      <md-card-content>
-        <div class="md-layout">
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Numero da ordem</label>
-              <md-input v-model="numero" ></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Setor</label>
-              <md-input v-model="setor" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Maquina</label>
-              <md-input v-model="maquina" type="email"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Registro do tecnico</label>
-              <md-input v-model="registro_do_tecnico " type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Inicio</label>
-              <md-input v-model="Data_inicio" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Fim </label>
-              <md-input v-model="Data_fim" type="text"></md-input>
-            </md-field>
-          </div>
-          
-    
-          <div class="md-layout-item md-size-100">
-            <md-field maxlength="1">
-              <label>Laudo Tecnico</label>
-              <md-textarea v-model="Laudo_tecnico"></md-textarea>
-            </md-field>
-          </div>
-            <div class="md-layout-item md-size-100">
-            <md-field maxlength="1">
-              <label>Resumo do Problema</label>
-              <md-textarea v-model="Resumo_do_problema"></md-textarea>
-            </md-field>
-          </div>
-            <div class="md-layout-item md-size-100">
-            <md-field maxlength="1">
-              <label>Peças utilizadas</label>
-              <md-textarea v-model="Peças_utilizadas"></md-textarea>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-info">Salva Relatorio</md-button>
-          </div>
-        </div>
-      </md-card-content>
-    </md-card>
-  </form>
+  <md-table-row slot="md-table-row"  v-for="(relatorio,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Equipamento:" >Equipamento: {{relatorio.Maquina}}/ {{relatorio.Tag}}</md-table-cell>
+        <md-table-cell md-label="Setor" >Setor: {{relatorio.Setor}}</md-table-cell>
+ </md-table-row>
+
+  <md-table-row slot="md-table-row"  v-for="(relatorio,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Colaborador:" >Colaborador: {{usuario.usuario}}</md-table-cell>
+        <md-table-cell md-label="Registro" >Registro: {{usuario.registro}}</md-table-cell>
+ </md-table-row>
+    </md-table></div>
+             
+          </md-card-content>
+        </md-card>
+      </div>
+
+
+      </div>
+
+    </div>
+ 
+  
 </template>
+
 <script>
-export default {
-  name: "edit-profile-form",
-  props: {
-    dataBackgroundColor: {
-      type: String,
-      default: ""
+import axios from 'axios';
+
+
+export default { 
+  components: {
+    
+  },
+   props:{
+     
+  },
+    data() {
+    return {
+      relatorios: [],
+
     }
   },
-  data() {
-    return {
-      username: null,
-      disabled: null,
-      emailadress: null,
-      lastname: null,
-      firstname: null,
-      address: null,
-      city: null,
-      country: null,
-      code: null,
-      aboutme: null
-    };
-  }
-};
+  created: function(){
+ axios.get("http://localhost:8000/relatorio/1" )
+ .then(res => { 
+   console.log(res);
+   this.relatorios = res.data; 
+ })
+  
+  
+  
+ }
+     
+
+ };
 </script>
 
 <style scoped>
+
 :root {
   background-color: #def;
   box-shadow: inset 0 0 7rem #fff, inset 0 0 3rem #fff;

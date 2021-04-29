@@ -16,15 +16,14 @@ class OrdemsController extends Controller
     {
         //
     }
-    public function ordem(){
+    public function ordems(){
         return response()->json(Ordems::all());
     }
 
     public function cadastrar(Request $request){
-      
+       
         $ordem = new Ordems;
         $ordem->Setor = $request->Setor;
-        $ordem->Maquina = $request->Maquina;
         $ordem->Tag = $request->Tag;
         $ordem->Problema = $request->Problema;
         $ordem->Status = $request->Status;
@@ -33,38 +32,31 @@ class OrdemsController extends Controller
         return response()->json($ordem);
     }
 
-
-  
-
-    public function mostrarOrdem($Status){
-        if (Ordems::where('Status', $Status)->exists()) {
-            $ordem = Ordems::where('Status', $Status)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($ordem, 200);
-          }
-    
-       // return response()->json(Ordems::find($id));
+    public function mostrar($id){
+        return response()->json(Ordems::find($id));
     }
 
-    public function atualizarOrdem($id, Request $request){
+    public function atualizar($id, Request $request){
 
         $ordem = Ordems::find($id);
         $ordem->Setor = $request->Setor;
-        $ordem->Maquina = $request->Maquina;
         $ordem->Tag = $request->Tag;
         $ordem->Problema = $request->Problema;
         $ordem->Status = $request->Status;
 
 
+        //Salvar novamento
         $ordem->save();
 
         return response()->json($ordem);
 
     }
 
-    public function deletarOrdem($id){
+    public function deletar($id){
         $ordem = Ordems::find($id);
         $ordem->delete();
         return response()->json('Deletando com Sucesso', 200);
 
     }
+ 
 }

@@ -41,7 +41,12 @@ class RelatoriosController extends Controller
     }
 
     public function mostrar($id){
-        return response()->json(Relatorios::find($id));
+        if (Relatorios::where('id', $id)->exists()) {
+            $relatorio = Relatorios::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($relatorio);
+          }
+    
+        //return response()->json(Relatorios::find($id));
     }
 
     public function atualizarRelatorios($id, Request $request){
