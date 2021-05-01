@@ -120,7 +120,7 @@ export default {
   },
   methods:{
     cadastrar: function(){
-    axios.put( "http://localhost:8000/usuario/" + id +"/atualizar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
+    axios.put( "http://localhost:8000/usuario/" + 1 +"/atualizar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
      this.usuarios = res.data;

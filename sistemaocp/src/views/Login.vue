@@ -75,7 +75,7 @@ export default {
   gap: 0px;
   grid-template-rows: auto auto ;
   grid-template-areas:
-    ' main aside aside'
+    '  aside aside main'
   ;
 }
 

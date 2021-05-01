@@ -21,10 +21,10 @@ class CreateRelatoriosTable extends Migration
             $table->integer('Registro');
             $table->string('Data_inicio');
             $table->string('Data_fim');
-            $table->string('Laudo');
-            $table->string('Problema');
-            $table->string('Resumo');
-            $table->string('Pecas');
+            $table->string('Laudo', 1000);
+            $table->string('Problema', 1000);
+            $table->string('Resumo' , 1000);
+            $table->string('Pecas' , 1000);
             $table->integer('Status');
             $table->timestamps();
         });

@@ -21,7 +21,7 @@ class UsuarioController extends Controller
     {
         $this->jwt = $jwt;
         $this->middleware('auth:api', [
-            'except' =>['usuarioLogin','usuario', 'mostrarUsuario']
+            'except' =>['usuarioLogin','usuario', 'mostrarUsuario','cadastrar','atualizarUsuario','deletarUsuario']
         ]);
     }
 
@@ -96,13 +96,20 @@ public function usuarioLogout(){
     
 
     public function atualizarUsuario($id, Request $request){
+        $this->validate($request,[
+            'usuario' => 'required|min:5|max:40',
+            'email' => 'required',
+            'registro' => 'required|min:2|max:5',
+            'nivel' => 'required|min:1|max:100',
+            'password' => 'required',
+        ]);
 
         $usuario = Usuario::find($id);
         $usuario->usuario = $request->usuario;
         $usuario->email = $request->email;
         $usuario->registro = $request->registro;
         $usuario->nivel = $request->nivel;
-        $usuario->password = $request->password;
+          $usuario->password = Hash::make($request->password);
 
         //Salvar novamento
         $usuario->save();

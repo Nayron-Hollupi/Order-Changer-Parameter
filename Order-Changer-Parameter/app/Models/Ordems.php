@@ -19,7 +19,7 @@ class Ordems extends Model implements AuthenticatableContract, AuthorizableContr
      * @var array
      */
     protected $fillable = [
-        'Setor','Tag','Problema','Status',
+        'Setor','Tag','Problemas','Status',
     ];
 
     /**

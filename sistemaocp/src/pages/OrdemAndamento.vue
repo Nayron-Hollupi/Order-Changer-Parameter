@@ -55,7 +55,7 @@ export default {
 
   created: function(){
   
- axios.get("http://localhost:8000/ordem/1" )
+ axios.get("http://localhost:8000/ordem/2" )
  .then(res => { 
    console.log(res);
    this.ordems = res.data; 

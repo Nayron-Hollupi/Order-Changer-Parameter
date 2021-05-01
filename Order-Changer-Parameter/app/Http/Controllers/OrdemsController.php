@@ -25,15 +25,21 @@ class OrdemsController extends Controller
         $ordem = new Ordems;
         $ordem->Setor = $request->Setor;
         $ordem->Tag = $request->Tag;
-        $ordem->Problema = $request->Problema;
+        $ordem->Problemas = $request->Problemas;
         $ordem->Status = $request->Status;
 
         $ordem->save();
         return response()->json($ordem);
     }
 
-    public function mostrar($id){
-        return response()->json(Ordems::find($id));
+    public function mostrar($Status){
+        if (Ordems::where('Status', $Status)->exists()) {
+            $ordem = Ordems::where('Status', $Status)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($ordem);
+          }
+    
+
+        //return response()->json(Ordems::find($id));
     }
 
     public function atualizar($id, Request $request){
@@ -41,7 +47,7 @@ class OrdemsController extends Controller
         $ordem = Ordems::find($id);
         $ordem->Setor = $request->Setor;
         $ordem->Tag = $request->Tag;
-        $ordem->Problema = $request->Problema;
+        $ordem->Problemas = $request->Problemas;
         $ordem->Status = $request->Status;
 
 

@@ -21,8 +21,8 @@
       <!----  Apresentação  da lista dos analistas -----> 
       <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
         <md-card>
-          <md-card-header data-background-color="green">
-            <h4 class="title" style="text-align:center">Lista de Analistas cadastrados</h4>
+          <md-card-header data-background-color="blue">
+            <h4 class="title" style="text-align:center">Relatorio</h4>
           </md-card-header>
           <md-card-content>
             <div table-header-color="green" >  <md-table  :table-header-color="tableHeaderColor">
@@ -41,22 +41,34 @@
         <md-table-cell md-label="Setor" >Setor: {{relatorio.Setor}}</md-table-cell>
  </md-table-row>
 
-  <md-table-row slot="md-table-row"  v-for="(relatorio,id) in relatorios" :key="id"  > 
+ <md-table-row slot="md-table-row"  v-for="(usuario,id) in usuarios" :key="id"  > 
         <md-table-cell md-label="Colaborador:" >Colaborador: {{usuario.usuario}}</md-table-cell>
         <md-table-cell md-label="Registro" >Registro: {{usuario.registro}}</md-table-cell>
  </md-table-row>
-    </md-table></div>
-             
+
+<md-table-row slot="md-table-row"  v-for="(relatorio,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Laudo Tecnico:" >Laudo Tecnico:<br> {{relatorio.Laudo}}</md-table-cell>
+             <md-table-cell md-label="" ></md-table-cell>
+ </md-table-row>
+  
+<md-table-row slot="md-table-row"  v-for="(relatorio,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Componentes Utilizados:" >Componentes Utilizados: <br>{{relatorio.Pecas}}</md-table-cell>
+        <md-table-cell md-label="" ></md-table-cell>
+ </md-table-row>
+
+<md-table-row slot="md-table-row"  v-for="(relatorio,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Observções:" >Observções: <br>{{relatorio.Resumo}}</md-table-cell>
+        <md-table-cell md-label="" ></md-table-cell>
+ </md-table-row>
+    
+    </md-table>
+      
+    </div>
           </md-card-content>
         </md-card>
       </div>
-
-
       </div>
-
-    </div>
- 
-  
+    </div> 
 </template>
 
 <script>
@@ -73,7 +85,7 @@ export default {
     data() {
     return {
       relatorios: [],
-
+      usuarios: []
     }
   },
   created: function(){
@@ -81,10 +93,13 @@ export default {
  .then(res => { 
    console.log(res);
    this.relatorios = res.data; 
+ }),
+ axios.get("http://localhost:8000/usuario/mostrar/2")
+ .then(res => { 
+   console.log(res);
+   this.usuarios = res.data; 
  })
-  
-  
-  
+
  }
      
 

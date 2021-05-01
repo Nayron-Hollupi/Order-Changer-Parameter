@@ -33,9 +33,9 @@
   </div>
           <div class="md-layout-item md-small-size-100 md-size-50">       
         <md-field>
-          <md-select v-model="Setor" name="setor" id="setor"  placeholder="Selecione a Setor" >    
-            <md-option v-for="(maquina,id) in maquinas" :key="id" value="maquina.Setor"  >{{maquina.Setor}}</md-option>
-          </md-select>                
+          <label>Digite o Setor</label>
+                    <md-input v-model="Setor" type="text"></md-input>
+                
         </md-field>
           </div>
 
@@ -45,9 +45,9 @@
   </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
            <md-field>
-          <md-select v-model="Tag" name="Tag" id="Tag"   placeholder="Selecione a Tag">
-             <md-option  v-for="(maquina,id) in maquinas" :key="id" value="maquina.Tag" >{{maquina.Tag}}</md-option>
-          </md-select>
+             <label>Digite o Tag</label>
+             <md-input v-model="Tag" type="text"></md-input>
+         
         </md-field>
           </div>
            
@@ -59,15 +59,23 @@
           <div class="md-layout-item md-small-size-100 md-size-50 ">
             <md-field>
               <label>Digite o Problema</label>
-              <md-input v-model="Problema" type="text"></md-input>
+              <md-input v-model="Problemas" type="text"></md-input>
             </md-field>
           </div>
                         <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
-   <div class="md-layout-item md-small-size-100 md-size-40">
+   <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
-  
-
+  <div class="md-layout-item md-small-size-100 md-size-50 ">
+            <md-field>
+              <label>Digite o Status</label>
+              <md-input v-model="Status" type="text"></md-input>
+            </md-field>
+          </div>
+                    <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
            <div class="md-layout-item md-small-size-100 md-size-25">
                <md-button   @click="cadastrar()" class="md-raised md-info">Criar Ordem</md-button>
           </div>
@@ -78,6 +86,15 @@
   </form>
 </template>
 <script>
+/*
+
+ <md-select v-model="Setor" name="setor" id="setor"  placeholder="Selecione a Setor" >    
+            <md-option v-for="(maquina,id) in maquinas" :key="id" value="maquina.Setor"  >{{maquina.Setor}}</md-option>
+          </md-select> 
+
+ <md-select v-model="Tag" name="Tag" id="Tag"   placeholder="Selecione a Tag"> 
+             <md-option  v-for="(maquina,id) in maquinas" :key="id" value="maquina.Tag" >{{maquina.Tag}}</md-option>
+          </md-select>*/
 import axios from 'axios';
 export default {
    components: {
@@ -94,7 +111,7 @@ export default {
   },
   methods:{
     cadastrar: function(){
-    axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag:this.Tag, Problema:this.Problema, Status:this.Status})
+    axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag:this.Tag, Problemas:this.Problemas, Status:this.Status})
    .then(res => {
      console.log(res);
     

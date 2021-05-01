@@ -17,7 +17,7 @@ class CreateOrdemsTable extends Migration
             $table->increments('id');
             $table->string('Setor');
             $table->string('Tag');
-            $table->string('Problema');
+            $table->string('Problemas', 1000);
             $table->integer('Status');
             $table->timestamps();
         });
