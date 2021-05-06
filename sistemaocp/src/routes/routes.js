@@ -11,16 +11,13 @@ import Ordens from "@/pages/Ordens.vue";
 
 
 import Logout from "@/pages/Logout.vue";
-import CadastrarUsuario from "@/pages/CadastrarUsuario.vue";
-import CadastrarMaquina from "@/pages/CadastrarMaquina.vue";
+
 import AbrirOrdem from "@/pages/AbrirOrdem.vue";
 import OrdemAbertas from "@/pages/OrdemAbertas.vue";
 import OrdemAndamento from "@/pages/OrdemAndamento.vue";
 import OrdemFinalizadas from "@/pages/OrdemFinalizadas.vue";
 import VisualizarRelatorio from "@/pages/VisualizarRelatorio.vue";
 import EscreverRelatorio from "@/pages/EscreverRelatorio.vue";
-import EditarUsuario from "@/pages/EditarUsuario.vue";
-import EditarMaquina from "@/pages/EditarMaquina.vue";
 
 const routes = [
   {
@@ -70,16 +67,7 @@ const routes = [
         name: "Logout",
         component: Logout
       },
-      {
-        path: "usuario/cadastrar",
-        name: "Cadastrar Usuario",
-        component: CadastrarUsuario
-      },
-      {
-        path: "maquinas/cadastrar",
-        name: "Cadastrar Maquina",
-        component: CadastrarMaquina
-      },
+      
       {
         path: "ordens/abrir",
         name: "Abrir Ordem",
@@ -109,17 +97,8 @@ const routes = [
         path: "relatorios/escrever",
         name: "Escrever Relatorio",
         component: EscreverRelatorio
-      },
-{
-      path: "usuarios/editar",
-      name: "Editar Usuario",
-      component: EditarUsuario
-},
-{
-  path: "maquinas/editar",
-  name: "Editar Maquina",
-  component: EditarMaquina
-}
+      }
+
          
     ]
   }

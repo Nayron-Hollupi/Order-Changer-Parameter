@@ -45,9 +45,9 @@
         <md-table-cell md-label="Registro" >{{usuario.registro}}</md-table-cell>
         <md-table-cell md-label="Usuario"  >{{usuario.usuario}}</md-table-cell>
         <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
-        <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
+      
  <md-table-cell><md-button class="md-warning" @click="editar(usuario.id)" >Editar</md-button></md-table-cell>
-<md-table-cell ><button type="button"   @click="Delete(usuario.id)" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+<md-table-cell ><md-button class="md-danger" @click="Delete(usuario.id)">Excluir</md-button></md-table-cell>
  
   </md-table-row>
     </md-table></div>
@@ -70,9 +70,9 @@
         <md-table-cell md-label="Registro" >{{usuario.registro}}</md-table-cell>
         <md-table-cell md-label="Usuario"  >{{usuario.usuario}}</md-table-cell>
         <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
-             <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
+            
  <md-table-cell><md-button class="md-warning" @click="editar(usuario.id)" >Editar</md-button></md-table-cell>
- <md-table-cell ><button type="button"   @click="Delete(usuario.id)" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+ <md-table-cell ><md-button class="md-danger" @click="Delete(usuario.id)">Excluir</md-button></md-table-cell>
  
   </md-table-row>
     </md-table></div>  
@@ -93,7 +93,7 @@
         <md-table-cell md-label="Usuario"  >{{usuario.usuario}}</md-table-cell>
         <md-table-cell md-label="email" >{{usuario.email}}</md-table-cell>
  <md-table-cell><md-button class="md-warning" @click="editar(usuario.id)" >Editar</md-button></md-table-cell>
-<md-table-cell ><button type="button"   @click="Delete(usuario.id)" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+<md-table-cell ><md-button class="md-danger" @click="Delete(usuario.id)">Excluir</md-button></md-table-cell>
   </md-table-row>
     </md-table>
           </md-card-content>
@@ -114,6 +114,9 @@
 
 
 
+
+
+<!-------------------------------------Page Editar--------------------------------->
 
     
   <div v-if="PageEditar">
@@ -203,6 +206,11 @@
     </md-card>
   </form>
   </div>
+
+
+
+<!-------------------------------------Page Cadastro--------------------------------->
+
 
 <div v-if="PageCadastro">
     <form>
@@ -380,10 +388,7 @@ axios.delete("http://localhost:8000/usuario/deletar/" + id)
    .then(res => {
      console.log(res);
      this.usuarios = res.data;
-   })
-
- 
-    }
+   }) }
 
  }     
 

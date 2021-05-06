@@ -6,28 +6,30 @@
       <li>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
       </li>
-      <li>
-        <b >Usuarios</b>
+      <li v-if="PageMaquinas">
+        <b >Máquinas</b>
       </li>
-      
+         <li v-if="PageCadastro">
+        <a @click="cadastro()">Maquinas</a>
+      </li>
+      <li v-if="PageCadastro">
+        <b >Cadastrar máquinas</b>
+      </li>
+        <li v-if="PageEditar">
+        <a @click="editar()" >Máquinas</a>
+      </li>
+    
+      <li v-if="PageEditar">
+        <b >Editar máquina</b>
+      </li>
     </ol>
   </nav>
     </header>
+     <div v-if="PageMaquina">
     <div class="md-layout">
 
-         <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
-        <sidebar-link to="/maquinas/cadastrar"> 
-      <md-card>
-       <div class="d-grid gap-2 col-12 mx-auto">
-  <button class="btn btn-primary" type="button">Cadastrar nova maquina</button>
-</div>
- </md-card>
-      </sidebar-link>
-      </div>
-
-      <div
-        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
-      >
+<!---------------------------------------Page Máquinas ----------------------------------------->
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
         <md-card>
           <md-card-header data-background-color="green">
             <h4 class="title" style="text-align:center">Lista de Maquinas cadastradas</h4>
@@ -38,17 +40,151 @@
         <md-table-cell md-label="Registro" >{{maquina.Setor}}</md-table-cell>
         <md-table-cell md-label="Usuario"  >{{maquina.Tag}}</md-table-cell>
         <md-table-cell md-label="email" >{{maquina.Maquina}}</md-table-cell>
-  <md-table-cell  >   <sidebar-link to="maquinas/editar">
-             <md-button class="md-warning" >Editar</md-button>
-                </sidebar-link></md-table-cell>
-                 <md-table-cell   >  <button type="button" class="btn btn-danger me-md-6">Excluir</button></md-table-cell>
+ <md-table-cell><md-button class="md-warning" @click="editar(maquina.id)" >Editar</md-button></md-table-cell>
+<md-table-cell ><md-button class="md-danger" @click="Delete(maquina.id)">Excluir</md-button></md-table-cell>
+
   </md-table-row>
     </md-table></div>
           </md-card-content>
         </md-card>
       </div>
 
+     <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
+       
+      <md-card>
+       <div class="d-grid gap-2 col-12 mx-auto">
+  <button class="btn btn-primary" type="button" @click="cadastro()">Cadastrar novo Usuario</button>
+</div>
+ </md-card>
+      </div>
     </div>
+  
+     </div>
+
+  <!----------------------Page Cadastrar Maquina --------------------------->
+    <div v-if="PageCadastro">
+   <form>
+    
+    <md-card>
+      <md-card-header  data-background-color="green">
+        <h4 class="title" style="text-align:center">Cadastrar Maquina</h4>
+      </md-card-header>
+
+      <md-card-content>
+        <div class="md-layout">
+          <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Digite o Setor</label>
+              <md-input v-model="Setor" type="text"></md-input>
+            </md-field>
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Digite o Tag</label>
+              <md-input v-model="Tag" type="text"></md-input>
+            </md-field>
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field>
+              <label>Maquina</label>
+              <md-input v-model="Maquina" type="text"></md-input>
+            </md-field>
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+               <md-button  @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </form>
+</div> 
+ 
+
+
+  <!-------------------------Page Editar Máquina------------------------> 
+<div v-if="PageEditar">
+ <form><br>
+   
+    <md-card>
+      <md-card-header  data-background-color="green">
+        <h4 class="title" style="text-align:center">Editar Maquina</h4>
+      </md-card-header>
+
+      <md-card-content>
+        <div class="md-layout">
+          <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field v-for="(editar,id) in EditarMaquina" :key="id">
+              <label>{{editar.Setor}}</label>
+              <md-input v-model="Setor" type="text"></md-input>
+            </md-field>
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field v-for="(editar,id) in EditarMaquina" :key="id">
+              <label>{{editar.Tag}}</label>
+              <md-input v-model="Tag" type="text"></md-input>
+            </md-field>
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-33">
+            <md-field v-for="(editar,id) in EditarMaquina" :key="id">
+              <label>{{editar.Maquina}}</label>
+              <md-input v-model="Maquina" type="text"></md-input>
+            </md-field>
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+           
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-33">
+               <md-button  @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </form>
+
+
+
+</div>
+
+
   </div>
 </template>
 
@@ -62,7 +198,11 @@ export default {
   },
   data(){
     return{
-      maquinas: []
+      maquinas: [],
+      EditarMaquina: [],
+      PageMaquina: true,
+      PageEditar: false,
+      PageCadastro: false,
     }
   },
   created: function(){
@@ -71,8 +211,45 @@ export default {
       console.log(res);
       this.maquinas = res.data;
     })
-  }
-};
+  },
+   methods:{
+ Delete: function(id){
+axios.delete("http://localhost:8000/maquinas/deletar/" + id)
+.then(res => {
+  console.log(res);
+})},
+cadastro: function(){
+   this.PageMaquina = !this.PageMaquina;
+   this.PageCadastro =!this.PageCadastro;
+ },
+ cadastrar: function(){
+    axios.post( "http://localhost:8000/maquinas/cadastrar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina })
+   .then(res => {
+     console.log(res);
+     this.maquinas = res.data;
+   })
+    },
+ editar: function(id){
+   this.PageMaquina = !this.PageMaquina;
+   this.PageEditar =!this.PageEditar;
+    
+  axios.get("http://localhost:8000/maquinas/mostrar/" + id)
+ .then(res => { 
+   console.log(res);
+   this.EditarMaquina= res.data; 
+ })
+   
+ },
+  atualizar: function(id){
+    axios.put( "http://localhost:8000/maquinas/" + id +"/atualizar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina })
+   .then(res => {
+     console.log(res);
+     this.maquinas = res.data;
+   }) }
+}
+
+
+}
 </script>
 
 

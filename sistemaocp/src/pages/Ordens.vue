@@ -6,13 +6,39 @@
       <li>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
       </li>
-      <li>
+      <li v-if="PageOrder">
         <b >Usuarios</b>
       </li>
-      
+        <li v-if="PageToOpen">
+        <a @click="ToOpen()" >Ordens</a>
+      </li>
+      <li v-if="PageToOpen">
+        <b >Abrir Ordem</b>
+      </li>
+       <li  v-if="PageOpen">
+        <a @click="Open()">Ordens</a>
+      </li>
+      <li  v-if="PageOpen">
+        <b >Ordens Abertas</b>
+      </li>
+        <li v-if="PageProgress">
+        <a @click="Progress()">Ordens</a>
+      </li>
+      <li v-if="PageProgress">
+        <b >Ordens em andamento</b>
+      </li>
+         <li v-if="PageFinalized">
+        <a  @click="Finalized()">Ordens</a>
+      </li>
+      <li v-if="PageFinalized">
+        <b >Ordens Finalizadas</b>
+      </li>
     </ul>
   </nav>
     </header>
+
+ <!--------------------------Order Page ----------------------------------->
+     <div v-if="PageOrder">   
     <div class="md-layout">
       <div class="md-layout-item">
    
@@ -23,33 +49,231 @@
         <md-card-content>
           <div class="md-layout">
             <div class="md-layout-item md-size-100">
-                 <sidebar-link to="ordens/abrir">
-                <md-button class="md-success" >Abrir Ordem</md-button>
-                </sidebar-link>
-               <sidebar-link to="ordens/abertas">
-               <md-button class="md-danger" >Ordens Abertas</md-button>
-                </sidebar-link>
-                 <sidebar-link to="ordens/Andamento">
-                <md-button class="md-warning" >Ordens em andamento</md-button>
-                </sidebar-link>
-                 <sidebar-link to="ordens/Finalizadas">
-             <md-button class="md-info" >Ordens Finalizadas</md-button>
-                </sidebar-link>
+                <md-button class="md-success" @click="ToOpen()" >Abrir Ordem</md-button> 
+              </div>
+              <div class="md-layout-item md-size-100">
+               <md-button class="md-danger" @click="Open()" >Ordens Abertas</md-button>
+              </div>
+             <div class="md-layout-item md-size-100">
+                 
+                <md-button class="md-warning" @click="Progress()">Ordens em andamento</md-button>
+             </div>
+                <div class="md-layout-item md-size-100">
+             <md-button class="md-info" @click="Finalized()">Ordens Finalizadas</md-button>
+                </div>
              
-            </div>
+           
           </div>
         </md-card-content>
       </md-card>
       </div>
     </div>
+     </div>
+
+<!---------------------------------------------Page to Open Order--------------------------->
+  <div v-if="PageToOpen">
+  <form>
+    <md-card>
+      <md-card-header  data-background-color="green">
+        <h4 class="title" style="text-align:center">Abrir Ordem</h4>
+      </md-card-header>
+
+      <md-card-content>
+        <div class="md-layout">
+  <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+          <div class="md-layout-item md-small-size-100 md-size-50">       
+        <md-field>
+          <label>Digite o Setor</label>
+                    <md-input v-model="Setor" type="text"></md-input>
+                
+        </md-field>
+          </div>
+
+           <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+          <div class="md-layout-item md-small-size-100 md-size-50">
+           <md-field>
+             <label>Digite o Tag</label>
+             <md-input v-model="Tag" type="text"></md-input>
+         
+        </md-field>
+          </div>
+           
+                <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+
+          <div class="md-layout-item md-small-size-100 md-size-50 ">
+            <md-field>
+              <label>Digite o Problema</label>
+              <md-input v-model="Problemas" type="text"></md-input>
+            </md-field>
+          </div>
+                        <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+  <div class="md-layout-item md-small-size-100 md-size-50 ">
+            <md-field>
+              <label>Digite o Status</label>
+              <md-input v-model="Status" type="text"></md-input>
+            </md-field>
+          </div>
+                    <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+           <div class="md-layout-item md-small-size-100 md-size-25">
+               <md-button   @click="cadastrar()" class="md-raised md-info">Criar Ordem</md-button>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+ 
+  </form>
+  </div>
+<!--------------------------------------Open Order Page-------------------------------------->
+  <div  v-if="PageOpen">
+       <div class="md-layout">
+  <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
+        <md-card>
+          <md-card-header data-background-color="red">
+            <h4 class="title" style="text-align:center">Ordens abertas</h4>
+          </md-card-header>
+          <md-card-content>
+           <md-table >
+            <md-table-row slot="md-table-row"  v-for="(ordem,id) in ordemOpen" :key="id"  > 
+        <md-table-cell md-label="id">{{ ordem.id }}</md-table-cell>
+        <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
+        <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
+   <md-table-cell >     <sidebar-link to="">
+       <button type="button" class="btn btn-success me-md-6"> Executar </button>
+        </sidebar-link></md-table-cell>  
+  </md-table-row></md-table>
+             
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+
+<!--------------------------------------Progress Orders Page---------------------------------->
+  <div  v-if="PageProgress">
+        <div class="md-layout">
+  <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
+        <md-card>
+          <md-card-header data-background-color="orange">
+            <h4 class="title" style="text-align:center">Ordens em andamento</h4>
+          </md-card-header>
+          <md-card-content>
+           <md-table >
+            <md-table-row slot="md-table-row"  v-for="(ordem,id) in ordemProgress" :key="id"  > 
+        <md-table-cell md-label="id">{{ ordem.id }}</md-table-cell>
+        <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
+        <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
+   <md-table-cell >     <sidebar-link to="/relatorios/escrever">
+       <button type="button" class="btn btn-warning  me-md-6">Escrever Relatorio</button>
+        </sidebar-link></md-table-cell>  
+  </md-table-row></md-table>
+             
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+
+<!---------------------------------------Finalized Orders Page------------------------------->    
+  <div  v-if="PageFinalized">
+    <div class="md-layout">
+  <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
+        <md-card>
+          <md-card-header data-background-color="blue">
+            <h4 class="title" style="text-align:center">Ordens Finalizadas</h4>
+          </md-card-header>
+            <md-card-content>
+           <md-table >
+            <md-table-row slot="md-table-row"  v-for="(ordem,id) in ordems" :key="id"  > 
+        <md-table-cell md-label="id">{{ ordem.id }}</md-table-cell>
+        <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
+        <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
+   <md-table-cell >     <sidebar-link to="/relatorios/visualizar">
+       <button type="button" class="btn btn-success me-md-6">Visualiar relatorio</button>
+        </sidebar-link></md-table-cell>  
+  </md-table-row></md-table>
+             
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+
+
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data () {
     return {
+      ordemOpen: [],
+      ordemProgress: [],
+PageOrder: true,
+PageToOpen: false,
+PageOpen: false,
+PageProgress: false,
+PageFinalized:false
+    }
+  },
+  methods:{
+    ToOpen: function(){
+      this.PageOrder = !this.PageOrder;
+      this.PageToOpen = !this.PageToOpen;
+    },
+    Open: function(){
+       this.PageOrder = !this.PageOrder;
+      this.PageOpen = !this.PageOpen;
+   
+   axios.get("http://localhost:8000/ordem/mostrar/1" )
+ .then(res => { 
+   console.log(res);
+   this.ordemOpen = res.data; 
+ })
+  
+ 
+    },
+    Progress: function(){
+       this.PageOrder = !this.PageOrder;
+      this.PageProgress = !this.PageProgress;
 
+       axios.get("http://localhost:8000/ordem/mostrar/2" )
+ .then(res => { 
+   console.log(res);
+   this.ordemProgress = res.data; 
+ })
+  
+    },
+    Finalized: function(){
+       this.PageOrder = !this.PageOrder;
+      this.PageFinalized = !this.PageFinalized;
+  
+ axios.get("http://localhost:8000/ordem/mostrar/0" )
+ .then(res => { 
+   console.log(res)
+   this.ordems = res.data; 
+ })
+
+    },
+     cadastrar: function(){
+    axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag:this.Tag, Problemas:this.Problemas, Status:this.Status})
+   .then(res => {
+     console.log(res);
+    
+   })
     }
   }
 }

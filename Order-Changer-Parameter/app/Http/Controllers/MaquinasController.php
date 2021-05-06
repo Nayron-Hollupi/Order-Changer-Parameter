@@ -16,8 +16,13 @@ class MaquinasController extends Controller
     {
         //
     }
-    public function maquinas(){
-        return response()->json(Maquinas::all());
+    public function maquinas($id){
+           if (Maquinas::where('id', $id)->exists()) {
+           $maquina = Maquinas::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+          return response($maquina, 200);
+          }
+        
+        //return response()->json(Maquinas::all());
     }
 
     public function cadastrar(Request $request){
@@ -33,6 +38,11 @@ class MaquinasController extends Controller
     }
 
     public function mostrarMaquina($id){
+      //  if (Maquinas::where('id', $id)->exists()) {
+        //    $maquina = Maquinas::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+        //   return response($maquina, 200);
+       //   }
+        
         return response()->json(Maquinas::find($id));
     }
 
