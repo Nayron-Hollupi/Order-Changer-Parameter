@@ -109,7 +109,7 @@ public function usuarioLogout(){
         $usuario->email = $request->email;
         $usuario->registro = $request->registro;
         $usuario->nivel = $request->nivel;
-          $usuario->password = Hash::make($request->password);
+        $usuario->password = Hash::make($request->password);
 
         //Salvar novamento
         $usuario->save();

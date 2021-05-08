@@ -41,7 +41,16 @@ class OrdemsController extends Controller
 
         //return response()->json(Ordems::find($id));
     }
+    public function atualizarStatus($id, Request $request){
 
+        $ordem = Ordems::find($id);
+        $ordem->Status = $request->Status;
+        //Salvar Status
+        $ordem->save();
+
+        return response()->json($ordem);
+
+    }
     public function atualizar($id, Request $request){
 
         $ordem = Ordems::find($id);

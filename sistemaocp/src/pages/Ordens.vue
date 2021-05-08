@@ -33,11 +33,23 @@
       <li v-if="PageFinalized">
         <b >Ordens Finalizadas</b>
       </li>
+           
+  <li  v-if="PageWrite">
+        <a @click="ToWrite()">Ordens</a>
+      </li>
+        <li  v-if="PageWrite">
+        <a @click="ProgressWrite()">Ordens em andamento</a>
+      </li>
+    
+      <li  v-if="PageWrite">
+        <b >Escrever Relatorio</b>
+      </li>
+     
     </ul>
   </nav>
     </header>
 
- <!--------------------------Order Page ----------------------------------->
+ <!--------------------------Order Page     ----------------------------------->
      <div v-if="PageOrder">   
     <div class="md-layout">
       <div class="md-layout-item">
@@ -117,16 +129,13 @@
   </div>
    <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
-  <div class="md-layout-item md-small-size-100 md-size-50 ">
+  <div v-if="Starte" class="md-layout-item md-small-size-100 md-size-50 ">
             <md-field>
               <label>Digite o Status</label>
-              <md-input v-model="Status" type="text"></md-input>
+              <md-input v-model="Status"  type="text"></md-input>
             </md-field>
           </div>
-                    <div class="md-layout-item md-small-size-100 md-size-25">
-  </div>
-   <div class="md-layout-item md-small-size-100 md-size-25">
-  </div>
+      
            <div class="md-layout-item md-small-size-100 md-size-25">
                <md-button   @click="cadastrar()" class="md-raised md-info">Criar Ordem</md-button>
           </div>
@@ -151,7 +160,7 @@
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
         <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
    <md-table-cell >     <sidebar-link to="">
-       <button type="button" class="btn btn-success me-md-6"> Executar </button>
+       <button type="button" @click="executar(ordem.id)" class="btn btn-success me-md-6"> Executar </button>
         </sidebar-link></md-table-cell>  
   </md-table-row></md-table>
              
@@ -175,8 +184,8 @@
         <md-table-cell md-label="id">{{ ordem.id }}</md-table-cell>
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
         <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
-   <md-table-cell >     <sidebar-link to="/relatorios/escrever">
-       <button type="button" class="btn btn-warning  me-md-6">Escrever Relatorio</button>
+   <md-table-cell >     <sidebar-link to="">
+       <button type="button" @click="write()" class="btn btn-warning  me-md-6">Escrever Relatorio</button>
         </sidebar-link></md-table-cell>  
   </md-table-row></md-table>
              
@@ -185,7 +194,109 @@
       </div>
     </div>
   </div>
+<!----------------------------Write Report------------------------------------------->
+ <div v-if="PageWrite">
+ <form>
+    <md-card>
+      <md-card-header  data-background-color="blue">
+        <h4 class="title" style="text-align:center">Escrever Relatorio</h4>
+      </md-card-header>
 
+      <md-card-content>
+        <div class="md-layout">
+    
+          <div class="md-layout-item md-small-size-100 md-size-40">       
+        <md-field>
+          <label>Digite o Setor</label>
+                    <md-input v-model="Setor" type="text"></md-input>              
+        </md-field>
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-40">
+           <md-field>
+             <label>Digite o Maquina</label>
+             <md-input v-model="Maquina" type="text"></md-input>
+        </md-field>
+          </div>
+  
+    <div class="md-layout-item md-small-size-100 md-size-20">
+           <md-field>
+             <label>Digite o Tag</label>
+             <md-input v-model="Tag" type="text"></md-input>    
+        </md-field>
+          </div>
+    
+   
+         <div class="md-layout-item md-small-size-100 md-size-40">
+           <md-field>
+             <label>Digite o Registro</label>
+             <md-input v-model="Registro" type="text"></md-input>    
+        </md-field>
+          </div>
+  
+<div class="md-layout-item md-small-size-100 md-size-30">
+           <md-field>
+             <label>Digite o Data de inicio </label>
+             <md-input v-model="Data_inicio" type="text"></md-input>    
+        </md-field>
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-30">
+           <md-field>
+             <label>Digite o Data do final</label>
+             <md-input v-model="Data_fim" type="text"></md-input>    
+        </md-field>
+          </div>
+    <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   
+ <div class="md-layout-item md-small-size-100 md-size-80">
+           <md-field>
+             <label>Digite o Laudo</label>
+             <md-textarea v-model="Laudo" type="text"></md-textarea>   
+        </md-field>
+          </div>
+    
+          <div class="md-layout-item md-small-size-100 md-size-80 ">
+            <md-field>
+              <label>Digite o Problema</label>
+                <md-textarea v-model="Problema" type="text"></md-textarea>
+             
+            </md-field>
+          </div>
+    <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+  
+            <div class="md-layout-item md-small-size-100 md-size-80 ">
+            <md-field>
+              <label>Digite o Resumo</label>
+              <md-textarea v-model="Resumo" type="text"></md-textarea>
+            
+            </md-field>
+          </div>
+      <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   
+    <div class="md-layout-item md-small-size-100 md-size-80 ">
+            <md-field>
+              <label>Digite as Peças Utilizadas</label>
+               <md-textarea v-model="Pecas" type="text"></md-textarea>
+           
+            </md-field>
+          </div>
+
+      <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+ 
+           <div class="md-layout-item md-small-size-100 md-size-25">
+               <md-button   @click="register()" class="md-raised md-info">Criar Ordem</md-button>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+ 
+  </form>
+ </div>
 <!---------------------------------------Finalized Orders Page------------------------------->    
   <div  v-if="PageFinalized">
     <div class="md-layout">
@@ -220,12 +331,15 @@ import axios from 'axios';
 export default {
   data () {
     return {
+      Status: 1,
+      Executar: 2,
       ordemOpen: [],
       ordemProgress: [],
 PageOrder: true,
 PageToOpen: false,
 PageOpen: false,
 PageProgress: false,
+ PageWrite:false,
 PageFinalized:false
     }
   },
@@ -246,6 +360,12 @@ PageFinalized:false
   
  
     },
+    executar: function(id){
+axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
+   .then(res => {
+     console.log(res);
+     })
+    },
     Progress: function(){
        this.PageOrder = !this.PageOrder;
       this.PageProgress = !this.PageProgress;
@@ -256,6 +376,24 @@ PageFinalized:false
    this.ordemProgress = res.data; 
  })
   
+    },
+    write: function(){
+     this.PageProgress = !this.PageProgress;
+     this.PageWrite = !this.PageWrite;
+    },
+    ToWrite: function(){
+  this.PageWrite = !this.PageWrite;
+    this.PageOrder = !this.PageOrder;
+    },
+    ProgressWrite: function(){
+this.PageWrite = !this.PageWrite;
+ this.PageProgress = !this.PageProgress;
+
+       axios.get("http://localhost:8000/ordem/mostrar/2" )
+ .then(res => { 
+   console.log(res);
+   this.ordemProgress = res.data; 
+ })
     },
     Finalized: function(){
        this.PageOrder = !this.PageOrder;
@@ -274,8 +412,18 @@ PageFinalized:false
      console.log(res);
     
    })
+    },
+       register: function(){
+    axios.post("http://localhost:8000/relatorio/cadastrar",{Setor:this.Setor, Maquina:this.Maquina, Tag:this.Tag, Registro:this.Registro,
+    Data_inicio:this.Data_inicio, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas,
+    Status:this.Status})
+   .then(res => {
+     console.log(res);
+    
+   })
     }
-  }
+  },
+
 }
 </script>
 
@@ -310,7 +458,7 @@ ul {
 li {
   display: table-cell;
   vertical-align: middle;
-  width: 33.33%;
+  width: 25.33%;
 }
 
 

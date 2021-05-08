@@ -11,11 +11,6 @@ import Ordens from "@/pages/Ordens.vue";
 
 
 import Logout from "@/pages/Logout.vue";
-
-import AbrirOrdem from "@/pages/AbrirOrdem.vue";
-import OrdemAbertas from "@/pages/OrdemAbertas.vue";
-import OrdemAndamento from "@/pages/OrdemAndamento.vue";
-import OrdemFinalizadas from "@/pages/OrdemFinalizadas.vue";
 import VisualizarRelatorio from "@/pages/VisualizarRelatorio.vue";
 import EscreverRelatorio from "@/pages/EscreverRelatorio.vue";
 
@@ -68,26 +63,7 @@ const routes = [
         component: Logout
       },
       
-      {
-        path: "ordens/abrir",
-        name: "Abrir Ordem",
-        component: AbrirOrdem
-      },
-      {
-        path: "ordens/abertas",
-        name: "Ordens Abertas",
-        component: OrdemAbertas
-      },
-      {
-        path: "ordens/Andamento",
-        name: "Ordens em andamento",
-        component: OrdemAndamento
-      },
-      {
-        path: "ordens/Finalizadas",
-        name: "Ordem Finalizadas",
-        component: OrdemFinalizadas
-      },
+   
       {
         path: "relatorios/visualizar",
         name: " Visualizar Relatorios",

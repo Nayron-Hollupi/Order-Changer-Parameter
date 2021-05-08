@@ -135,7 +135,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
               <label>{{editar.usuario}}</label>
-              <md-input v-model="usuario" type="text"  ></md-input>
+              <md-input v-model="usuario" type="text"  >{{editar.usuario}}</md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -147,7 +147,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
               <label>{{editar.email}}</label>
-              <md-input v-model="email" type="email"></md-input>
+              <md-input v-model="email" type="email">{{editar.email}}</md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -159,7 +159,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
               <label>{{editar.registro}}</label>
-              <md-input v-model="registro" type="text"></md-input>
+              <md-input v-model="registro" type="text">{{editar.registro}}</md-input>
             </md-field>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
@@ -169,15 +169,15 @@
            
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-           <div class="md-layout-item">
-        <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
-          <md-select v-model="nivel" name="nivel" id="nivel" placeholder="Selecione o tipo de Usuário">
+           <div class="md-layout-item" v-for="(editar,id) in EditarUsuarios" :key="id">
           
-            <md-option value="0">Analista</md-option>
-            <md-option value="1">Gestor</md-option>
-            <md-option value="2">Tecnico</md-option>
-          </md-select>
-        </md-field>
+          <select class="form-select form-select-sm mb-5"  v-model="nivel" name="nivel" id="nivel">
+           <option selected >{{editar.nivel}}</option>
+           <option value="0">Analista</option>
+            <option value="1">Gestor</option>
+            <option value="2">Tecnico</option>
+</select>
+          
       </div>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
@@ -189,7 +189,7 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
               <label>Digite a senha</label>
-              <md-input v-model="password" type="text" ></md-input>
+              <md-input v-model="password" type="text" >{{editar.password}}</md-input>
             </md-field>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
@@ -198,8 +198,8 @@
            <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
-               <md-button @click="atualizar()" class="md-raised md-info">Atualizar</md-button>
+           <div class="md-layout-item md-small-size-100 md-size-33" v-for="(editar,id) in EditarUsuarios" :key="id">
+               <md-button @click="atualizar(editar.id)" class="md-raised md-info">Atualizar</md-button>
           </div>
         </div>
       </md-card-content>
@@ -384,7 +384,9 @@ axios.delete("http://localhost:8000/usuario/deletar/" + id)
     },
 
     atualizar: function(id){
-    axios.put( "http://localhost:8000/usuario/" + id +"/atualizar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
+    axios.put( "http://localhost:8000/usuario/" + id +"/atualizar",
+    
+    {usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
      this.usuarios = res.data;

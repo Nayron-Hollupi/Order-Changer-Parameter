@@ -22,7 +22,7 @@ $router->get('/', function () use ($router) {
 $router->post('/login','UsuarioController@usuarioLogin');
 
 //token
-$router->post('/auth', 'UsuarioController@auth');
+
 $router->post('logout', 'UsuarioController@usuarioLogout');
 
 //Cadastro dos usuarios
@@ -41,7 +41,7 @@ $router->group(['prefix' => 'usuario'], function() use($router){
 
 
 //Cadastro das Maquinas
-
+$router->get('/maquinas', 'MaquinasController@mostrarMaquina'); 
 
 
 $router->group(['prefix' => 'maquinas'], function() use($router){
@@ -63,6 +63,7 @@ $router->group(['prefix' => 'ordem'], function() use($router){
     $router->get('/mostrar/{Status}', 'OrdemsController@mostrar'); 
     $router->get('/{id}/atualizar', 'OrdemsController@atualizar'); 
     $router->put('/{id}/atualizar', 'OrdemsController@atualizar');
+    $router->put('/Status/{id}', 'OrdemsController@atualizarStatus');
     $router->delete('/deletar/{id}', 'OrdemsController@deletar');
 });
 

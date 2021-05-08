@@ -6,13 +6,21 @@
       <li>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
       </li>
-      <li>
+      <li v-if="Report">
         <b >Relatorios</b>
       </li>
-      
+    
+       <li v-if="View">
+        <a @click="PageReport()">Relatorios</a>
+      </li>
+      <li v-if="View">
+        <b >Visualizar Relatorio</b>
+      </li>
+ 
     </ol>
   </nav>
     </header>
+    <div v-if="Report">
     <div class="md-layout">
   <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
         <md-card>
@@ -21,30 +29,91 @@
           </md-card-header>
           <md-card-content>
              <md-table  :table-header-color="tableHeaderColor">
-            <md-table-row slot="md-table-row"  v-for="(item,id) in relatorios" :key="id"  > 
+            <md-table-row slot="md-table-row"  v-for="(item,id) in relatorio" :key="id"  > 
         <md-table-cell md-label="Numero">{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Data">{{ item.Data_inicio }}</md-table-cell>
         <md-table-cell md-label="Maquina">{{ item.Tag }}</md-table-cell>
-   <md-table-cell >     <sidebar-link to="/relatorios/visualizar">
-       <button type="button" class="btn btn-success me-md-6">Visualizar</button>
-        </sidebar-link></md-table-cell>  
+   <md-table-cell >      <sidebar-link to="">
+       <button type="button"  @click="PageView(item.id)" class="btn btn-success me-md-6" >Visualizar</button>
+      </sidebar-link>  </md-table-cell>  
   </md-table-row></md-table>
           </md-card-content>
         </md-card>
       </div>
     </div>
+    </div>
+    <!-----------------------------------------------------------View Report----------------------------------------------------------->
+    
+
+    <div v-if="View">
+     <div class="md-layout">
+      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
+        <md-card>
+          <md-card-header data-background-color="blue">
+            <h4 class="title" style="text-align:center">Relatorio</h4>
+          </md-card-header>
+          <md-card-content>
+            <div table-header-color="green" >  <md-table  :table-header-color="tableHeaderColor">
+   
+      <md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Numero" >Nº da solicitação: {{rel.id}}</md-table-cell>
+       
+ </md-table-row>
+   <md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Data Inicial:" >Data inicial: {{rel.Data_inicio}}</md-table-cell>
+        <md-table-cell md-label="Data final" >Data Final: {{rel.Data_fim}}</md-table-cell>
+ </md-table-row>
+
+  <md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Equipamento:" >Equipamento: {{rel.Maquina}}/ {{rel.Tag}}</md-table-cell>
+        <md-table-cell md-label="Setor" >Setor: {{rel.Setor}}</md-table-cell>
+ </md-table-row>
+
+<!-----------
+ <md-table-row slot="md-table-row"  v-for="(usuario,id) in usuarios" :key="id"  > 
+        <md-table-cell md-label="Colaborador:" >Colaborador: {{usuario.usuario}}</md-table-cell>
+        <md-table-cell md-label="Registro" >Registro: {{usuario.registro}}</md-table-cell>
+ </md-table-row>
+---->
+<md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Laudo Tecnico:" >Laudo Tecnico:<br> {{rel.Laudo}}</md-table-cell>
+             <md-table-cell md-label="" ></md-table-cell>
+ </md-table-row>
+  
+<md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Componentes Utilizados:" >Componentes Utilizados: <br>{{rel.Pecas}}</md-table-cell>
+        <md-table-cell md-label="" ></md-table-cell>
+ </md-table-row>
+
+<md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
+        <md-table-cell md-label="Observções:" >Observções: <br>{{rel.Resumo}}</md-table-cell>
+        <md-table-cell md-label="" ></md-table-cell>
+ </md-table-row>
+    
+    </md-table>
+      
+    </div>
+          </md-card-content>
+        </md-card>
+      </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 
-
 export default {
   components: {
    
   }, data() {
     return {
+      Report: true,
+      View: false,
+     
+      relatorio: [],
       relatorios: []
    
     }
@@ -53,9 +122,26 @@ export default {
  axios.get("http://localhost:8000/relatorios")
  .then(res => { 
    console.log(res);
-   this.relatorios = res.data; 
+   this.relatorio = res.data; 
  })
- }
+ },
+methods:{
+ PageReport: function(){
+   this.Report = !this.Report;
+   this.View = !this.View;
+ },
+
+PageView: function(id){
+  this.Report = !this.Report;
+   this.View = !this.View;
+
+  axios.get("http://localhost:8000/relatorio/" + id )
+ .then(res => { 
+   console.log(res);
+   this.relatorios = res.data; 
+ })  
+}
+}
 };
 </script>
 

@@ -37,15 +37,12 @@ class MaquinasController extends Controller
         return response()->json($maquina);
     }
 
-    public function mostrarMaquina($id){
-      //  if (Maquinas::where('id', $id)->exists()) {
-        //    $maquina = Maquinas::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-        //   return response($maquina, 200);
-       //   }
-        
-        return response()->json(Maquinas::find($id));
+    public function mostrarMaquina(){
+   
+       return response()->json(Maquinas::all());
+        //return response()->json(Maquinas::find($id));
     }
-
+   
     public function atualizarMaquinas($id, Request $request){
 
         $maquina = Maquinas::find($id);
