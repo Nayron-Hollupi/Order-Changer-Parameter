@@ -11,8 +11,6 @@ import Ordens from "@/pages/Ordens.vue";
 
 
 import Logout from "@/pages/Logout.vue";
-import VisualizarRelatorio from "@/pages/VisualizarRelatorio.vue";
-import EscreverRelatorio from "@/pages/EscreverRelatorio.vue";
 
 const routes = [
   {
@@ -64,17 +62,6 @@ const routes = [
       },
       
    
-      {
-        path: "relatorios/visualizar",
-        name: " Visualizar Relatorios",
-        component: VisualizarRelatorio
-      },
-      {
-        path: "relatorios/escrever",
-        name: "Escrever Relatorio",
-        component: EscreverRelatorio
-      }
-
          
     ]
   }
