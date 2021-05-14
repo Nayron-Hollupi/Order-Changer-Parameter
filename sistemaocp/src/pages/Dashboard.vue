@@ -83,18 +83,17 @@
 </template>
 
 <script>
-import {
 
-  ChartCard,
-
-} from "@/components";
+import { ChartCard,} from "@/components";
 
 export default {
   components: {
    
     ChartCard,
+   
  
   },
+
   data() {
     return {
       dailySalesChart: {

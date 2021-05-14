@@ -1,5 +1,5 @@
 <template>
- <form    method="post"  @submit.prevent="Login">
+ <form    method="post"  @submit="Login">
 
 
 <div class="container-box">
@@ -10,21 +10,26 @@
           <div class="mb-3" style="text-align:center">
     <h1 >{{title}}</h1>
     </div>
+    
           <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Digite o Usuario</label>
-              <md-input v-model="usuario" ></md-input>
+              <md-input v-model="usuario" label="Usuario" 
+                ></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Digitea a senha</label>
-              <md-input v-model="password" type="text"></md-input>
+              <md-input v-model="password"     label="Password" 
+                type="password"
+               ></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
               <div class="d-grid gap-2">
   <button class="btn btn-primary" @click="Login()" type="button">Button</button>
+
               </div>
           </div>
         <br>
@@ -40,26 +45,46 @@
 </template>
 
 <script>
+import jwt from 'jsonwebtoken'
 import axios from 'axios';
 export default {
 
   data(){
     return{
     title: "Login",
-   
+ tokens :[],
+       usuario: '',
+      password: '',
+      validations: {
+        required: v => !!v || 'This is a required field!'
+      }
    } },
   props: {
-    msg: String
+  
+  
   },
   methods:{ 
     Login: function(){
     axios.post("http://localhost:8000/login",{usuario:this.usuario, password:this.password})
    .then(res => {
-     console.log(res);
     
+     console.log(res.data);
+ this.tokens = res.data.object; 
    })
+  
+    if (this.tokens != null) {
+          jwt.sign({
+            user: this.user,
+            password: this.password
+          }, 'jwtSecret', (err, token) => {
+            window.localStorage.setItem('token', token)
+            this.$router.push('/')
+          })
+        }
+    
+   
+       }
     }
-  }
 }
 </script>
 

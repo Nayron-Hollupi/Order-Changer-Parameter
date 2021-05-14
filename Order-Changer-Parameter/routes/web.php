@@ -20,7 +20,7 @@ $router->get('/', function () use ($router) {
 
  //Login
 $router->post('/login','UsuarioController@usuarioLogin');
-
+$router->post('/auth','UsuarioController@auth');
 //token
 
 $router->post('logout', 'UsuarioController@usuarioLogout');

@@ -26,9 +26,9 @@
         <p>Relatórios</p>
       </sidebar-link>
    
-      <sidebar-link to="/upgrade" class="active-pro">
-        <md-icon>logout</md-icon>
-        <p>Sair</p>
+      <sidebar-link to="" @click="logout()" class="active-pro">
+        <md-icon @click="logout()" >logout</md-icon>
+        <p  @click="logout()">Sair</p>
       </sidebar-link>
     </side-bar>
 
@@ -57,6 +57,12 @@ export default {
       sidebarBackground: "blue",
       sidebarBackgroundImage: require("@/assets/img/industria4.0.png")
     };
+  },
+  methods: {
+      logout() {
+        window.localStorage.removeItem('token')
+        this.$router.push('/Login')
+      }
   }
 };
 </script>

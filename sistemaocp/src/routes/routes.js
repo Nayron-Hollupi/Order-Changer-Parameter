@@ -14,7 +14,8 @@ import Logout from "@/pages/Logout.vue";
 
 const routes = [
   {
-    path: "/",
+    
+    path: "/Home",
     name: "Home",
     component: Home
   },
@@ -59,12 +60,11 @@ const routes = [
         path: "logout",
         name: "Logout",
         component: Logout
-      },
+      }, ]
       
-   
-         
-    ]
   }
-];
+  
+]
+
 
 export default routes;
