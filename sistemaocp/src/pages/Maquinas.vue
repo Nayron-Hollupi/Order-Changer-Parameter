@@ -16,7 +16,7 @@
         <b >Cadastrar máquinas</b>
       </li>
         <li v-if="PageEditar">
-        <a @click="editar()" >Máquinas</a>
+        <a @click="editarbread()" >Máquinas</a>
       </li>
     
       <li v-if="PageEditar">
@@ -49,14 +49,16 @@
         </md-card>
       </div>
 
-     <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
+
+ <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
        
-      <md-card>
+    
        <div class="d-grid gap-2 col-12 mx-auto">
-  <button class="btn btn-primary" type="button" @click="cadastro()">Cadastrar novo Usuario</button>
+  <md-button class="md-info" @click="cadastro()">Cadastrar nova Maquina</md-button>
 </div>
- </md-card>
+
       </div>
+    
     </div>
   
      </div>
@@ -238,6 +240,13 @@ cadastro: function(){
    console.log(res);
    this.EditarMaquina= res.data; 
  })
+   
+ },
+ editarbread: function(id){
+   this.PageMaquina = !this.PageMaquina;
+   this.PageEditar =!this.PageEditar;
+    
+
    
  },
   atualizar: function(id){

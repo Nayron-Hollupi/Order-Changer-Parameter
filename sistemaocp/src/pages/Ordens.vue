@@ -160,7 +160,7 @@
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
         <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
    <md-table-cell >     <sidebar-link to="">
-       <button type="button" @click="executar(ordem.id)" class="btn btn-success me-md-6"> Executar </button>
+       <md-button type="button" @click="executar(ordem.id)" class="md-success "> Executar </md-button>
         </sidebar-link></md-table-cell>  
   </md-table-row>
   </md-table>
@@ -186,7 +186,7 @@
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
         <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
    <md-table-cell >     <sidebar-link to="">
-       <button type="button" @click="write()" class="btn btn-warning  me-md-6">Escrever Relatorio</button>
+       <md-button type="button" @click="write()" class="md-warning">Escrever Relatorio</md-button>
         </sidebar-link></md-table-cell>
                
   </md-table-row>
@@ -315,7 +315,7 @@
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
         <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
    <md-table-cell >     <sidebar-link to="/relatorios/visualizar">
-       <button type="button" class="btn btn-success me-md-6">Visualiar relatorio</button>
+       <md-button type="button" class="md-success">Visualiar relatorio</md-button>
         </sidebar-link></md-table-cell>  
   </md-table-row></md-table>
              
@@ -340,6 +340,7 @@ export default {
       Executar: 2,
       ordemOpen: [],
       ordemProgress: [],
+      ordems: [],
 PageOrder: true,
 PageToOpen: false,
 PageOpen: false,

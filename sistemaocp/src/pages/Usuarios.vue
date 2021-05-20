@@ -17,7 +17,7 @@
         <b >Cadastrar usuario</b>
       </li>
         <li v-if="PageEditar">
-        <a @click="editar()" >Usuarios</a>
+        <a @click="editarbread()" >Usuarios</a>
       </li>
     
       <li v-if="PageEditar">
@@ -102,11 +102,11 @@
 
      <div  class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
        
-      <md-card>
+    
        <div class="d-grid gap-2 col-12 mx-auto">
-  <button class="btn btn-primary" type="button" @click="cadastro()">Cadastrar novo Usuario</button>
+  <md-button class="md-info" @click="cadastro()">Cadastrar novo Usuario</md-button>
 </div>
- </md-card>
+
       </div>
 
     </div>
@@ -168,16 +168,16 @@
            <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-           <div class="md-layout-item" v-for="(editar,id) in EditarUsuarios" :key="id">
+          <div class="md-layout-item md-small-size-100 md-size-33" >
           
-          <select class="form-select form-select-sm mb-5"  v-model="nivel" name="nivel" id="nivel">
-           <option selected >{{editar.nivel}}</option>
-           <option value="0">Analista</option>
-            <option value="1">Gestor</option>
-            <option value="2">Tecnico</option>
-</select>
-          
+           <div class="md-layout-item">
+        <md-field>
+          <md-select v-model="nivel" name="nivel" id="nivel" placeholder="Selecione o tipo de Usuário">
+            <md-option value="0">Analista</md-option>
+            <md-option value="1">Gestor</md-option>
+            <md-option value="2">Tecnico</md-option>
+          </md-select>
+        </md-field>
       </div>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
@@ -314,14 +314,15 @@ export default {
    
   },
    props:{
-      usuario: String,
-      registro: String,
-      email: String,
-      nivel: String,
+   
     
   },
     data() {
     return {
+         usuario: "",
+      registro: "",
+      email: "",
+      nivel: "",
       EditarUsuarios: [],
       analistas: [],
       gestores: [],
@@ -332,8 +333,9 @@ PageCadastro: false,
 
     }
   },
-  created: function(){
 
+  created: function(){
+if(this.PageUsuario != false){
  axios.get("http://localhost:8000/usuario/0" )
  .then(res => { 
    console.log(res);
@@ -350,7 +352,7 @@ PageCadastro: false,
    this.tecnicos = res.data; 
  })
 
-
+}
 
  },
  methods:{
@@ -371,9 +373,16 @@ axios.delete("http://localhost:8000/usuario/deletar/" + id)
  })
    
  },
+  editarbread: function(id){
+   this.PageUsuario = !this.PageUsuario;
+   this.PageEditar =!this.PageEditar;
+    
+
+   
+ },
  cadastro: function(){
    this.PageUsuario = !this.PageUsuario;
-   this.PageCadastro =!this.PageCadastro;
+   this.PageCadastro = !this.PageCadastro;
  },
  cadastrar: function(){
     axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
@@ -384,15 +393,14 @@ axios.delete("http://localhost:8000/usuario/deletar/" + id)
     },
 
     atualizar: function(id){
+
     axios.put( "http://localhost:8000/usuario/" + id +"/atualizar",
     
     {usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
      this.usuarios = res.data;
-   }) }
-
- }     
+   })  } }
 
  };
 </script>

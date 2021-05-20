@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Usuarios;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,8 +31,9 @@ class AuthServiceProvider extends ServiceProvider
         // the User instance via an API token or any other method necessary.
 
         $this->app['auth']->viaRequest('api', function ($request) {
-            return \APP\Models\Usuario::where('password', $request->input('password'))->firs();
+            return \APP\Models\Usuario::where('usuario', $request->input('usuario'))->firs();
             
         });
+       
     }
 }

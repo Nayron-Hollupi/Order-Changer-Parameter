@@ -26,7 +26,7 @@ router.beforeEach((to, from, next) => {
   const token = window.localStorage.getItem('token')
   if (to.fullPath === '/Login') {
     if (token) {
-      next('/')
+      next('/Login')
     } else {
       next()
     }

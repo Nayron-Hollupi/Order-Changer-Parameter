@@ -29,9 +29,10 @@
           <div class="md-layout-item md-size-100 text-right">
               <div class="d-grid gap-2">
   <button class="btn btn-primary" @click="Login()" type="button">Button</button>
-
+  
               </div>
           </div>
+            
         <br>
       </md-card-content>
     </md-card>
@@ -52,40 +53,41 @@ export default {
   data(){
     return{
     title: "Login",
- tokens :[],
+ tokens : [],
+
        usuario: '',
       password: '',
-      validations: {
-        required: v => !!v || 'This is a required field!'
-      }
+     
    } },
   props: {
   
   
   },
+  
+    
   methods:{ 
     Login: function(){
     axios.post("http://localhost:8000/login",{usuario:this.usuario, password:this.password})
    .then(res => {
-    
+     
      console.log(res.data);
- this.tokens = res.data.object; 
+ this.tokens = res.data; 
+ 
    })
-  
-    if (this.tokens != null) {
-          jwt.sign({
+   
+    jwt.sign({
             user: this.user,
             password: this.password
           }, 'jwtSecret', (err, token) => {
             window.localStorage.setItem('token', token)
             this.$router.push('/')
           })
-        }
+}
     
    
        }
     }
-}
+
 </script>
 
 

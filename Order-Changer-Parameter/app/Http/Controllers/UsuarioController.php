@@ -20,8 +20,10 @@ class UsuarioController extends Controller
     public function __construct(JWTAuth $jwt)
     {
         $this->jwt = $jwt;
+       
+        
         $this->middleware('auth:api', [
-            'except' =>['usuarioLogin','usuario', 'mostrarUsuario','cadastrar','atualizarUsuario','deletarUsuario', 'auth']
+            'except' =>['usuarioLogin','auth']
         ]);
     }
 
@@ -36,7 +38,9 @@ class UsuarioController extends Controller
         if(! $token = $this->jwt->claims(['usuario' => $request->usuario])->attempt($request->only('usuario', 'password'))){
             return response()->json(['Usuario não Encontrado'], 404);
         }
+        
          return response()->json(compact('token'));
+       
     }
 
     public function auth(){
@@ -99,15 +103,17 @@ public function usuarioLogout(){
 
     public function atualizarUsuario($id, Request $request){
         $this->validate($request,[
-            'usuario' => 'required|min:5|max:40',
+           'usuario' => 'required',
             'email' => 'required',
-            'registro' => 'required|min:2|max:5',
-            'nivel' => 'required|min:1|max:100',
+            'registro' => 'required',
+            'nivel' => 'required',
             'password' => 'required',
         ]);
 
         $usuario = Usuario::find($id);
-        $usuario->usuario = $request->usuario;
+       
+      
+       $usuario->usuario = $request->usuario;  
         $usuario->email = $request->email;
         $usuario->registro = $request->registro;
         $usuario->nivel = $request->nivel;

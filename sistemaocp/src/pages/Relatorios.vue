@@ -47,23 +47,26 @@
 
     <div v-if="View">
      <div class="md-layout">
-      <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
+      
         <md-card>
+          <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
           <md-card-header data-background-color="blue">
             <h4 class="title" style="text-align:center">Relatorio</h4>
           </md-card-header>
+          </div>
           <md-card-content>
             <div table-header-color="green" >  <md-table  :table-header-color="tableHeaderColor">
    
       <md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
         <md-table-cell md-label="Numero" >Nº da solicitação: {{rel.id}}</md-table-cell>
-       
+      
  </md-table-row>
+  <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
    <md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
         <md-table-cell md-label="Data Inicial:" >Data inicial: {{rel.Data_inicio}}</md-table-cell>
         <md-table-cell md-label="Data final" >Data Final: {{rel.Data_fim}}</md-table-cell>
- </md-table-row>
-
+    </md-table-row>
+</div>
   <md-table-row slot="md-table-row"  v-for="(rel,id) in relatorios" :key="id"  > 
         <md-table-cell md-label="Equipamento:" >Equipamento: {{rel.Maquina}}/ {{rel.Tag}}</md-table-cell>
         <md-table-cell md-label="Setor" >Setor: {{rel.Setor}}</md-table-cell>
@@ -99,7 +102,7 @@
       </div>
     </div>
 
-  </div>
+  
 </template>
 
 <script>
