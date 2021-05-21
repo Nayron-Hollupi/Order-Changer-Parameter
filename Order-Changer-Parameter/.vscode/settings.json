@@ -9,11 +9,16 @@
         "ausente",
         "codepen",
         "deslogou",
+        "enddate",
+        "endtime",
+        "estado",
         "expirou",
         "inserirndo",
         "invalido",
         "mostrar",
         "paypload",
+        "startdate",
+        "starttime",
         "usuariologin",
         "verificado"
     ]

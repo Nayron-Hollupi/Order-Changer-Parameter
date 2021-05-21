@@ -21,7 +21,7 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
       try{
-$user = Auth::payload();
+$usuario = Auth::payload();
       }catch(\Tymon\JWTAuth\Exceptions\TokenExpiredException $e){
   return response()->json(['token_expirou' => $e->getMessage()], 500);
       }

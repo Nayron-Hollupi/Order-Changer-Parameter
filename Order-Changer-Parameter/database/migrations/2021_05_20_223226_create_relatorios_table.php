@@ -14,19 +14,22 @@ class CreateRelatoriosTable extends Migration
     public function up()
     {
         Schema::create('relatorios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('Setor');
-            $table->string('Maquina');
-            $table->string('Tag');
-            $table->integer('Registro');
-            $table->string('Data_inicio');
-            $table->string('Data_fim');
-            $table->string('Laudo', 1000);
-            $table->string('Problema', 1000);
-            $table->string('Resumo' , 1000);
-            $table->string('Pecas' , 1000);
-            $table->integer('Status');
-            $table->timestamps();
+            
+   $table->increments('id');
+   $table->string('Setor');
+   $table->string('Maquina');
+   $table->string('Tag');
+   $table->integer('Registro');
+   $table->string('Data_inicio');
+   $table->string('Data_fim');
+   $table->time('Hora_inicio');
+   $table->time('Hora_fim');
+   $table->string('Laudo', 1000);
+   $table->string('Problema', 1000);
+   $table->string('Resumo' , 1000);
+   $table->string('Pecas' , 1000);
+   $table->integer('Status');
+   $table->timestamps();
         });
     }
 
@@ -40,4 +43,3 @@ class CreateRelatoriosTable extends Migration
         Schema::dropIfExists('relatorios');
     }
 }
-

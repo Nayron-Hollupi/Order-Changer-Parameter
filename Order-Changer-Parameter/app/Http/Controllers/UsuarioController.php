@@ -20,12 +20,14 @@ class UsuarioController extends Controller
     public function __construct(JWTAuth $jwt)
     {
         $this->jwt = $jwt;
+
+            $this->middleware('auth:api', [
+                'except' =>['usuarioLogin','auth','usuarioLogout','cadastrar','mostrarUsuario','usuario','deletarUsuario','atualizarUsuario']
+            ]);
+          
        
-        
-        $this->middleware('auth:api', [
-            'except' =>['usuarioLogin','auth']
-        ]);
     }
+  
 
     public function usuarioLogin(Request $request){
 
@@ -74,8 +76,6 @@ public function usuarioLogout(){
         $usuario->nivel = $request->nivel;
         $usuario->password = Hash::make($request->password);
       
-     
-
         //Salvar usuario
         $usuario->save();
         return response()->json($usuario);
@@ -102,23 +102,37 @@ public function usuarioLogout(){
     
 
     public function atualizarUsuario($id, Request $request){
+       
         $this->validate($request,[
-           'usuario' => 'required',
-            'email' => 'required',
-            'registro' => 'required',
-            'nivel' => 'required',
-            'password' => 'required',
+            'usuario' ,
+            'email' ,
+          'registro' ,
+            'nivel',
+            'password' ,
         ]);
 
-        $usuario = Usuario::find($id);
-       
-      
-       $usuario->usuario = $request->usuario;  
-        $usuario->email = $request->email;
-        $usuario->registro = $request->registro;
-        $usuario->nivel = $request->nivel;
-        $usuario->password = Hash::make($request->password);
+        $user = $request->usuario;
+        $mail = $request->email;
+        $record = $request->registro;
+        $level = $request->nivel;
+        $senha = $request->password;
 
+        $usuario = Usuario::find($id);
+      if($user != null){
+       $usuario->usuario = $request->usuario;  
+      }
+      if($mail != null){
+        $usuario->email = $request->email;
+      }
+      if($record != null){
+     $usuario->registro = $request->registro;
+      }
+      if($level != null){
+        $usuario->nivel = $request->nivel;
+      }
+      if($senha != null){
+        $usuario->password = Hash::make($request->password);
+      }
         //Salvar novamento
         $usuario->save();
 

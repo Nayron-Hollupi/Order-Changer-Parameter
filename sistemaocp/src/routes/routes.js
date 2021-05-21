@@ -1,3 +1,5 @@
+
+
 import Layout from "@/pages/Layout/Menu.vue";
 
 import Home from "@/views/Home.vue";
@@ -11,6 +13,8 @@ import Ordens from "@/pages/Ordens.vue";
 
 
 import Logout from "@/pages/Logout.vue";
+
+
 
 const routes = [
   {

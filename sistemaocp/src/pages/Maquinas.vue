@@ -200,6 +200,9 @@ export default {
   },
   data(){
     return{
+      Setor: null,
+      Tag: null,
+      Maquina: null,
       maquinas: [],
       EditarMaquina: [],
       PageMaquina: true,
@@ -254,7 +257,10 @@ cadastro: function(){
    .then(res => {
      console.log(res);
      this.maquinas = res.data;
-   }) }
+   }) 
+    this.PageMaquina = !this.PageMaquina;
+   this.PageEditar =!this.PageEditar;
+   }
 }
 
 

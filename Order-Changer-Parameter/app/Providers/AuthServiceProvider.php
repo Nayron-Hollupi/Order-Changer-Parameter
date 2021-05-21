@@ -33,6 +33,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->app['auth']->viaRequest('api', function ($request) {
             return \APP\Models\Usuario::where('usuario', $request->input('usuario'))->firs();
             
+            Gate::define('update-post', function ($user, $post) {
+                return $user->id === $post->user_id;
+            });
         });
        
     }

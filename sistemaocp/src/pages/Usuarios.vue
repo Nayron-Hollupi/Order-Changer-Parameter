@@ -296,6 +296,7 @@
         </div>
       </md-card-content>
     </md-card>
+     
   </form>
   </div>
   </div>
@@ -319,10 +320,11 @@ export default {
   },
     data() {
     return {
-         usuario: "",
-      registro: "",
-      email: "",
-      nivel: "",
+         usuario: null,
+      registro: null,
+      email: null,
+      nivel: null,
+      password: null,
       EditarUsuarios: [],
       analistas: [],
       gestores: [],
@@ -330,7 +332,7 @@ export default {
 PageUsuario: true,
 PageEditar: false,
 PageCadastro: false,
-
+ 
     }
   },
 
@@ -356,6 +358,7 @@ if(this.PageUsuario != false){
 
  },
  methods:{
+   
  Delete: function(id){
 axios.delete("http://localhost:8000/usuario/deletar/" + id)
 .then(res => {
@@ -390,17 +393,19 @@ axios.delete("http://localhost:8000/usuario/deletar/" + id)
      console.log(res);
      this.usuarios = res.data;
    })
+   this.PageUsuario = !this.PageUsuario;
+   this.PageCadastro = !this.PageCadastro;
+
     },
 
     atualizar: function(id){
 
     axios.put( "http://localhost:8000/usuario/" + id +"/atualizar",
-    
-    {usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
+    { usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
      this.usuarios = res.data;
-   })  } }
+   })  }}
 
  };
 </script>

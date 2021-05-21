@@ -44,12 +44,19 @@ class MaquinasController extends Controller
     }
    
     public function atualizarMaquinas($id, Request $request){
-
+        
+        $sector = $request->Setor;
+        $marcacao = $request->Tag;
+        $machine = $request->Maquina;
+         
         $maquina = Maquinas::find($id);
+        if($sector != null){
         $maquina->Setor = $request->Setor;
+        }if($marcacao != null){
         $maquina->Tag = $request->Tag;
+        }if($machine !=null){
         $maquina->Maquina = $request->Maquina;
-
+        }
         //Salvar novamento
         $maquina->save();
 
