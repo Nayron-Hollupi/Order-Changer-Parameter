@@ -5,6 +5,8 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import routes from "./routes/routes";
 import './plugins/vuetify';
+import VueSweetalert2 from 'vue-sweetalert2';
+
 
 
 
@@ -47,7 +49,7 @@ Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
 Vue.use(VueAxios, axios);
-
+Vue.use(VueSweetalert2);
 /* eslint-disable no-new */
 new Vue({
   el: "#app",

@@ -61,24 +61,40 @@ public function usuarioLogout(){
 
 
     public function cadastrar(Request $request){
-        $this->validate($request,[
-            'usuario' => 'required|min:5|max:40',
+        
+      $user = $request->usuario;
+      $mail = $request->email;
+      $record = $request->registro;
+      $level = $request->nivel;
+      $senha = $request->password;
+
+      if ($user != null && $mail != null && $record != null && $level != null && $senha != null ) {
+      
+      $this->validate($request,[
+            'usuario' => 'required|min:1|max:40',
             'email' => 'required',
-            'registro' => 'required|min:2|max:5',
+            'registro' => 'required|min:1|max:5',
             'nivel' => 'required|min:1|max:100',
             'password' => 'required',
         ]);
-
+      
         $usuario = new Usuario;
         $usuario->usuario = $request->usuario;
         $usuario->email = $request->email;
         $usuario->registro = $request->registro;
         $usuario->nivel = $request->nivel;
         $usuario->password = Hash::make($request->password);
-      
-        //Salvar usuario
         $usuario->save();
-        return response()->json($usuario);
+
+        return response()->json(true);
+        }else{
+          return response()->json(false);
+
+        }
+        //Salvar usuario
+       
+       
+   
     }
 
     public function mostrarUsuario($nivel){
@@ -136,14 +152,14 @@ public function usuarioLogout(){
         //Salvar novamento
         $usuario->save();
 
-        return response()->json($usuario);
+        return response()->json(true);
 
     }
 
     public function deletarUsuario($id){
         $usuario = Usuario::find($id);
         $usuario->delete();
-        return response()->json('Deletando com Sucesso', 200);
+        return response()->json(true);
 
     }
  

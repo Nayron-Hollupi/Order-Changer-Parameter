@@ -107,6 +107,7 @@
   <md-button class="md-info" @click="cadastro()">Cadastrar novo Usuario</md-button>
 </div>
 
+  
       </div>
 
     </div>
@@ -291,7 +292,7 @@
            
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
-               <md-button @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
+               <md-button @click="cadastrar()" v-on:click="teste()" class="md-raised md-info">Cadastrar</md-button>
           </div>
         </div>
       </md-card-content>
@@ -307,7 +308,7 @@
 
 <script>
 import axios from 'axios';
-
+import Swal from 'sweetalert2'
 
 export default {
   
@@ -337,7 +338,7 @@ PageCadastro: false,
   },
 
   created: function(){
-if(this.PageUsuario != false){
+if(this.PageUsuario == true){
  axios.get("http://localhost:8000/usuario/0" )
  .then(res => { 
    console.log(res);
@@ -358,13 +359,7 @@ if(this.PageUsuario != false){
 
  },
  methods:{
-   
- Delete: function(id){
-axios.delete("http://localhost:8000/usuario/deletar/" + id)
-.then(res => {
-  console.log(res);
-})
- },
+      
  editar: function(id){
    this.PageUsuario = !this.PageUsuario;
    this.PageEditar =!this.PageEditar;
@@ -374,29 +369,112 @@ axios.delete("http://localhost:8000/usuario/deletar/" + id)
    console.log(res);
    this.EditarUsuarios= res.data; 
  })
-   
+     this.$router.push('/usuarios');
  },
   editarbread: function(id){
    this.PageUsuario = !this.PageUsuario;
    this.PageEditar =!this.PageEditar;
-    
-
+  
+      this.$router.push('/usuarios');
    
  },
  cadastro: function(){
    this.PageUsuario = !this.PageUsuario;
    this.PageCadastro = !this.PageCadastro;
+   
  },
+
+
+
+ 
+ Delete: function(id){
+ Swal.fire({
+  title: 'Deseja deletar?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Deletar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    axios.delete("http://localhost:8000/usuario/deletar/" + id)
+.then(res => {
+  console.log(res);
+  this.delete = res.data;
+axios.get("http://localhost:8000/usuario/0" )
+ .then(res => { 
+   console.log(res);
+   this.analistas = res.data; 
+ }),
+  axios.get("http://localhost:8000/usuario/1")
+ .then(res => { 
+   console.log(res);
+   this.gestores = res.data; 
+ }),
+  axios.get("http://localhost:8000/usuario/2")
+ .then(res => { 
+   console.log(res);
+   this.tecnicos = res.data; 
+ })
+})
+
+    Swal.fire(
+      'Deletado!',
+      'O usuario foi deletado com sucesso.',
+      'success'
+    )
+  }
+}) 
+ },
+
+
+
+ 
+
+
+
+
  cadastrar: function(){
-    axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
+
+  axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
-     this.usuarios = res.data;
+    this.usuarios = res.data;
+     if(this.usuarios == true){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Cadastro realizado com sucesso.',
+  showConfirmButton: false,
+  timer: 2000
+   
+})
+  this.$router.push('/usuarios');
+this.PageUsuario = !this.PageUsuario;
+this.PageCadastro = !this.PageCadastro;
+
+   }if(this.usuarios == false){
+Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title: 'Erro no cadastro, Favor realizar novamento.',
+  showConfirmButton: false,
+  timer: 2000
+})
+ 
+
+   }
    })
-   this.PageUsuario = !this.PageUsuario;
-   this.PageCadastro = !this.PageCadastro;
 
     },
+
+
+
+
+
+
+
+
 
     atualizar: function(id){
 
@@ -404,7 +482,31 @@ axios.delete("http://localhost:8000/usuario/deletar/" + id)
     { usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
    .then(res => {
      console.log(res);
-     this.usuarios = res.data;
+     this.atualizado = res.data;
+      if(this.atualizado == true){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Usuario atualizado com sucesso.',
+  showConfirmButton: false,
+  timer: 2000
+   
+})
+
+ this.PageUsuario = !this.PageUsuario;
+ this.PageEditar =!this.PageEditar;
+  
+   }else{
+Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title: 'Erro na atualização, Favor realizar novamento.',
+  showConfirmButton: false,
+  timer: 2000
+})
+ 
+
+   }
    })  }}
 
  };
