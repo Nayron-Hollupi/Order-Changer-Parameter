@@ -62,8 +62,9 @@ $router->group(['prefix' => 'ordem'], function() use($router){
 
     $router->post('/cadastrar', 'OrdemsController@cadastrar'); 
     $router->get('/mostrar/{Status}', 'OrdemsController@mostrar'); 
+    $router->get('/utilizar/{id}', 'OrdemsController@UtilizarRelatorio'); 
     $router->get('/{id}/atualizar', 'OrdemsController@atualizar'); 
-    $router->put('/{id}/atualizar', 'OrdemsController@atualizar');
+    $router->patch('/{id}/atualizar', 'OrdemsController@atualizar');
     $router->put('/Status/{id}', 'OrdemsController@atualizarStatus');
     $router->delete('/deletar/{id}', 'OrdemsController@deletar');
 });

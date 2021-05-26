@@ -186,7 +186,7 @@
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
         <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
    <md-table-cell >     <sidebar-link to="">
-       <md-button type="button" @click="write()" class="md-warning">Escrever Relatorio</md-button>
+       <md-button type="button" @click="write(ordem.id)" class="md-warning">Escrever Relatorio</md-button>
         </sidebar-link></md-table-cell>
                
   </md-table-row>
@@ -208,10 +208,10 @@
       <md-card-content>
         <div class="md-layout">
     
-          <div class="md-layout-item md-small-size-100 md-size-40">       
-        <md-field>
+          <div class="md-layout-item md-small-size-100 md-size-40" >       
+        <md-field v-for="(item,id) in Write" :key="id">
           <label>Digite o Setor</label>
-                    <md-input v-model="Setor" type="text"></md-input>              
+                    <md-input v-model="Setor" type="text">{{ item.Setor }}</md-input>              
         </md-field>
           </div>
   
@@ -331,6 +331,8 @@
 
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2'
+
 export default {
   
   data () {
@@ -341,6 +343,7 @@ export default {
       ordemOpen: [],
       ordemProgress: [],
       ordems: [],
+      Write: [],
 PageOrder: true,
 PageToOpen: false,
 PageOpen: false,
@@ -370,7 +373,17 @@ PageFinalized:false
 axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
    .then(res => {
      console.log(res);
+
+       this.PageOpen = !this.PageOpen;
+       this.PageProgress = !this.PageProgress;
+
+             axios.get("http://localhost:8000/ordem/mostrar/2" )
+ .then(res => { 
+   console.log(res);
+   this.ordemProgress = res.data; 
+ })
      })
+
     },
     Progress: function(){
        this.PageOrder = !this.PageOrder;
@@ -383,9 +396,20 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
  })
   
     },
-    write: function(){
-     this.PageProgress = !this.PageProgress;
-     this.PageWrite = !this.PageWrite;
+    write: function(id){
+          this.PageProgress = !this.PageProgress;
+          this.PageWrite = !this.PageWrite;
+          
+ axios.get("http://localhost:8000/ordem/utilizar/"+ id )
+ .then(res => { 
+   console.log(res);
+   this.Write = res.data; 
+    
+ })
+
+
+
+
     },
     ToWrite: function(){
   this.PageWrite = !this.PageWrite;
@@ -409,14 +433,46 @@ this.PageWrite = !this.PageWrite;
  .then(res => { 
    console.log(res)
    this.ordems = res.data; 
+   
  })
 
     },
      cadastrar: function(){
     axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag:this.Tag, Problemas:this.Problemas, Status:this.Status})
    .then(res => {
-     console.log(res);
+     console.log(res)
+     this.ordem = res.data;
     
+        if(this.ordem == true){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Cadastro realizado com sucesso.',
+  showConfirmButton: false,
+  timer: 2000
+   
+})
+ 
+  this.PageToOpen = !this.PageToOpen;
+   this.PageOpen = !this.PageOpen;
+
+   }if(this.ordem == false){
+Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title: 'Erro no cadastro, Favor realizar novamento.',
+  showConfirmButton: false,
+  timer: 2000
+})
+ 
+
+   }
+     axios.get("http://localhost:8000/ordem/mostrar/1" )
+ .then(res => { 
+   console.log(res);
+   this.ordemOpen = res.data; 
+ })
+
    })
     },
        register: function(){
@@ -426,6 +482,8 @@ this.PageWrite = !this.PageWrite;
    .then(res => {
      console.log(res);
     
+
+
    })
     }
   },

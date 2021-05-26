@@ -26,7 +26,11 @@ class MaquinasController extends Controller
     }
 
     public function cadastrar(Request $request){
-       
+        $sector = $request->Setor;
+        $marcacao = $request->Tag;
+        $machine = $request->Maquina;
+
+        if ($sector != null && $marcacao != null && $machine != null  ) {
         $maquina = new Maquinas;
         $maquina->Setor = $request->Setor;
         $maquina->Tag = $request->Tag;
@@ -34,7 +38,10 @@ class MaquinasController extends Controller
   
 
         $maquina->save();
-        return response()->json($maquina);
+        return response()->json(true);
+        }else{
+            return response()->json(false);    
+        }
     }
 
     public function mostrarMaquina(){
@@ -45,6 +52,7 @@ class MaquinasController extends Controller
    
     public function atualizarMaquinas($id, Request $request){
         
+      
         $sector = $request->Setor;
         $marcacao = $request->Tag;
         $machine = $request->Maquina;
@@ -57,10 +65,16 @@ class MaquinasController extends Controller
         }if($machine !=null){
         $maquina->Maquina = $request->Maquina;
         }
-        //Salvar novamento
-        $maquina->save();
 
-        return response()->json($maquina);
+        if($sector == null && $marcacao == null && $machine == null ){
+            return response()->json(false);
+           
+          }else{
+            $maquina->save();
+
+            return response()->json(true);
+         }
+       
 
     }
 

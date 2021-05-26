@@ -132,7 +132,7 @@ public function usuarioLogout(){
         $record = $request->registro;
         $level = $request->nivel;
         $senha = $request->password;
-
+        
         $usuario = Usuario::find($id);
       if($user != null){
        $usuario->usuario = $request->usuario;  
@@ -149,11 +149,14 @@ public function usuarioLogout(){
       if($senha != null){
         $usuario->password = Hash::make($request->password);
       }
-        //Salvar novamento
-        $usuario->save();
-
-        return response()->json(true);
-
+      if($user == null && $mail == null && $record == null &&  $level == null &&  $senha == null){
+       
+        return response()->json(false);
+       
+      }else{
+      $usuario->save();
+      return response()->json(true);
+      }
     }
 
     public function deletarUsuario($id){

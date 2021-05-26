@@ -339,6 +339,7 @@ PageCadastro: false,
 
   created: function(){
 if(this.PageUsuario == true){
+  
  axios.get("http://localhost:8000/usuario/0" )
  .then(res => { 
    console.log(res);
@@ -361,6 +362,7 @@ if(this.PageUsuario == true){
  methods:{
       
  editar: function(id){
+    
    this.PageUsuario = !this.PageUsuario;
    this.PageEditar =!this.PageEditar;
     
@@ -369,13 +371,13 @@ if(this.PageUsuario == true){
    console.log(res);
    this.EditarUsuarios= res.data; 
  })
-     this.$router.push('/usuarios');
+    
  },
   editarbread: function(id){
    this.PageUsuario = !this.PageUsuario;
    this.PageEditar =!this.PageEditar;
   
-      this.$router.push('/usuarios');
+     
    
  },
  cadastro: function(){
@@ -397,7 +399,7 @@ if(this.PageUsuario == true){
   confirmButtonText: 'Deletar!'
 }).then((result) => {
   if (result.isConfirmed) {
-    axios.delete("http://localhost:8000/usuario/deletar/" + id)
+   axios.delete("http://localhost:8000/usuario/deletar/" + id)
 .then(res => {
   console.log(res);
   this.delete = res.data;
@@ -409,7 +411,7 @@ axios.get("http://localhost:8000/usuario/0" )
   axios.get("http://localhost:8000/usuario/1")
  .then(res => { 
    console.log(res);
-   this.gestores = res.data; 
+   this.gestores = res.data;  
  }),
   axios.get("http://localhost:8000/usuario/2")
  .then(res => { 
@@ -464,16 +466,25 @@ Swal.fire({
  
 
    }
+   axios.get("http://localhost:8000/usuario/0" )
+ .then(res => { 
+   console.log(res);
+   this.analistas = res.data; 
+ }),
+  axios.get("http://localhost:8000/usuario/1")
+ .then(res => { 
+   console.log(res);
+   this.gestores = res.data; 
+ }),
+  axios.get("http://localhost:8000/usuario/2")
+ .then(res => { 
+   console.log(res);
+   this.tecnicos = res.data; 
+ })
+
    })
 
     },
-
-
-
-
-
-
-
 
 
     atualizar: function(id){
@@ -504,9 +515,23 @@ Swal.fire({
   showConfirmButton: false,
   timer: 2000
 })
- 
-
    }
+   axios.get("http://localhost:8000/usuario/0" )
+ .then(res => { 
+   console.log(res);
+   this.analistas = res.data; 
+ }),
+  axios.get("http://localhost:8000/usuario/1")
+ .then(res => { 
+   console.log(res);
+   this.gestores = res.data; 
+ }),
+  axios.get("http://localhost:8000/usuario/2")
+ .then(res => { 
+   console.log(res);
+   this.tecnicos = res.data; 
+ })
+
    })  }}
 
  };

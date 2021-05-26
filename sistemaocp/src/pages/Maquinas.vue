@@ -6,19 +6,21 @@
       <li>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
       </li>
-      <li v-if="PageMaquinas">
+      <li v-if="PageMaquina">
         <b >Máquinas</b>
       </li>
+       
+
          <li v-if="PageCadastro">
         <a @click="cadastro()">Maquinas</a>
       </li>
       <li v-if="PageCadastro">
         <b >Cadastrar máquinas</b>
       </li>
+
         <li v-if="PageEditar">
         <a @click="editarbread()" >Máquinas</a>
       </li>
-    
       <li v-if="PageEditar">
         <b >Editar máquina</b>
       </li>
@@ -174,8 +176,8 @@
            <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
-               <md-button  @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
+           <div class="md-layout-item md-small-size-100 md-size-33" v-for="(editar,id) in EditarMaquina" :key="id">
+               <md-button  @click="atualizar(editar.id)" class="md-raised md-info">Atualizar</md-button>
           </div>
         </div>
       </md-card-content>
@@ -192,7 +194,7 @@
 
 <script>
 import axios from 'axios';
-
+import Swal from 'sweetalert2'
 
 export default {
   components: {
@@ -218,22 +220,93 @@ export default {
     })
   },
    methods:{
+
+
  Delete: function(id){
-axios.delete("http://localhost:8000/maquinas/deletar/" + id)
+    Swal.fire({
+  title: 'Deseja deletar?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Deletar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+   axios.delete("http://localhost:8000/maquinas/deletar/" + id)
 .then(res => {
   console.log(res);
-})},
+   axios.get("http://localhost:8000/maquinas")
+    .then(res => {
+      console.log(res);
+      this.maquinas = res.data;
+    })
+       axios.get("http://localhost:8000/maquinas")
+    .then(res => {
+      console.log(res);
+      this.maquinas = res.data;
+    })
+})
+
+    Swal.fire(
+      'Deletado!',
+      'A maquina foi deletada com sucesso.',
+      'success'
+    )
+  }
+}) 
+
+},
+
+
+
+
 cadastro: function(){
    this.PageMaquina = !this.PageMaquina;
    this.PageCadastro =!this.PageCadastro;
  },
+
+
  cadastrar: function(){
     axios.post( "http://localhost:8000/maquinas/cadastrar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina })
    .then(res => {
      console.log(res);
-     this.maquinas = res.data;
+     this.maquina = res.data;
+
+         if(this.maquina == true){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Cadastro realizado com sucesso.',
+  showConfirmButton: false,
+  timer: 2000
+   
+})
+ 
+   this.PageMaquina = !this.PageMaquina;
+   this.PageCadastro =!this.PageCadastro;
+
+   }if(this.maquina == false){
+Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title: 'Erro no cadastro, Favor realizar novamento.',
+  showConfirmButton: false,
+  timer: 2000
+})
+ 
+
+   }
+      axios.get("http://localhost:8000/maquinas")
+    .then(res => {
+      console.log(res);
+      this.maquinas = res.data;
+    })
    })
     },
+
+
+
+
  editar: function(id){
    this.PageMaquina = !this.PageMaquina;
    this.PageEditar =!this.PageEditar;
@@ -253,13 +326,41 @@ cadastro: function(){
    
  },
   atualizar: function(id){
+
     axios.put( "http://localhost:8000/maquinas/" + id +"/atualizar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina })
    .then(res => {
      console.log(res);
-     this.maquinas = res.data;
-   }) 
-    this.PageMaquina = !this.PageMaquina;
+     this.atualizado = res.data;
+
+       if(this.atualizado == true){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Maquina atualizada com sucesso.',
+  showConfirmButton: false,
+  timer: 2000
+   
+})
+
+ this.PageMaquina = !this.PageMaquina;
    this.PageEditar =!this.PageEditar;
+  
+   }else{
+Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title: 'Erro na atualização, Favor realizar novamento.',
+  showConfirmButton: false,
+  timer: 2000
+})
+   }
+     axios.get("http://localhost:8000/maquinas")
+    .then(res => {
+      console.log(res);
+      this.maquinas = res.data;
+    })
+   }) 
+   
    }
 }
 
