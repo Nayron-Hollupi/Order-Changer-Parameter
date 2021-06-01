@@ -27,14 +27,12 @@ class MaquinasController extends Controller
 
     public function cadastrar(Request $request){
         $sector = $request->Setor;
-        $marcacao = $request->Tag;
-        $machine = $request->Maquina;
+        $machine = $request->Tag_Maquina;
 
-        if ($sector != null && $marcacao != null && $machine != null  ) {
+        if ($sector != null  && $machine != null  ) {
         $maquina = new Maquinas;
         $maquina->Setor = $request->Setor;
-        $maquina->Tag = $request->Tag;
-        $maquina->Maquina = $request->Maquina;
+        $maquina->Tag_Maquina = $request->Tag_Maquina;
   
 
         $maquina->save();
@@ -54,19 +52,16 @@ class MaquinasController extends Controller
         
       
         $sector = $request->Setor;
-        $marcacao = $request->Tag;
-        $machine = $request->Maquina;
+        $machine = $request->Tag_Maquina;
          
         $maquina = Maquinas::find($id);
         if($sector != null){
         $maquina->Setor = $request->Setor;
-        }if($marcacao != null){
-        $maquina->Tag = $request->Tag;
         }if($machine !=null){
-        $maquina->Maquina = $request->Maquina;
+        $maquina->Tag_Maquina = $request->Tag_Maquina;
         }
 
-        if($sector == null && $marcacao == null && $machine == null ){
+        if($sector == null  && $machine == null ){
             return response()->json(false);
            
           }else{

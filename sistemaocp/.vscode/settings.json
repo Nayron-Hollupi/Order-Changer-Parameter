@@ -9,6 +9,7 @@
         "Visualizar",
         "Vuetify",
         "abrir",
-        "scripthost"
+        "scripthost",
+        "sweetalert"
     ]
 }

@@ -35,3 +35,9 @@ class CreateUsuariosTable extends Migration
         Schema::dropIfExists('usuarios');
     }
 }
+          
+
+
+
+
+            

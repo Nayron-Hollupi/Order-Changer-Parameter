@@ -11,6 +11,7 @@
         "deslogou",
         "enddate",
         "endtime",
+        "endwork",
         "estado",
         "expirou",
         "inserirndo",
@@ -19,6 +20,7 @@
         "paypload",
         "startdate",
         "starttime",
+        "startwork",
         "usuariologin",
         "verificado"
     ]

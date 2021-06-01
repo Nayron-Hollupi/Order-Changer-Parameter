@@ -21,10 +21,7 @@
         <md-icon>file_copy</md-icon>
         <p>Ordens</p>
       </sidebar-link>
-     <sidebar-link to="/Relatorios">
-        <md-icon>content_paste</md-icon>
-        <p>Relatórios</p>
-      </sidebar-link>
+   
    
       <sidebar-link to="" @click="logout()" class="active-pro">
         <md-icon @click="logout()" >logout</md-icon>

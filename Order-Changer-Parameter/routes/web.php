@@ -21,10 +21,10 @@ $router->get('/', function () use ($router) {
  //Login
 $router->post('/login','UsuarioController@usuarioLogin');
 $router->post('/auth','UsuarioController@auth');
-$router->get('/auth','UsuarioController@auth');
+
 //token
 
-$router->post('logout', 'UsuarioController@usuarioLogout');
+$router->post('/logout', 'UsuarioController@usuarioLogout');
 
 //Cadastro dos usuarios
 
@@ -63,7 +63,7 @@ $router->group(['prefix' => 'ordem'], function() use($router){
     $router->post('/cadastrar', 'OrdemsController@cadastrar'); 
     $router->get('/mostrar/{Status}', 'OrdemsController@mostrar'); 
     $router->get('/utilizar/{id}', 'OrdemsController@UtilizarRelatorio'); 
-    $router->get('/{id}/atualizar', 'OrdemsController@atualizar'); 
+    $router->get('/all', 'OrdemsController@ordems'); 
     $router->patch('/{id}/atualizar', 'OrdemsController@atualizar');
     $router->put('/Status/{id}', 'OrdemsController@atualizarStatus');
     $router->delete('/deletar/{id}', 'OrdemsController@deletar');

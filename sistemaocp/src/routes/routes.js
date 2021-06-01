@@ -6,7 +6,6 @@ import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import Dashboard from "@/pages/Dashboard.vue";
 import Usuarios from "@/pages/Usuarios.vue";
-import Relatorios from "@/pages/Relatorios.vue";
 import Maquinas from "@/pages/Maquinas.vue";
 import Ordens from "@/pages/Ordens.vue";
 
@@ -44,11 +43,7 @@ const routes = [
         name: "Usuarios",
         component: Usuarios
       },
-      {
-        path: "relatorios",
-        name: "Relatorios",
-        component: Relatorios
-      },
+    
       {
         path: "maquinas",
         name: "Maquinas",

@@ -14,14 +14,13 @@
     <div class="md-layout">
 
       <div class="md-layout-item md-large-size-100 md-xlarge-size-100 md-size-100">
-      
         <chart-card
           :chart-data="dailySalesChart.data"
           :chart-options="dailySalesChart.options"
           :chart-type="'Line'"
           data-background-color="blue"
         >   <template slot="content">
-            <h4 class="title">Manutenção Corretiva</h4>
+            <h4 class="title" style="text-align:center">Manutenção Corretiva</h4>
             <p class="category">
               <span class="text-success"
                 ><i class="fas fa-long-arrow-alt-up"></i> 55%
@@ -83,19 +82,27 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 import { ChartCard,} from "@/components";
 
 export default {
   components: {
    
     ChartCard,
+
    
  
-  },
+  },  created: function(){
+ axios.get("http://localhost:8000/ordem/all" )
+ .then(res => { 
+   console.log(res.data);
+   this.labels = res.data; 
+ })
+ },
 
   data() {
     return {
+      Ordem: [],
       dailySalesChart: {
         data: {
           labels: ["Ja", "Fe", "Ma", "Ab", "Ma", "Ju", "Jul","Ag", "Se", "Ou", "No", "De"],
@@ -182,7 +189,8 @@ export default {
         ]
       }
     };
-  }
+  },
+  
 };
 </script>
 

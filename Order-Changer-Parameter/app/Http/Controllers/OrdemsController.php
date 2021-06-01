@@ -22,7 +22,7 @@ class OrdemsController extends Controller
 
     public function cadastrar(Request $request){
         $sector = $request->Setor;
-        $marcacao = $request->Tag;
+        $marcacao = $request->Tag_Maquina;
         $problem = $request->Problemas;
         $estado = $request->Status;
 
@@ -30,7 +30,7 @@ class OrdemsController extends Controller
         $ordem = new Ordems;
         
         $ordem->Setor = $request->Setor;
-        $ordem->Tag = $request->Tag;
+        $ordem->Tag_Maquina = $request->Tag_Maquina;
         $ordem->Problemas = $request->Problemas;
         $ordem->Status = $request->Status;
 
@@ -45,7 +45,7 @@ class OrdemsController extends Controller
     public function UtilizarRelatorio($id){
         if (Ordems::where('id', $id)->exists()) {
             $ordem = Ordems::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($ordem, 200);
+            return response($ordem);
           }
           return response(false);
         //return response()->json(Usuario::all());
@@ -73,7 +73,7 @@ class OrdemsController extends Controller
 
         $ordem = Ordems::find($id);
         $ordem->Setor = $request->Setor;
-        $ordem->Tag = $request->Tag;
+        $ordem->Tag_Maquina = $request->Tag_Maquina;
         $ordem->Problemas = $request->Problemas;
         $ordem->Status = $request->Status;
 

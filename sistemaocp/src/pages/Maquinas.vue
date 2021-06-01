@@ -37,11 +37,10 @@
             <h4 class="title" style="text-align:center">Lista de Maquinas cadastradas</h4>
           </md-card-header>
           <md-card-content>
-            <div table-header-color="green" >  <md-table  :table-header-color="tableHeaderColor">
+            <div table-header-color="green" >  <md-table >
       <md-table-row slot="md-table-row"  v-for="(maquina,id) in maquinas" :key="id"  > 
-        <md-table-cell md-label="Registro" >{{maquina.Setor}}</md-table-cell>
-        <md-table-cell md-label="Usuario"  >{{maquina.Tag}}</md-table-cell>
-        <md-table-cell md-label="email" >{{maquina.Maquina}}</md-table-cell>
+        <md-table-cell md-label="Setor" >{{maquina.Setor}}</md-table-cell>
+        <md-table-cell md-label="Tag_Maquina"  >{{maquina.Tag_Maquina}}</md-table-cell>
  <md-table-cell><md-button class="md-warning" @click="editar(maquina.id)" >Editar</md-button></md-table-cell>
 <md-table-cell ><md-button class="md-danger" @click="Delete(maquina.id)">Excluir</md-button></md-table-cell>
 
@@ -93,8 +92,8 @@
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
-              <label>Digite o Tag</label>
-              <md-input v-model="Tag" type="text"></md-input>
+              <label>Digite o Tag e Maquina</label>
+              <md-input v-model="Tag_Maquina" type="text"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -103,18 +102,9 @@
             <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>Maquina</label>
-              <md-input v-model="Maquina" type="text"></md-input>
-            </md-field>
-          </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
-           
-          </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
-           
-          </div>
+         
+         
+         
            <div class="md-layout-item md-small-size-100 md-size-33">
                <md-button  @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
           </div>
@@ -154,8 +144,8 @@
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field v-for="(editar,id) in EditarMaquina" :key="id">
-              <label>{{editar.Tag}}</label>
-              <md-input v-model="Tag" type="text"></md-input>
+              <label>{{editar.Tag_Maquina}}</label>
+              <md-input v-model="Tag_Maquina" type="text"></md-input>
             </md-field>
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -164,18 +154,7 @@
             <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field v-for="(editar,id) in EditarMaquina" :key="id">
-              <label>{{editar.Maquina}}</label>
-              <md-input v-model="Maquina" type="text"></md-input>
-            </md-field>
-          </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
-           
-          </div>
-           <div class="md-layout-item md-small-size-100 md-size-33">
-           
-          </div>
+        
            <div class="md-layout-item md-small-size-100 md-size-33" v-for="(editar,id) in EditarMaquina" :key="id">
                <md-button  @click="atualizar(editar.id)" class="md-raised md-info">Atualizar</md-button>
           </div>
@@ -203,8 +182,7 @@ export default {
   data(){
     return{
       Setor: null,
-      Tag: null,
-      Maquina: null,
+      Tag_Maquina: null,
       maquinas: [],
       EditarMaquina: [],
       PageMaquina: true,
@@ -267,7 +245,7 @@ cadastro: function(){
 
 
  cadastrar: function(){
-    axios.post( "http://localhost:8000/maquinas/cadastrar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina })
+    axios.post( "http://localhost:8000/maquinas/cadastrar",{Setor:this.Setor, Tag_Maquina:this.Tag_Maquina })
    .then(res => {
      console.log(res);
      this.maquina = res.data;
@@ -327,7 +305,7 @@ Swal.fire({
  },
   atualizar: function(id){
 
-    axios.put( "http://localhost:8000/maquinas/" + id +"/atualizar",{Setor:this.Setor, Tag:this.Tag, Maquina:this.Maquina })
+    axios.put( "http://localhost:8000/maquinas/" + id +"/atualizar",{Setor:this.Setor, Tag_Maquina:this.Tag_Maquina })
    .then(res => {
      console.log(res);
      this.atualizado = res.data;

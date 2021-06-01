@@ -19,7 +19,7 @@ class Maquinas extends Model implements AuthenticatableContract, AuthorizableCon
      * @var array
      */
     protected $fillable = [
-        'Setor', 'Tag','Maquina'
+        'Setor', 'Tag_Maquina'
     ];
 
     /**

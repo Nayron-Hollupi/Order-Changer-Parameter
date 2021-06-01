@@ -19,7 +19,7 @@ class Relatorios extends Model implements AuthenticatableContract, AuthorizableC
      * @var array
      */
     protected $fillable = [
-        'Setor', 'Maquina','Tag','Registro','Data_inicio','Data_fim',
+        'Setor', 'Tag_Maquina','Registro','Time_inicio','Time_fim','Data_inicio','Data_fim',
         'Laudo','Problema','Resumo','Pecas','Status'
     ];
 

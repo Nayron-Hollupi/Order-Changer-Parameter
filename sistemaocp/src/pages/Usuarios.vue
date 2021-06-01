@@ -448,7 +448,7 @@ axios.get("http://localhost:8000/usuario/0" )
   icon: 'success',
   title: 'Cadastro realizado com sucesso.',
   showConfirmButton: false,
-  timer: 2000
+  timer: 3000
    
 })
   this.$router.push('/usuarios');
@@ -461,7 +461,7 @@ Swal.fire({
   icon: 'error',
   title: 'Erro no cadastro, Favor realizar novamento.',
   showConfirmButton: false,
-  timer: 2000
+ timer: 3000
 })
  
 
@@ -500,7 +500,7 @@ Swal.fire({
   icon: 'success',
   title: 'Usuario atualizado com sucesso.',
   showConfirmButton: false,
-  timer: 2000
+  timer: 3000
    
 })
 
@@ -513,7 +513,7 @@ Swal.fire({
   icon: 'error',
   title: 'Erro na atualização, Favor realizar novamento.',
   showConfirmButton: false,
-  timer: 2000
+  timer: 3000
 })
    }
    axios.get("http://localhost:8000/usuario/0" )
