@@ -78,7 +78,7 @@ class RelatoriosController extends Controller
         //return response()->json(Relatorios::find($id));
     }
 
-    public function atualizarRelatorios($id, Request $request){
+    public function atualizarRelatorio($id, Request $request){
            $sector = $request->Setor;
            $machine = $request->Tag_Maquina;
            $record = $request->Registro;
@@ -118,8 +118,15 @@ class RelatoriosController extends Controller
     } if($estado != null){
         $relatorio->Status = $request->Status;
     }
+    if ( $sector != null && $machine != null && $record != null &&  $startdate != null 
+     &&  $enddate != null &&  $starttime != null &&  $endtime != null &&  $report != null
+    &&   $problem != null &&  $abstract != null &&  $parts != null &&  $estado != null ) {
+        return response()->json(false);
+    }else{
         $relatorio->save();
-        return response()->json($relatorio);
+        return response()->json(true);
+
+    }
     }
 
     public function deletarRelatorios($id){

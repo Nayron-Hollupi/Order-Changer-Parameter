@@ -1,49 +1,46 @@
 <template>
   <div class="content">
+    <!----------------------------------------bread crumb---------------------------------------------------------->
          <header>
            <nav>
-    <ul>
+    <ul>  
       <li>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
       </li>
+
+
+   <!-----------------------------------bread crumbs from  order  page-------------------------------------------------->
       <li v-if="PageOrder">
         <b >ORDENS</b>
       </li>
+
+
+      <!-----------------------------------bread crumbs from the order open page-------------------------------------------------->
         <li v-if="PageToOpen">
         <a @click="ToOpen()" >Ordens</a>
-      </li>
-
-       <li v-if="View">
-        <a @click="ToOpenview()" >Ordens</a>
       </li>
       <li v-if="PageToOpen">
         <b >Abrir Ordem</b>
       </li>
+
+      <!-----------------------------------bread crumbs from  open order page-------------------------------------------------->
        <li  v-if="PageOpen">
         <a @click="Open()">Ordens</a>
       </li>
       <li  v-if="PageOpen">
         <b >Ordens Abertas</b>
       </li>
-        <li v-if="PageProgress">
+
+   <!-----------------------------------bread crumbs from  Progress orders page-------------------------------------------------->
+  <li v-if="PageProgress">
         <a @click="Progress()">Ordens</a>
       </li>
       <li v-if="PageProgress">
         <b >Ordens em andamento</b>
       </li>
-         <li v-if="PageFinalized">
-        <a  @click="Finalized()">Ordens</a>
-      </li>
-      <li v-if="PageFinalized" >
-        <b >Ordens Finalizadas</b>
-      </li>
-      <li v-if="View" >
-        <a  @click="FinalizedView()">Ordens Finalizadas</a>
-      </li>
-         <li  v-if="View">
-        <b >Visualizar Relatorio</b>
-      </li>  
-  <li  v-if="PageWrite">
+
+  <!-----------------------------------bread crumbs from  Write report page-------------------------------------------------->  
+        <li  v-if="PageWrite">
         <a @click="ToWrite()">Ordens</a>
       </li>
         <li  v-if="PageWrite">
@@ -53,12 +50,45 @@
       <li  v-if="PageWrite">
         <b >Escrever Relatorio</b>
       </li>
-     
+
+ <!-----------------------------------bread crumbs from  finalized orders page-------------------------------------------------->
+          <li v-if="PageFinalized">
+        <a  @click="Finalized()">Ordens</a>
+      </li>
+      <li v-if="PageFinalized" >
+        <b >Ordens Finalizadas</b>
+      </li>
+      
+
+  <!-----------------------------------bread crumbs from  View report page-------------------------------------------------->     
+       <li v-if="View">
+        <a @click="ToOpenview()" >Ordens</a>
+      </li>
+ <li v-if="View" >
+        <a  @click="FinalizedView()">Ordens Finalizadas</a>
+      </li>
+ <li  v-if="View">
+        <b >Visualizar Relatorio</b>
+      </li>  
+
+<!-----------------------------------bread crumbs from  Edit report page--------------------------------------------------> 
+        <li v-if="EditReport">
+        <a @click="ToOpen()" >Ordens</a>
+      </li>
+      <li v-if="EditReport" >
+        <a  @click="FinalizedView()">Ordens Finalizadas</a>
+      </li>  
+        <li  v-if="EditReport">
+        <a @click="Edit()">Visualizar Relatorio</a>
+      </li>  
+         <li  v-if="EditReport">
+        <b  >Editar Relatorio</b>
+      </li>  
     </ul>
   </nav>
     </header>
 
- <!--------------------------Order Page     ----------------------------------->
+ <!--------------------------Order Page----------------------------------->
      <div v-if="PageOrder">   
     <div class="md-layout">
       <div class="md-layout-item">
@@ -90,6 +120,10 @@
       </div>
     </div>
      </div>
+
+
+
+
 
 <!---------------------------------------------Page to Open Order--------------------------->
   <div v-if="PageToOpen">
@@ -155,6 +189,14 @@
  
   </form>
   </div>
+
+
+
+
+
+
+
+
 <!--------------------------------------Open Order Page-------------------------------------->
   <div  v-if="PageOpen">
        <div class="md-layout">
@@ -179,6 +221,12 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
 
 <!--------------------------------------Progress Orders Page---------------------------------->
   <div  v-if="PageProgress">
@@ -207,7 +255,15 @@
       </div>
     </div>
   </div>
-<!----------------------------Write Report------------------------------------------->
+
+
+
+
+
+
+
+
+<!----------------------------------------Write Report------------------------------------------->
  <div v-if="PageWrite">
  <form>
     <md-card>
@@ -318,6 +374,12 @@
  
   </form>
  </div>
+
+
+
+
+
+
 <!---------------------------------------Finalized Orders Page------------------------------->    
   <div  v-if="PageFinalized">
     <div class="md-layout">
@@ -342,6 +404,18 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
  <!-----------------------------------------------------------View Report----------------------------------------------------------->
     
 
@@ -491,15 +565,130 @@
       </md-table-row>
 
     </md-table>
-   </div>
 
+   </div>
+<div class="md-layout-item md-small-size-100 md-size-25" v-for="(rel,id) in relatorios" :key="id" >
+               <md-button   @click="Edit(rel.id)" class="md-raised md-info">Editar relatorio</md-button>
+          </div>
 
           </md-card-content>
         </md-card>
       </div>
       </div>
     
+    <!-----------------------------------------------------------Edit Report----------------------------------------------------------->
+    
 
+    <div v-if="EditReport">
+      <form>
+    <md-card>
+      <md-card-header  data-background-color="blue">
+        <h4 class="title" style="text-align:center">Escrever Relatorio</h4>
+      </md-card-header>
+
+      <md-card-content >
+        <div class="md-layout" >
+         
+  
+          <div class="md-layout-item md-small-size-100 md-size-40" >       
+        <md-field v-for="(rel,id) in edits" :key="id" >
+          <label >{{rel.Setor}} </label>
+                    <md-input v-model="Setor" type="text"></md-input>              
+        </md-field>
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-40">
+           <md-field v-for="(rel,id) in edits" :key="id" >
+             <label>{{rel.Tag_Maquina}}</label>
+             <md-input v-model="Tag_Maquina" type="text"></md-input>
+        </md-field>
+          </div>
+  
+    
+         <div class="md-layout-item md-small-size-100 md-size-40">
+           <md-field v-for="(rel,id) in edits" :key="id">
+             <label>{{rel.Registro}}</label>
+             <md-input v-model="Registro" type="text"></md-input>    
+        </md-field>
+          </div>
+
+<div class="md-layout-item md-small-size-100 md-size-30">
+           <md-field v-for="(rel,id) in edits" :key="id">
+             <label>{{rel.Data_inicio}}</label>
+             <md-input v-model="Data_inicio" type="text"></md-input>    
+        </md-field>
+          </div>
+    <div class="md-layout-item md-small-size-100 md-size-20">
+           <md-field v-for="(rel,id) in edits" :key="id">
+             <label>{{rel.Hora_inicio}}</label>
+             <md-input v-model="Hora_inicio" type="text"></md-input>    
+        </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-30">
+           <md-field v-for="(rel,id) in edits" :key="id">
+             <label>{{rel.Data_fim}}</label>
+             <md-input v-model="Data_fim" type="text"></md-input>    
+        </md-field>
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-20">
+           <md-field v-for="(rel,id) in edits" :key="id">
+             <label>{{rel.Hora_fim}}</label>
+             <md-input v-model="Hora_fim" type="text"></md-input>    
+        </md-field>
+          </div>
+        
+    <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   
+ <div class="md-layout-item md-small-size-100 md-size-80">
+           <md-field v-for="(rel,id) in edits" :key="id">
+             <label>{{rel.Laudo}}</label>
+             <md-textarea v-model="Laudo" type="text"></md-textarea>   
+        </md-field>
+          </div>
+    
+          <div class="md-layout-item md-small-size-100 md-size-80 ">
+            <md-field v-for="(rel,id) in edits" :key="id">
+              <label>{{rel.Problema}}</label>
+                <md-textarea v-model="Problema" type="text"></md-textarea>
+             
+            </md-field>
+          </div>
+    <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+  
+            <div class="md-layout-item md-small-size-100 md-size-80 ">
+            <md-field v-for="(rel,id) in edits" :key="id">
+              <label>{{rel.Resumo}}</label>
+              <md-textarea v-model="Resumo" type="text"></md-textarea>
+            
+            </md-field>
+          </div>
+      <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   
+    <div class="md-layout-item md-small-size-100 md-size-80 ">
+            <md-field v-for="(rel,id) in edits" :key="id">
+              <label>{{rel.Pecas}}</label>
+               <md-textarea v-model="Pecas" type="text"></md-textarea>
+           
+            </md-field>
+          </div>
+
+      <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+ 
+           <div class="md-layout-item md-small-size-100 md-size-25" v-for="(rel,id) in edits" :key="id" >
+               <md-button   @click="Editar(rel.id)" class="md-raised md-info">Criar Ordem</md-button>
+          </div>
+        </div>
+       
+      </md-card-content>
+    </md-card>
+ 
+  </form>
+
+   </div>
   </div>
 </template>
 
@@ -530,6 +719,7 @@ export default {
       ordemProgress: [],
       ordems: [],
       writee: [],
+      edits: [],
 PageOrder: true,
 PageToOpen: false,
 PageOpen: false,
@@ -538,6 +728,7 @@ PageProgress: false,
 PageFinalized:false,
       Report: true,
       View: false,
+       EditReport: false,
      
       relatorio: [],
       relatorios: []
@@ -545,120 +736,14 @@ PageFinalized:false,
   },
   methods:{
 
-
-   PageView: function(id){
-  this.PageFinalized = !this.PageFinalized;
-   this.View = !this.View;
-
-  axios.get("http://localhost:8000/relatorio/" + id )
- .then(res => { 
-   console.log(res);
-   this.relatorios = res.data; 
- })  
-},
-    ToOpen: function(){
+/*----------------------------------Methods bread crumbs from the order open page-------------------------------------------*/
+  ToOpen: function(){
       this.PageOrder = !this.PageOrder;
       this.PageToOpen = !this.PageToOpen;
     },
-       ToOpenview: function(){
-      this.View = !this.View;
-      this.PageOrder = !this.PageOrder;
-    },
 
-    
-    FinalizedView: function(){
-       this.View = !this.View;
-      this.PageFinalized = !this.PageFinalized;
-  
- axios.get("http://localhost:8000/ordem/mostrar/0" )
- .then(res => { 
-   console.log(res)
-   this.ordems = res.data; 
-   
- })
-
-    },
-    Open: function(){
-       this.PageOrder = !this.PageOrder;
-      this.PageOpen = !this.PageOpen;
-   
-   axios.get("http://localhost:8000/ordem/mostrar/1" )
- .then(res => { 
-   console.log(res);
-   this.ordemOpen = res.data; 
- })
-  
- 
-    },
-    executar: function(id){
-axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
-   .then(res => {
-     console.log(res);
-
-       this.PageOpen = !this.PageOpen;
-       this.PageProgress = !this.PageProgress;
-
-             axios.get("http://localhost:8000/ordem/mostrar/2" )
- .then(res => { 
-   console.log(res);
-   this.ordemProgress = res.data; 
- })
-     })
-
-    },
-    Progress: function(){
-       this.PageOrder = !this.PageOrder;
-      this.PageProgress = !this.PageProgress;
-
-       axios.get("http://localhost:8000/ordem/mostrar/2" )
- .then(res => { 
-   console.log(res);
-   this.ordemProgress = res.data; 
- })
-  
-    },
-    write: function(id){
-          this.PageProgress = !this.PageProgress;
-          this.PageWrite = !this.PageWrite;
-          
- axios.get("http://localhost:8000/ordem/utilizar/" + id )
- .then(res => { 
-   console.log(res);
-   this.writee = res.data; 
-    
- })
-
-
-
-
-    },
-    ToWrite: function(){
-  this.PageWrite = !this.PageWrite;
-    this.PageOrder = !this.PageOrder;
-    },
-    ProgressWrite: function(){
-this.PageWrite = !this.PageWrite;
- this.PageProgress = !this.PageProgress;
-
-       axios.get("http://localhost:8000/ordem/mostrar/2" )
- .then(res => { 
-   console.log(res);
-   this.ordemProgress = res.data; 
- })
-    },
-    Finalized: function(){
-       this.PageOrder = !this.PageOrder;
-      this.PageFinalized = !this.PageFinalized;
-  
- axios.get("http://localhost:8000/ordem/mostrar/0" )
- .then(res => { 
-   console.log(res)
-   this.ordems = res.data; 
-   
- })
-
-    },
-     cadastrar: function(){
+/*--------------------------order opening page registration method----------------------------------------------*/
+         cadastrar: function(){
     axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag_Maquina:this.Tag_Maquina, Problemas:this.Problemas, Status:this.Status})
    .then(res => {
      console.log(res)
@@ -696,7 +781,96 @@ Swal.fire({
 
    })
     },
-       register: function(id){
+
+
+
+
+
+
+
+
+/*------- ------------------------------Method bread crumbs from  open order page----------------------------------------------*/
+  Open: function(){
+       this.PageOrder = !this.PageOrder;
+      this.PageOpen = !this.PageOpen;
+   
+   axios.get("http://localhost:8000/ordem/mostrar/1" )
+ .then(res => { 
+   console.log(res);
+   this.ordemOpen = res.data; 
+ })
+  
+ 
+    },
+ 
+ /*---------------------------------------------Method for Executing Open Order Page Order-------------------------------------------*/
+    executar: function(id){
+axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
+   .then(res => {
+     console.log(res);
+
+       this.PageOpen = !this.PageOpen;
+       this.PageProgress = !this.PageProgress;
+
+             axios.get("http://localhost:8000/ordem/mostrar/2" )
+ .then(res => { 
+   console.log(res);
+   this.ordemProgress = res.data; 
+ })
+     })
+
+    },
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------Method bread crumbs from   Progress orders page----------------------------------------------*/
+   Progress: function(){
+       this.PageOrder = !this.PageOrder;
+      this.PageProgress = !this.PageProgress;
+
+       axios.get("http://localhost:8000/ordem/mostrar/2" )
+ .then(res => { 
+   console.log(res);
+   this.ordemProgress = res.data; 
+ })
+  
+    },
+
+/*--------------------------------------------Method for writing order of progress page---------------------------------------------------*/
+    write: function(id){
+          this.PageProgress = !this.PageProgress;
+          this.PageWrite = !this.PageWrite;
+          
+ axios.get("http://localhost:8000/ordem/utilizar/" + id )
+ .then(res => { 
+   console.log(res);
+   this.writee = res.data; 
+    
+ })
+    },
+
+
+
+
+
+
+
+
+/*----------------------------------------------------- Method bread crumbs from  Write report page------------------------------------------*/
+   ToWrite: function(){
+  this.PageWrite = !this.PageWrite;
+    this.PageOrder = !this.PageOrder;
+    },
+
+/*-----------------------------------------------------Method to record page  to the write report page--------------------------------------------*/
+  register: function(id){
     axios.post("http://localhost:8000/relatorio/cadastrar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Registro:this.Registro,
     Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas,
     Status:this.Status})
@@ -717,11 +891,164 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
    this.ordemProgress = res.data; 
  })
    })
-    }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------Method bread crumbs from   Finalized orders page----------------------------------------------*/
+  Finalized: function(){
+       this.PageOrder = !this.PageOrder;
+      this.PageFinalized = !this.PageFinalized;
+  
+ axios.get("http://localhost:8000/ordem/mostrar/0" )
+ .then(res => { 
+   console.log(res)
+   this.ordems = res.data; 
+   
+ })
+
+    },
+
+/*---------------------------------------Method view  report on the Finalized orders page---------------------------------------------------*/
+   PageView: function(id){
+  this.PageFinalized = !this.PageFinalized;
+   this.View = !this.View;
+
+  axios.get("http://localhost:8000/relatorio/" + id )
+ .then(res => { 
+   console.log(res);
+   this.relatorios = res.data; 
+ })  
+},
+  
+
+
+
+
+
+
+/*------------------------------------------------ Methods bread crumbs from  View report page---------------------------------------------------------*/
+    ToOpenview: function(){
+      this.View = !this.View;
+      this.PageOrder = !this.PageOrder;
+    },
+
+/*--------------------------------------------Methods to edit report on the View report page-------------------------------------------------------------*/
+   Edit: function(id){
+          this.EditReport = !this.EditReport;
+          this.View = !this.View;
+          
+ axios.get("http://localhost:8000/relatorio/" + id )
+ .then(res => { 
+   console.log(res);
+   this.edits = res.data; 
+    
+ })
+    },
+ Editar: function(id){
+    axios.put("http://localhost:8000/relatorio/" + id + "atualizar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Registro:this.Registro,
+    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas,
+    Status:this.Status})
+   .then(res => {
+     console.log(res);
+    
+
+   this.EditReport = !this.EditReport;
+          this.View = !this.View;
+     
+  axios.get("http://localhost:8000/relatorio/" + id )
+ .then(res => { 
+   console.log(res);
+   this.relatorios = res.data; 
+ })  
+   })
+    },
+
+
+
+
+
+
+
+
+
+
+
+/*----------------------------Method bread crumbs to Finalized page-----------------------------------------*/
+    FinalizedView: function(){
+       this.View = !this.View;
+      this.PageFinalized = !this.PageFinalized;
+  
+ axios.get("http://localhost:8000/ordem/mostrar/0" )
+ .then(res => { 
+   console.log(res)
+   this.ordems = res.data; 
+   
+ })
+
+    },
+  
+
+ 
+
+
+
+
+
+/*----------------------------Method bread crumbs to Progress page-----------------------------------------*/
+
+    ProgressWrite: function(){
+this.PageWrite = !this.PageWrite;
+ this.PageProgress = !this.PageProgress;
+
+       axios.get("http://localhost:8000/ordem/mostrar/2" )
+ .then(res => { 
+   console.log(res);
+   this.ordemProgress = res.data; 
+ })
+    },
+  
+
+     
   },
 
 }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <style scoped>
@@ -754,7 +1081,7 @@ ul {
 li {
   display: table-cell;
   vertical-align: middle;
-  width: 25.33%;
+  width: 20.33%;
 }
 
 
