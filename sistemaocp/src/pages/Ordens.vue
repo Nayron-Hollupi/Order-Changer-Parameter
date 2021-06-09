@@ -396,7 +396,8 @@
         <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
    <md-table-cell >     
        <md-button type="button"  @click="PageView(ordem.id)" class="md-success">Visualiar relatorio</md-button>
-        </md-table-cell>  
+        </md-table-cell>
+        <md-table-cell ><md-button class="md-danger" @click="Delete(ordem.id)">Excluir</md-button></md-table-cell>  
   </md-table-row></md-table>
              
           </md-card-content>
@@ -919,7 +920,6 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
    this.ordems = res.data; 
    
  })
-
     },
 
 /*---------------------------------------Method view  report on the Finalized orders page---------------------------------------------------*/
@@ -933,7 +933,40 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
    this.relatorios = res.data; 
  })  
 },
-  
+  Delete: function(id){
+ Swal.fire({
+  title: 'Deseja deletar?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Deletar!'
+}).then((result) => {
+  if (result.isConfirmed) {
+   axios.delete("http://localhost:8000/ordem/deletar/" + id)
+.then(res => {
+  console.log(res);
+  axios.delete("http://localhost:8000/relatorio/deletar/" + id)
+.then(res => {
+  console.log(res);
+})
+  this.delete = res.data;
+ axios.get("http://localhost:8000/ordem/mostrar/0" )
+ .then(res => { 
+   console.log(res)
+   this.ordems = res.data; 
+   
+ })
+})
+
+    Swal.fire(
+      'Deletado!',
+      'Ordem e Relatorio deletado com sucesso.',
+      'success'
+    )
+  }
+}) 
+ },
 
 
 
@@ -959,15 +992,40 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
  })
     },
  Editar: function(id){
-    axios.put("http://localhost:8000/relatorio/" + id + "atualizar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Registro:this.Registro,
-    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas,
-    Status:this.Status})
+    axios.put("http://localhost:8000/relatorio/" + id + "/atualizar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Registro:this.Registro,
+    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas, Status:null
+   
+   
+   
+   })
    .then(res => {
      console.log(res);
-    
+    this.atualizar = res.data;
 
-   this.EditReport = !this.EditReport;
+  if(this.atualizar == true){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Relatorio Atualizado  com sucesso.',
+  showConfirmButton: false,
+  timer: 3000
+   
+})
+this.EditReport = !this.EditReport;
           this.View = !this.View;
+
+   }if(this.atualizar == false){
+Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title: 'Erro na atualização, Favor realizar novamente.',
+  showConfirmButton: false,
+ timer: 3000
+})
+ 
+
+   }
+         
      
   axios.get("http://localhost:8000/relatorio/" + id )
  .then(res => { 

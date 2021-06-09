@@ -26,7 +26,6 @@ class CreateRelatoriosTable extends Migration
             $table->string('Problema', 1000);
             $table->string('Resumo' , 1000);
             $table->string('Pecas' , 1000);
-            $table->integer('Status');
             $table->timestamps();
         });
     }

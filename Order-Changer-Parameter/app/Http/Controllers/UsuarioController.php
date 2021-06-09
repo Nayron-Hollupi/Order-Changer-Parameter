@@ -66,16 +66,17 @@ public function usuarioLogout(){
       $user = $request->usuario;
       $mail = $request->email;
       $record = $request->registro;
-      $level = $request->nivel;
+      $type = $request->Tipo;
+
       $senha = $request->password;
 
-      if ($user != null && $mail != null && $record != null && $level != null && $senha != null ) {
+      if ($user != null && $mail != null && $record != null &&  $senha != null && $type != null) {
       
       $this->validate($request,[
             'usuario' => 'required|min:1|max:40',
             'email' => 'required',
             'registro' => 'required|min:1|max:5',
-            'nivel' => 'required|min:1|max:100',
+            'Tipo' => 'required|min:1|max:100',
             'password' => 'required',
         ]);
       
@@ -83,7 +84,7 @@ public function usuarioLogout(){
         $usuario->usuario = $request->usuario;
         $usuario->email = $request->email;
         $usuario->registro = $request->registro;
-        $usuario->nivel = $request->nivel;
+        $usuario->Tipo = $request->Tipo;
         $usuario->password = Hash::make($request->password);
         $usuario->save();
 
@@ -98,12 +99,13 @@ public function usuarioLogout(){
    
     }
 
-    public function mostrarUsuario($nivel){
-        if (Usuario::where('nivel', $nivel)->exists()) {
-            $usuario = Usuario::where('nivel', $nivel)->get()->toJson(JSON_PRETTY_PRINT);
+    public function mostrarUsuario($Tipo){
+        if (Usuario::where('Tipo', $Tipo)->exists()) {
+            $usuario = Usuario::where('Tipo', $Tipo)->get()->toJson(JSON_PRETTY_PRINT);
             return response($usuario, 200);
+          }else{
+          return response(false);
           }
-    
         //    return response()->json( Usuario::where('nivel' == $id));
     }
 
@@ -124,16 +126,15 @@ public function usuarioLogout(){
             'usuario' ,
             'email' ,
           'registro' ,
-            'nivel',
             'password' ,
+            'Tipo'
         ]);
 
         $user = $request->usuario;
         $mail = $request->email;
         $record = $request->registro;
-        $level = $request->nivel;
         $senha = $request->password;
-        
+        $type = $request->Tipo;
         $usuario = Usuario::find($id);
       if($user != null){
        $usuario->usuario = $request->usuario;  
@@ -144,13 +145,11 @@ public function usuarioLogout(){
       if($record != null){
      $usuario->registro = $request->registro;
       }
-      if($level != null){
-        $usuario->nivel = $request->nivel;
-      }
+    
       if($senha != null){
         $usuario->password = Hash::make($request->password);
       }
-      if($user == null && $mail == null && $record == null &&  $level == null &&  $senha == null){
+      if($user == null && $mail == null && $record == null &&    $senha == null && $type != null){
        
         return response()->json(false);
        

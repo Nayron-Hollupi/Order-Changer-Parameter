@@ -19,7 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('usuario', 50);
             $table->string('email');
             $table->string('registro');
-            $table->Integer('nivel');
+            $table->string('Tipo');
             $table->string('password');
             $table->timestamps();
         });

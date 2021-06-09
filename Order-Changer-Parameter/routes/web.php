@@ -33,7 +33,7 @@ $router->group(['prefix' => 'usuario'], function() use($router){
 
     $router->get('/mostrar/{id}', 'UsuarioController@usuario'); 
     $router->post('/cadastrar', 'UsuarioController@cadastrar'); 
-    $router->get('/{nivel}', 'UsuarioController@mostrarUsuario'); 
+    $router->get('/{Tipo}', 'UsuarioController@mostrarUsuario'); 
     $router->get('/{id}/atualizar', 'UsuarioController@atualizarUsuario'); 
     $router->put('/{id}/atualizar', 'UsuarioController@atualizarUsuario');
     $router->delete('/deletar/{id}', 'UsuarioController@deletarUsuario');
@@ -63,7 +63,7 @@ $router->group(['prefix' => 'ordem'], function() use($router){
     $router->post('/cadastrar', 'OrdemsController@cadastrar'); 
     $router->get('/mostrar/{Status}', 'OrdemsController@mostrar'); 
     $router->get('/utilizar/{id}', 'OrdemsController@UtilizarRelatorio'); 
-    $router->get('/all', 'OrdemsController@ordems'); 
+    $router->get('/all/{Status}', 'OrdemsController@ordems'); 
     $router->patch('/{id}/atualizar', 'OrdemsController@atualizar');
     $router->put('/Status/{id}', 'OrdemsController@atualizarStatus');
     $router->delete('/deletar/{id}', 'OrdemsController@deletar');
@@ -79,6 +79,6 @@ $router->group(['prefix' => 'relatorio'], function() use($router){
     $router->get('/{id}', 'RelatoriosController@mostrar'); 
     $router->get('/{id}/atualizar', 'RelatoriosController@atualizarRelatorio'); 
     $router->put('/{id}/atualizar', 'RelatoriosController@atualizarRelatorio');
-    $router->delete('/{id}/deletar', 'RelatoriosController@deletarRelatorio');
+    $router->delete('/deletar/{id}', 'RelatoriosController@deletarRelatorio');
 });
 

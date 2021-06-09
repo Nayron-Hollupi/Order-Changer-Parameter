@@ -16,8 +16,13 @@ class OrdemsController extends Controller
     {
         //
     }
-    public function ordems(){
-        return response()->json(Ordems::all());
+    public function ordems($Status){
+        if (Ordems::where('Status', $Status)->exists()) {
+            $id = Ordems::where('Status', $Status)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($id);
+          }
+          
+      //  return response()->json(Ordems::all());
     }
 
     public function cadastrar(Request $request){
@@ -88,7 +93,7 @@ class OrdemsController extends Controller
     public function deletar($id){
         $ordem = Ordems::find($id);
         $ordem->delete();
-        return response()->json('Deletando com Sucesso', 200);
+        return response()->json(true);
 
     }
  

@@ -132,7 +132,7 @@ class RelatoriosController extends Controller
     public function deletarRelatorios($id){
         $relatorio = Relatorios::find($id);
         $relatorio->delete();
-        return response()->json('Deletando com Sucesso', 200);
+        return response()->json(true);
 
     }
  

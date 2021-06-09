@@ -75,8 +75,9 @@ export default {
  this.token = res.data; 
     if(this.token != false){
     jwt.sign({
-            user: this.user,
-            password: this.password
+            usuario: this.usuario,
+            password: this.password,
+            token: this.token
           }, 'jwtSecret', (err, token) => {
             window.localStorage.setItem('token', token)
             this.$router.push('/')

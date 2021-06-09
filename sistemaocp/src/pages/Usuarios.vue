@@ -1,25 +1,37 @@
 <template>
-  <!----  Paginas do Usuarios -----> 
+  <!----  User Page -----> 
   <div class="content" >
+       <!----------------------------------------Bread crumb---------------------------------------------------------->
       <header>
            <nav>
     <ol>
       <li>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
       </li>
+
+
+
+      <!----------------------------------------Bread crumb from the user page---------------------------------------------------------->
       <li v-if="PageUsuario">
         <b >Usuarios</b>
       </li>
+
+
+
+      <!----------------------------------------Bread crumb from the  user register page----------------------------------------------------------> 
          <li v-if="PageCadastro">
         <a @click="cadastro()">Usuarios</a>
       </li>
       <li v-if="PageCadastro">
         <b >Cadastrar usuario</b>
       </li>
+
+
+
+            <!----------------------------------------Bread crumb from the  user edit page--------------------------------------------------------->
         <li v-if="PageEditar">
         <a @click="editarbread()" >Usuarios</a>
       </li>
-    
       <li v-if="PageEditar">
         <b >Editar usuario</b>
       </li>
@@ -27,19 +39,20 @@
   </nav>
     </header>
       <br>
+
+    <!----------------------------------------------------User preview page------------------------------------------------> 
     <div v-if="PageUsuario">
-   
-  
     <div class="md-layout">
-    
-      <!----  Apresentação  da lista dos analistas -----> 
+
+
+        <!----------------------------------------------------View analysts------------------------------------------------> 
       <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
         <md-card>
           <md-card-header data-background-color="green">
             <h4 class="title" style="text-align:center">Lista de Analistas cadastrados</h4>
           </md-card-header>
           <md-card-content>
-            <div table-header-color="green" >  <md-table  :table-header-color="tableHeaderColor">
+            <div table-header-color="green" >  <md-table  >
   
       <md-table-row slot="md-table-row"  v-for="(usuario,id) in analistas" :key="id"  > 
         <md-table-cell md-label="Registro" >{{usuario.registro}}</md-table-cell>
@@ -57,14 +70,14 @@
       </div>
 
 
-   <!----  Apresentação  da lista dos gestores -----> 
+   <!----------------------------------------------------------View managers---------------------------------------------------> 
       <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
         <md-card>
           <md-card-header data-background-color="green">
             <h4 class="title" style="text-align:center">Lista de Gestores cadastrados</h4>
           </md-card-header>
           <md-card-content>
-            <div table-header-color="green" >  <md-table  :table-header-color="tableHeaderColor">
+            <div table-header-color="green" >  <md-table  >
   
       <md-table-row slot="md-table-row"  v-for="(usuario,id) in gestores" :key="id"  > 
         <md-table-cell md-label="Registro" >{{usuario.registro}}</md-table-cell>
@@ -80,7 +93,7 @@
         </md-card>
       </div>
 
-        <!----  Apresentação  da lista dos tecnicos -----> 
+        <!-------------------------------------------------------View technicians------------------------------------------------> 
       <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
         <md-card>
           <md-card-header data-background-color="green">
@@ -117,7 +130,7 @@
 
 
 
-<!-------------------------------------Page Editar--------------------------------->
+<!---------------------------------------------------------Edit users page --------------------------------->
 
     
   <div v-if="PageEditar">
@@ -129,12 +142,12 @@
       </md-card-header>
 
       <md-card-content>
-        <div class="md-layout">
+        <div class="md-layout" v-for="(editar,id) in EditarUsuarios" :key="id" >
           <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
+            <md-field >
               <label>{{editar.usuario}}</label>
               <md-input v-model="usuario" type="text"  >{{editar.usuario}}</md-input>
             </md-field>
@@ -146,7 +159,7 @@
            
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
+            <md-field >
               <label>{{editar.email}}</label>
               <md-input v-model="email" type="email">{{editar.email}}</md-input>
             </md-field>
@@ -158,7 +171,7 @@
            
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
+            <md-field >
               <label>{{editar.registro}}</label>
               <md-input v-model="registro" type="text">{{editar.registro}}</md-input>
             </md-field>
@@ -173,7 +186,9 @@
           
            <div class="md-layout-item">
         <md-field>
-          <md-select v-model="nivel" name="nivel" id="nivel" placeholder="Selecione o tipo de Usuário">
+          
+          <md-select v-model="nivel" name="nivel" id="nivel"  placeholder="Selecione o tipo de Usuário">
+
             <md-option value="0">Analista</md-option>
             <md-option value="1">Gestor</md-option>
             <md-option value="2">Tecnico</md-option>
@@ -188,7 +203,7 @@
            
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field v-for="(editar,id) in EditarUsuarios" :key="id">
+            <md-field >
               <label>Digite a senha</label>
               <md-input v-model="password" type="text" >{{editar.password}}</md-input>
             </md-field>
@@ -199,7 +214,7 @@
            <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-33" v-for="(editar,id) in EditarUsuarios" :key="id">
+           <div class="md-layout-item md-small-size-100 md-size-33" >
                <md-button @click="atualizar(editar.id)" class="md-raised md-info">Atualizar</md-button>
           </div>
         </div>
@@ -210,7 +225,7 @@
 
 
 
-<!-------------------------------------Page Cadastro--------------------------------->
+<!-------------------------------------Register users page--------------------------------->
 
 
 <div v-if="PageCadastro">
@@ -265,10 +280,10 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
            <div class="md-layout-item">
         <md-field>
-          <md-select v-model="nivel" name="nivel" id="nivel" placeholder="Selecione o tipo de Usuário">
-            <md-option value="0">Analista</md-option>
-            <md-option value="1">Gestor</md-option>
-            <md-option value="2">Tecnico</md-option>
+          <md-select v-model="Tipo" name="Tipo" id="Tipo" placeholder="Selecione o tipo de Usuário">
+            <md-option value="Analista">Analista</md-option>
+            <md-option value="Gestor">Gestor</md-option>
+            <md-option value="Tecnico">Tecnico</md-option>
           </md-select>
         </md-field>
       </div>
@@ -292,7 +307,7 @@
            
           </div>
            <div class="md-layout-item md-small-size-100 md-size-33">
-               <md-button @click="cadastrar()" v-on:click="teste()" class="md-raised md-info">Cadastrar</md-button>
+               <md-button @click="cadastrar()" class="md-raised md-info">Cadastrar</md-button>
           </div>
         </div>
       </md-card-content>
@@ -324,7 +339,7 @@ export default {
          usuario: null,
       registro: null,
       email: null,
-      nivel: null,
+       Tipo: null,
       password: null,
       EditarUsuarios: [],
       analistas: [],
@@ -340,19 +355,19 @@ PageCadastro: false,
   created: function(){
 if(this.PageUsuario == true){
   
- axios.get("http://localhost:8000/usuario/0" )
+ axios.get("http://localhost:8000/usuario/Analista" )
  .then(res => { 
-   console.log(res);
+   console.log(res.data);
    this.analistas = res.data; 
  }),
-  axios.get("http://localhost:8000/usuario/1")
+  axios.get("http://localhost:8000/usuario/Gestor")
  .then(res => { 
-   console.log(res);
+   console.log(res.data);
    this.gestores = res.data; 
  }),
-  axios.get("http://localhost:8000/usuario/2")
+  axios.get("http://localhost:8000/usuario/Tecnico")
  .then(res => { 
-   console.log(res);
+   console.log(res.data);
    this.tecnicos = res.data; 
  })
 
@@ -403,17 +418,17 @@ if(this.PageUsuario == true){
 .then(res => {
   console.log(res);
   this.delete = res.data;
-axios.get("http://localhost:8000/usuario/0" )
+axios.get("http://localhost:8000/usuario/Analista" )
  .then(res => { 
    console.log(res);
    this.analistas = res.data; 
  }),
-  axios.get("http://localhost:8000/usuario/1")
+  axios.get("http://localhost:8000/usuario/Gestor")
  .then(res => { 
    console.log(res);
    this.gestores = res.data;  
  }),
-  axios.get("http://localhost:8000/usuario/2")
+  axios.get("http://localhost:8000/usuario/Tecnico")
  .then(res => { 
    console.log(res);
    this.tecnicos = res.data; 
@@ -437,8 +452,8 @@ axios.get("http://localhost:8000/usuario/0" )
 
 
  cadastrar: function(){
-
-  axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
+ 
+  axios.post( "http://localhost:8000/usuario/cadastrar",{usuario:this.usuario, email:this.email, registro:this.registro, Tipo:this.Tipo, password:this.password})
    .then(res => {
      console.log(res);
     this.usuarios = res.data;
@@ -459,24 +474,24 @@ this.PageCadastro = !this.PageCadastro;
 Swal.fire({
   position: 'top-end',
   icon: 'error',
-  title: 'Erro no cadastro, Favor realizar novamento.',
+  title: 'Erro no cadastro, Favor realizar novamente.',
   showConfirmButton: false,
  timer: 3000
 })
  
 
    }
-   axios.get("http://localhost:8000/usuario/0" )
+   axios.get("http://localhost:8000/usuario/Analista" )
  .then(res => { 
    console.log(res);
    this.analistas = res.data; 
  }),
-  axios.get("http://localhost:8000/usuario/1")
+  axios.get("http://localhost:8000/usuario/Gestor")
  .then(res => { 
    console.log(res);
    this.gestores = res.data; 
  }),
-  axios.get("http://localhost:8000/usuario/2")
+  axios.get("http://localhost:8000/usuario/Tecnico")
  .then(res => { 
    console.log(res);
    this.tecnicos = res.data; 
@@ -490,7 +505,7 @@ Swal.fire({
     atualizar: function(id){
 
     axios.put( "http://localhost:8000/usuario/" + id +"/atualizar",
-    { usuario:this.usuario, email:this.email, registro:this.registro, nivel:this.nivel, password:this.password})
+    { usuario:this.usuario, email:this.email, registro:this.registro, Tipo:this.Tipo, password:this.password})
    .then(res => {
      console.log(res);
      this.atualizado = res.data;
@@ -516,17 +531,17 @@ Swal.fire({
   timer: 3000
 })
    }
-   axios.get("http://localhost:8000/usuario/0" )
+   axios.get("http://localhost:8000/usuario/Analista" )
  .then(res => { 
    console.log(res);
    this.analistas = res.data; 
  }),
-  axios.get("http://localhost:8000/usuario/1")
+  axios.get("http://localhost:8000/usuario/Gestor")
  .then(res => { 
    console.log(res);
    this.gestores = res.data; 
  }),
-  axios.get("http://localhost:8000/usuario/2")
+  axios.get("http://localhost:8000/usuario/Tecnico")
  .then(res => { 
    console.log(res);
    this.tecnicos = res.data; 

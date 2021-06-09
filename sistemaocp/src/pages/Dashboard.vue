@@ -92,14 +92,14 @@ export default {
 
    
  
-  },  created: function(){
+  },  /*created: function(){
  axios.get("http://localhost:8000/ordem/all" )
  .then(res => { 
    console.log(res.data);
    this.labels = res.data; 
  })
  },
-
+*/
   data() {
     return {
       Ordem: [],
