@@ -70,7 +70,6 @@ public function usuarioLogout(){
       $mail = $request->email;
       $record = $request->registro;
       $type = $request->Tipo;
-
       $senha = $request->password;
 
       if ($user != null && $mail != null && $record != null &&  $senha != null && $type != null) {
@@ -78,7 +77,7 @@ public function usuarioLogout(){
       $this->validate($request,[
             'usuario' => 'required|min:1|max:40',
             'email' => 'required',
-            'registro' => 'required|min:1|max:5',
+            'registro' => 'required|min:1|max:50',
             'Tipo' => 'required|min:1|max:100',
             'password' => 'required',
         ]);

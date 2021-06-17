@@ -15,9 +15,11 @@ class CreateRelatoriosTable extends Migration
     {
         Schema::create('relatorios', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('Solicitante');
             $table->string('Setor');
             $table->string('Tag_Maquina');
-            $table->string('Solicitante');
+            $table->string('Problemas', 1000);
+           
             $table->string('Tecnico');
             $table->integer('Registro');
             $table->string('Data_inicio');
@@ -25,10 +27,11 @@ class CreateRelatoriosTable extends Migration
             $table->time('Hora_inicio');
             $table->time('Hora_fim');
             $table->string('Laudo', 1000);
-            $table->string('Problema', 1000);
+
             $table->string('Resumo' , 1000);
             $table->string('Pecas' , 1000);
             $table->string('Codigo');
+            $table->integer('Status');
             $table->timestamps();
         });
     }

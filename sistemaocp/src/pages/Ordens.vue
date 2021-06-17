@@ -151,7 +151,6 @@
   </div>
           <div class="md-layout-item md-small-size-100 md-size-50">       
         <md-field>
-      
             <md-select v-model="Setor" name="Setor"    id="Setor" placeholder="Selecione o Setor">
             <md-option value="Ferramentaria">Ferramentaria</md-option>
             <md-option value="Usinagem ">Usinagem </md-option>
@@ -186,7 +185,7 @@
    <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
 
-          <div class="md-layout-item md-small-size-100 md-size-50 ">
+          <div class="md-layout-item md-small-size-100 md-size-50 " >
             <md-field>
               <label>Digite o Problema</label>
               <md-input v-model="Problemas" type="text"></md-input>
@@ -196,13 +195,9 @@
   </div>
    <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
-  <div v-if="Starte" class="md-layout-item md-small-size-100 md-size-50 ">
-            <md-field>
-              <label>Digite o Status</label>
-              <md-input v-model="Status"  type="text"></md-input>
-            </md-field>
-          </div>
-      
+ 
+        
+    
            <div class="md-layout-item md-small-size-100 md-size-25">
                <md-button   @click="cadastrar()" class="md-raised md-info">Criar Ordem</md-button>
           </div>
@@ -303,22 +298,30 @@
 <!----------------------------------------Write Report------------------------------------------->
  <div v-if="PageWrite">
  <form>
+   
     <md-card>
       <md-card-header  data-background-color="blue">
         <h4 class="title" style="text-align:center">Escrever Relatorio</h4>
       </md-card-header>
-
+    
+             
+          <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">  
       <md-card-content v-for="(user,id) in usuario" :key="id">
         <div class="md-layout" v-for="(item,id) in writee" :key="id">
-         
-         
-         <div class="md-layout-item md-small-size-100 md-size-50" >       
-        <md-field>
-          <label>{{item.Solicitante}} </label>
+           <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+         <div class="md-layout-item md-small-size-100 md-size-50" >  
+        <h5  style="text-align:center"> Solicitante:</h5>
+       
+        <md-field>  
+   
+              <label>{{item.Solicitante}}</label>
                     <md-input v-model="Solicitante" type="text"><label>{{item.Solicitante}}</label></md-input>              
         </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-50" >       
+          <div class="md-layout-item md-small-size-100 md-size-50" >  
+              <h5  style="text-align:center"> Setor:</h5>
         <md-field>
           <label>{{item.Setor}} </label>
                     <md-input v-model="Setor" type="text"><label>{{item.Setor}}</label></md-input>              
@@ -326,52 +329,88 @@
           </div>
   
           <div class="md-layout-item md-small-size-100 md-size-50">
+                  <h5  style="text-align:center"> Tag /Maquina:</h5>
            <md-field>
              <label>{{item.Tag_Maquina}}</label>
-             <md-input v-model="Tag_Maquina" type="text">{{item.Tag_Maquina}}</md-input>
+             <md-input v-model="Tag_Maquina" type="text"><label>{{item.Tag_Maquina}}</label></md-input>
         </md-field>
           </div>
   
+
+<div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h5  style="text-align:center"> Problemas :</h5>
+            <md-field>
+                  <md-icon>description</md-icon>
+              <label>{{item.Problemas}}</label>
+                <md-input v-model="Problema" type="text">{{item.Problemas}}</md-input>
+          
+            </md-field>
+          </div>
+
+
+
+
+
+
        <div class="md-layout-item md-small-size-100 md-size-50">
+       
            <md-field>
-             <label>Digite o Tecnico</label>
-             <md-input v-model="Tecnico" type="text"></md-input>    
+             <label>{{user.usuario}}</label>
+             <md-input v-model="Tecnico" type="text">{{user.usuario}}</md-input>    
         </md-field>
           </div>
     
    
          <div class="md-layout-item md-small-size-100 md-size-50">
            <md-field>
-             <label>Digite o Registro</label>
+             <label>Digite o Registro do Tecnico:</label>
              <md-input v-model="Registro" type="text"></md-input>    
         </md-field>
           </div>
+ <div class="md-layout-item md-small-size-100 md-size-25">
+    
+          </div>
+
+
+
+
+
+
+
 
 <div class="md-layout-item md-small-size-100 md-size-25">
-   <label>Digite o Data de inicio </label>
+   <label>Digite o Data de inicio:</label>
            <md-field>
-            
+             <md-icon>event</md-icon>
              <md-input v-model="Data_inicio" type="date"></md-input>    
         </md-field>
           </div>
     <div class="md-layout-item md-small-size-100 md-size-25">
-      <label>Digite o Hora de inicio</label>
+      <label>Digite o Hora de inicio:</label>
            <md-field>
-             
+             <md-icon><i class="far fa-clock"></i></md-icon>
              <md-input v-model="Hora_inicio" type="time"></md-input>    
         </md-field>
           </div>
+
+
+       <div class="md-layout-item md-small-size-100 md-size-25">
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-25">
+          </div>
+
           <div class="md-layout-item md-small-size-100 md-size-25">
-               <label>Digite o Data do final</label>
-           <md-field>
-          
+               <label>Digite o Data do final:</label>
+           <md-field> 
+             <md-icon>event</md-icon>          
              <md-input v-model="Data_fim" type="date"></md-input>    
         </md-field>
           </div>
            <div class="md-layout-item md-small-size-100 md-size-25">
-              <label>Digite o Hora final</label>
+             
+              <label>Digite o Hora final:</label>
            <md-field>
-            
+             <md-icon><i class="far fa-clock"></i></md-icon>
              <md-input v-model="Hora_fim" type="time"></md-input>    
         </md-field>
           </div>
@@ -383,24 +422,20 @@
            <md-field>
              <label>Digite o Laudo</label>
              <md-textarea v-model="Laudo" type="text"></md-textarea>   
+              <md-icon>description</md-icon>
         </md-field>
           </div>
     
-          <div class="md-layout-item md-small-size-100 md-size-100 ">
-            <md-field>
-              <label>Digite o Problema</label>
-                <md-textarea v-model="Problema" type="text"></md-textarea>
-             
-            </md-field>
-          </div>
+          
     <div class="md-layout-item md-small-size-100 md-size-25">
+   
   </div>
   
             <div class="md-layout-item md-small-size-100 md-size-100 ">
             <md-field>
               <label>Digite o Resumo</label>
               <md-textarea v-model="Resumo" type="text"></md-textarea>
-            
+             <md-icon>description</md-icon>
             </md-field>
           </div>
       <div class="md-layout-item md-small-size-100 md-size-25">
@@ -409,19 +444,20 @@
     <div class="md-layout-item md-small-size-100 md-size-100 ">
             <md-field>
               <label>Digite as Peças Utilizadas</label>
-               <md-textarea v-model="Pecas" type="text"></md-textarea>
-           
+               <md-textarea v-model="Pecas" type="text" required></md-textarea>
+            <md-icon>description</md-icon>
             </md-field>
           </div>
 
       <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
  
-           <div class="md-layout-item md-small-size-100 md-size-25" v-for="(write,id) in writee" :key="id" >
-               <md-button   @click="register(write.id)" class="md-raised md-info">Criar Ordem</md-button>
+           <div class="md-layout-item md-small-size-100 md-size-25" v-for="(item,id) in writee" :key="id">
+               <md-button   @click="register(item.id)" class="md-raised md-info">Criar Ordem</md-button>
           </div>
         </div>
       </md-card-content>
+          </div>
     </md-card>
  
   </form>
@@ -474,15 +510,15 @@
     
 
     <div v-if="View">
-     <div class="md-layout" v-for="(rel,id) in relatorios" :key="id">
+     <div class="md-layout" >
           
-        <md-card>
+        <md-card >
           <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
           <md-card-header data-background-color="blue">
             <h4 class="title" style="text-align:center">Relatorio</h4>
           </md-card-header>
           </div>
-          <md-card-content>  
+          <md-card-content v-for="(rel,id) in relatorios" :key="id">  
    <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
    <md-table>
       <md-table-row slot="md-table-row">
@@ -496,7 +532,7 @@
       <md-table-row v slot="md-table-row">
         <md-table-cell >{{rel.Setor}}</md-table-cell>
         <md-table-cell>{{rel.Tag_Maquina}}</md-table-cell>
-        <md-table-cell>Daniel</md-table-cell>
+        <md-table-cell>{{rel.Solicitante}}</md-table-cell>
         <md-table-cell>{{rel.Tecnico}}</md-table-cell>
          <md-table-cell>{{rel.Registro}}</md-table-cell>
       </md-table-row>
@@ -783,20 +819,25 @@ export default {
     return {
       messagem: "Não há ordem  em aberto ",
       Solicitante: null,
-      Codigo: null,
+      Codigo: '1',
       Setor: null,
       Tag_Maquina: null,
-      Registro: null,
-      Tecnico: null,
-      Data_inicio: null,
-      Hora_inicio: null,
-      Hora_fim: null,
-      Data_fim: null,
-      Laudo: null,
-      Problema: null,
-      Resumo: null,
-      Pecas: null,
+      Registro:'0',
+      Tecnico: '0',
+      Data_inicio: '16/06/2021',
+      Hora_inicio: '50:00',
+      Hora_fim: '0',
+      Data_fim: '0',
+      Laudo: '0',
+      Problemas:null,
+      Resumo: '0',
+      Pecas: '0',
       Status: 1,
+
+
+
+
+
       Executar: 2,
       Ready: 0,
       ordemOpen: [],
@@ -815,7 +856,7 @@ PageFinalized:false,
       Report: true,
       View: false,
        EditReport: false,
-     
+    
       relatorio: [],
       relatorios: []
     }
@@ -860,9 +901,11 @@ PageFinalized:false,
 
 /*--------------------------order opening page registration method----------------------------------------------*/
          cadastrar: function(){
-    axios.post("http://localhost:8000/ordem/cadastrar",{Solicitante:this.Solicitante, Setor:this.Setor, Tag_Maquina:this.Tag_Maquina, Problemas:this.Problemas, Status:this.Status})
+    axios.post("http://localhost:8000/relatorio/cadastrar",{Solicitante:this.Solicitante, Setor:this.Setor, Tag_Maquina:this.Tag_Maquina, Problemas:this.Problemas,
+      Tecnico:this.Tecnico, Registro:this.Registro, Data_inicio:this.Data_inicio, Data_fim:this.Data_fim,  Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim,
+        Laudo:this.Laudo, Resumo:this.Resumo, Pecas:this.Pecas,  Codigo:this.Codigo,  Status:this.Status})
    .then(res => {
-     console.log(res)
+     console.log(res);
      this.ordem = res.data;
     
         if(this.ordem == true){
@@ -889,7 +932,7 @@ Swal.fire({
  
 
    }
-     axios.get("http://localhost:8000/ordem/mostrar/1" )
+     axios.get("http://localhost:8000/relatorio/mostrar/1" )
  .then(res => { 
    console.log(res);
    this.ordemOpen = res.data; 
@@ -910,7 +953,7 @@ Swal.fire({
        this.PageOrder = !this.PageOrder;
       this.PageOpen = !this.PageOpen;
    
-   axios.get("http://localhost:8000/ordem/mostrar/1" )
+   axios.get("http://localhost:8000/relatorio/mostrar/1" )
  .then(res => { 
    console.log(res);
    this.ordemOpen = res.data; 
@@ -921,14 +964,14 @@ Swal.fire({
  
  /*---------------------------------------------Method for Executing Open Order Page Order-------------------------------------------*/
     executar: function(id){
-axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
+axios.put("http://localhost:8000/relatorio/Status/"+ id, { Status:this.Executar})
    .then(res => {
      console.log(res);
 
        this.PageOpen = !this.PageOpen;
        this.PageProgress = !this.PageProgress;
 
-             axios.get("http://localhost:8000/ordem/mostrar/2" )
+             axios.get("http://localhost:8000/relatorio/mostrar/2" )
  .then(res => { 
    console.log(res);
    this.ordemProgress = res.data; 
@@ -951,7 +994,7 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
        this.PageOrder = !this.PageOrder;
       this.PageProgress = !this.PageProgress;
 
-       axios.get("http://localhost:8000/ordem/mostrar/2" )
+       axios.get("http://localhost:8000/relatorio/mostrar/2" )
  .then(res => { 
    console.log(res);
    this.ordemProgress = res.data; 
@@ -964,7 +1007,7 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
           this.PageProgress = !this.PageProgress;
           this.PageWrite = !this.PageWrite;
           
- axios.get("http://localhost:8000/ordem/utilizar/" + id )
+ axios.get("http://localhost:8000/relatorio/utilizar/" + id )
  .then(res => { 
    console.log(res);
    this.writee = res.data; 
@@ -987,25 +1030,50 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
 
 /*-----------------------------------------------------Method to record page  to the write report page--------------------------------------------*/
   register: function(id){
-    axios.post("http://localhost:8000/relatorio/cadastrar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina,Solicitante:this.Solicitante, Tecnico:this.Tecnico, Registro:this.Registro,
-    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas, 
-    Codigo:this.id})
+    axios.put("http://localhost:8000/relatorio/" + id +"/atualizar",{Solicitante: null, Setor: null, Tag_Maquina:null, Problemas:null,
+      Tecnico:this.Tecnico, Registro:this.Registro, Data_inicio:this.Data_inicio, Data_fim:this.Data_fim,  Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim,
+        Laudo:this.Laudo, Resumo:this.Resumo, Pecas:this.Pecas,  Codigo:this.Codigo,  Status:this.Status})
    .then(res => {
-     console.log(res);
-    
-axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
+     console.log(res.data);
+   this.confirmation = res.data;
+
+        if(this.confirmation == true){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'Relatorio realizado com sucesso.',
+  showConfirmButton: false,
+  timer: 2000
+   
+})
+ 
+axios.put("http://localhost:8000/relatorio/Status/"+ id, { Status:this.Ready})
    .then(res => {
      console.log(res);
 
      })
+ 
  this.PageWrite = !this.PageWrite;
-     this.PageFinalized = !this.PageFinalized;
+this.PageFinalized = !this.PageFinalized;
      
-  axios.get("http://localhost:8000/ordem/mostrar/0" )
+      axios.get("http://localhost:8000/relatorio/mostrar/0" )
  .then(res => { 
    console.log(res);
    this.ordemProgress = res.data; 
  })
+
+   }if(this.confirmation == false){
+Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title: 'Erro no cadastro, Favor realizar novamento.',
+  showConfirmButton: false,
+  timer: 2000
+})
+ 
+
+   }
+
    })
     },
 
@@ -1029,7 +1097,7 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
        this.PageOrder = !this.PageOrder;
       this.PageFinalized = !this.PageFinalized;
   
- axios.get("http://localhost:8000/ordem/mostrar/0" )
+ axios.get("http://localhost:8000/relatorio/mostrar/0" )
  .then(res => { 
    console.log(res)
    this.ordems = res.data; 
@@ -1042,11 +1110,11 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
   this.PageFinalized = !this.PageFinalized;
    this.View = !this.View;
 
-  axios.get("http://localhost:8000/relatorio/" + id )
+   axios.get("http://localhost:8000/relatorio/utilizar/" + id )
  .then(res => { 
    console.log(res);
    this.relatorios = res.data; 
- })  
+ }) 
 },
   Delete: function(id){
  Swal.fire({
@@ -1058,21 +1126,19 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
   confirmButtonText: 'Deletar!'
 }).then((result) => {
   if (result.isConfirmed) {
-   axios.delete("http://localhost:8000/ordem/deletar/" + id)
-.then(res => {
-  console.log(res);
+   
   axios.delete("http://localhost:8000/relatorio/deletar/" + id)
 .then(res => {
   console.log(res);
 })
   this.delete = res.data;
- axios.get("http://localhost:8000/ordem/mostrar/0" )
+ axios.get("http://localhost:8000/relatorio/mostrar/0" )
  .then(res => { 
    console.log(res)
    this.ordems = res.data; 
    
  })
-})
+
 
     Swal.fire(
       'Deletado!',
@@ -1108,7 +1174,7 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
     },
  Editar: function(id){
     axios.put("http://localhost:8000/relatorio/" + id + "/atualizar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Solicitante:this.Solicitante, Registro:this.Registro,
-    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas, Codigo:this.Codigo
+    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas, codigo:this.codigo
    
    
    

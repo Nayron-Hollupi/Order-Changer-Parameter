@@ -49,27 +49,14 @@ $router->get('/maquina', 'MaquinasController@mostrarMaquina');
 $router->group(['prefix' => 'maquinas'], function() use($router){
 
     $router->post('/cadastrar', 'MaquinasController@cadastrar'); 
-    $router->get('/mostrar/{id}', 'MaquinasController@maquinas'); 
+    $router->get('/mostrar/{Status}', 'MaquinasController@maquinas'); 
     $router->get('/setor/{Setor}', 'MaquinasController@maquinasSetor'); 
     $router->get('/{id}/atualizar', 'MaquinasController@atualizarMaquinas'); 
     $router->put('/{id}/atualizar', 'MaquinasController@atualizarMaquinas');
     $router->delete('/deletar/{id}', 'MaquinasController@deletarMaquinas');
 });
 
-//Cadastrar Ordens
 
-$router->get('/ordens', 'OrdemsController@ordem'); 
-
-$router->group(['prefix' => 'ordem'], function() use($router){
-
-    $router->post('/cadastrar', 'OrdemsController@cadastrar'); 
-    $router->get('/mostrar/{Status}', 'OrdemsController@mostrar'); 
-    $router->get('/utilizar/{id}', 'OrdemsController@UtilizarRelatorio'); 
-    $router->get('/all/{Status}', 'OrdemsController@ordems'); 
-    $router->patch('/{id}/atualizar', 'OrdemsController@atualizar');
-    $router->put('/Status/{id}', 'OrdemsController@atualizarStatus');
-    $router->delete('/deletar/{id}', 'OrdemsController@deletar');
-});
 
 //Cadastrar Relatorios
 
@@ -78,9 +65,12 @@ $router->get('/relatorios', 'RelatoriosController@relatorios');
 $router->group(['prefix' => 'relatorio'], function() use($router){
 
     $router->post('/cadastrar', 'RelatoriosController@cadastrar'); 
-    $router->get('/{id}', 'RelatoriosController@mostrar'); 
+    $router->get('/mostrar/{Status}', 'RelatoriosController@mostrar'); 
     $router->get('/{id}/atualizar', 'RelatoriosController@atualizarRelatorio'); 
     $router->put('/{id}/atualizar', 'RelatoriosController@atualizarRelatorio');
+    $router->put('/Status/{id}', 'RelatoriosController@atualizarStatus');
+    $router->get('/utilizar/{id}', 'RelatoriosController@UtilizarRelatorio'); 
+    
     $router->delete('/deletar/{id}', 'RelatoriosController@deletarRelatorio');
 });
 
