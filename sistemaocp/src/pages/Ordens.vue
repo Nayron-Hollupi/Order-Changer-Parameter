@@ -510,161 +510,150 @@
     
 
     <div v-if="View">
-     <div class="md-layout" >
-          
         <md-card >
-          <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
-          <md-card-header data-background-color="blue">
-            <h4 class="title" style="text-align:center">Relatorio</h4>
+        <md-card-header data-background-color="blue">
+            <h3 class="title" style="text-align:center">Relatorio</h3>
           </md-card-header>
+          
+
+ <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
+          <md-card-content > 
+        <div class="md-layout" v-for="(rel,id) in relatorios" :key="id">
+           <div class="md-layout-item md-small-size-100 md-size-35" >       
+        
           </div>
-          <md-card-content v-for="(rel,id) in relatorios" :key="id">  
-   <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
-   <md-table>
-      <md-table-row slot="md-table-row">
-        <md-table-head >Setor</md-table-head>
-        <md-table-head>Maquina/Tag</md-table-head>
-        <md-table-head>Solicitante</md-table-head>
-        <md-table-head>Tecnico</md-table-head>
-        <md-table-head>Registro</md-table-head>
-    
-      </md-table-row >
-      <md-table-row v slot="md-table-row">
-        <md-table-cell >{{rel.Setor}}</md-table-cell>
-        <md-table-cell>{{rel.Tag_Maquina}}</md-table-cell>
-        <md-table-cell>{{rel.Solicitante}}</md-table-cell>
-        <md-table-cell>{{rel.Tecnico}}</md-table-cell>
-         <md-table-cell>{{rel.Registro}}</md-table-cell>
-      </md-table-row>
-       
-        <md-table-row >
-        <md-table-cell ></md-table-cell>
- <md-table-cell ></md-table-cell>
-  <md-table-cell ></md-table-cell>
-   <md-table-cell ></md-table-cell>
-    <md-table-cell ></md-table-cell>
-      </md-table-row>
-    </md-table>
+   <div   class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-30" >
+  
+    <h4  style="text-align:center"> Solicitante:</h4>
+        <md-field >   
+    <h5  style="text-align:center">{{rel.Solicitante}}</h5>
+     </md-field>
+             
    </div>
+    <div class="md-layout-item md-small-size-100 md-size-35" >       
+        
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25" >  
+              <h4  style="text-align:center"> Setor:</h4>
+        <md-field >
+          <h5 style="text-align:center;" >{{rel.Setor}} </h5>
+      </md-field>
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-25">
+                  <h4  style="text-align:center"> Tag /Maquina:</h4>
+           <md-field >
+             <h5 style="text-align:center;">{{rel.Tag_Maquina}}</h5>
+        </md-field>
+          </div>
+   <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
 
+<div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h4  style="text-align:center"> Problemas :</h4>
+            
+              <h5 style="text-align:center;">{{rel.Problemas}}</h5>      
+          </div>
 
-    <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
-   <md-table>
-      <md-table-row slot="md-table-row">
-        <md-table-head >Data de inicio</md-table-head>
-        <md-table-head>Hora de inicio</md-table-head>
-        <md-table-head>Data do Termino</md-table-head>
-        <md-table-head>Hora do Termino</md-table-head>
+             <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25" >  
+              <h4  style="text-align:center"> Tecnico responsavel:</h4>
       
-    
-      </md-table-row >
-      <md-table-row v-for="(rel,id) in relatorios" :key="id" slot="md-table-row">
-        <md-table-cell >{{rel.Data_inicio}}</md-table-cell>
-        <md-table-cell >{{rel.Hora_inicio}}</md-table-cell>
-        <md-table-cell >{{rel.Data_fim}}</md-table-cell>
-        <md-table-cell >{{rel.Hora_fim}}</md-table-cell>
-      </md-table-row>
-        <md-table-row >
-        <md-table-cell ></md-table-cell>
- <md-table-cell ></md-table-cell>
-  <md-table-cell ></md-table-cell>
-   <md-table-cell ></md-table-cell>
-    <md-table-cell ></md-table-cell>
-      </md-table-row>
-    </md-table>
-   </div>
+        <h5 style="text-align:center;">{{rel.Tecnico}} </h5>
+     
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-25">
+                  <h4  style="text-align:center">Registro :</h4>
+          
+            <h5 style="text-align:center ">{{rel.Registro}}</h5>
+        
+          </div>
+   <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
 
+           <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25" >  
+              <h4  style="text-align:center">Data de inicio:</h4>
+        
+              
+         <h5 style="text-align:center ">{{rel.Data_inicio}} </h5>
+     
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-25">
+                  <h4  style="text-align:center">Hora de inicio:</h4>
+           
+             
+            <h5 style="text-align:center ">{{rel.Hora_inicio}}</h5>
+      
+          </div>
+   <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25" >  
+              <h4  style="text-align:center"> Data do termino:</h4>
+       
+             
+        <h5 style="text-align:center ">{{rel.Data_fim}} </h5>
+      
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-25">
+                  <h4  style="text-align:center">Hora do termino :</h4>
+             <h5 style="text-align:center; ">{{rel.Hora_fim}}</h5>
+         
+          </div>
+   <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h4  style="text-align:center"> Laudo:</h4>
+            <md-field>
+                
+              <h5>{{rel.Laudo}}</h5>
+           
+            </md-field>
+          </div>
+             <div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h4  style="text-align:center"> Resumo:</h4>
+            <md-field>
+                  
+              <h5>{{rel.Resumo}}</h5>
+            
+            </md-field>
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h4  style="text-align:center"> Peças utilizadas:</h4>
    
-    <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
-   <md-table>
-      <md-table-row slot="md-table-row">
-        <md-table-head style="text-align:center" >Laudo</md-table-head>
-      </md-table-row >
-      <md-table-row slot="md-table-row">
-        <md-table-cell >{{rel.Laudo}}</md-table-cell>
-      </md-table-row>
-
- <md-table-row >
-        <md-table-cell ></md-table-cell>
- <md-table-cell ></md-table-cell>
-  <md-table-cell ></md-table-cell>
-   <md-table-cell ></md-table-cell>
-    <md-table-cell ></md-table-cell>
-      </md-table-row>
-
-    </md-table>
-   </div>
-
-
-   <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
-   <md-table>
-      <md-table-row slot="md-table-row">
-        <md-table-head style="text-align:center" >Problema</md-table-head>
-      </md-table-row >
-      <md-table-row  slot="md-table-row">
-        <md-table-cell >{{rel.Problema}}</md-table-cell>
-      </md-table-row>
-
- <md-table-row >
-        <md-table-cell ></md-table-cell>
- <md-table-cell ></md-table-cell>
-  <md-table-cell ></md-table-cell>
-   <md-table-cell ></md-table-cell>
-    <md-table-cell ></md-table-cell>
-      </md-table-row>
-
-    </md-table>
-   </div>
-
-<div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
-   <md-table>
-      <md-table-row slot="md-table-row">
-        <md-table-head style="text-align:center" >Resumo</md-table-head>
-      </md-table-row >
-      <md-table-row  slot="md-table-row">
-        <md-table-cell >{{rel.Resumo}}</md-table-cell>
-      </md-table-row>
-
- <md-table-row >
-        <md-table-cell ></md-table-cell>
- <md-table-cell ></md-table-cell>
-  <md-table-cell ></md-table-cell>
-   <md-table-cell ></md-table-cell>
-    <md-table-cell ></md-table-cell>
-      </md-table-row>
-
-    </md-table>
-   </div>
-
-
-   <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
-   <md-table>
-      <md-table-row slot="md-table-row">
-        <md-table-head style="text-align:center" >Peças Utilizadas</md-table-head>
-      </md-table-row >
-      <md-table-row v-for="(rel,id) in relatorios" :key="id" slot="md-table-row">
-        <md-table-cell >{{rel.Pecas}}</md-table-cell>
-      </md-table-row>
-
- <md-table-row >
-        <md-table-cell ></md-table-cell>
- <md-table-cell ></md-table-cell>
-  <md-table-cell ></md-table-cell>
-   <md-table-cell ></md-table-cell>
-    <md-table-cell ></md-table-cell>
-      </md-table-row>
-
-    </md-table>
-
-   </div>
+            <md-field>
+            
+              <h5>{{rel.Pecas}}</h5>
+            
+          
+            </md-field>
+          </div>
 <div class="md-layout-item md-small-size-100 md-size-25" v-for="(user,id) in usuario" :key="id" >
                <md-button   @click="Edit(rel.id)" class="md-raised md-info">Editar relatorio</md-button>
           </div>
-
+        </div>
           </md-card-content>
+          </div>
         </md-card>
       </div>
-      </div>
+      
     
     <!-----------------------------------------------------------Edit Report----------------------------------------------------------->
     
@@ -673,134 +662,170 @@
       <form>
     <md-card>
       <md-card-header  data-background-color="blue">
-        <h4 class="title" style="text-align:center">Escrever Relatorio</h4>
+        <h4 class="title" style="text-align:center">Editar Relatorio</h4>
       </md-card-header>
 
-      <md-card-content >
-        <div class="md-layout" v-for="(rel,id) in edits" :key="id" >
-    <div class="md-layout-item md-small-size-100 md-size-25" >       
-        <md-field  >
-          <label >Setor:{{rel.Solicitante}} </label>
-                    <md-input v-model="Solicitante" type="text"></md-input>              
-        </md-field>
-          </div>
-
-          <div class="md-layout-item md-small-size-100 md-size-25" >       
-        <md-field  >
-          <label >Setor:{{rel.Setor}} </label>
-                    <md-input v-model="Setor" type="text"></md-input>              
-        </md-field>
-          </div>
-  
-          <div class="md-layout-item md-small-size-100 md-size-25">
-           <md-field  >
-             <label>Tag e Maquina:{{rel.Tag_Maquina}}</label>
-             <md-input v-model="Tag_Maquina" type="text"></md-input>
-        </md-field>
-          </div>
-  <div class="md-layout-item md-small-size-100 md-size-25">
-           
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-25">
-           
-          </div>
-    <div class="md-layout-item md-small-size-100 md-size-25">
-           <md-field >
-             <label>Tecnico:{{rel.Tecnico}}</label>
-             <md-input v-model="Tecnico" type="text"></md-input>    
-        </md-field>
-          </div>
-         <div class="md-layout-item md-small-size-100 md-size-25">
-           <md-field >
-             <label>Registro:{{rel.Registro}}</label>
-             <md-input v-model="Registro" type="text"></md-input>    
-        </md-field>
-          </div>
-<div class="md-layout-item md-small-size-100 md-size-50">
-           
-          </div>
-<div class="md-layout-item md-small-size-100 md-size-25">
-  <label>Data de inicio:<br>{{rel.Data_inicio}}</label>
-           <md-field >
-             
-             <md-input v-model="Data_inicio" type="date"></md-input>    
-        </md-field>
-          </div>
-    <div class="md-layout-item md-small-size-100 md-size-25">
-       <label>Hora de inicio:<br>{{rel.Hora_inicio}}</label>
-           <md-field >
-            
-             <md-input v-model="Hora_inicio" type="time"></md-input>    
-        </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-25">
-           
-          </div><div class="md-layout-item md-small-size-100 md-size-25">
-           
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-25">
-             <label>Data do fim:<br>{{rel.Data_fim}}</label>
-           <md-field >
-            
-             <md-input v-model="Data_fim" type="date"></md-input>    
-        </md-field>
-          </div>
-           <div class="md-layout-item md-small-size-100 md-size-25">
-             <label>Hora do fim:<br>{{rel.Hora_fim}}</label>
-           <md-field >
-             
-             <md-input v-model="Hora_fim" type="time"></md-input>    
-        </md-field>
-          </div>
+ <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
+          <md-card-content > 
+        <div class="md-layout" v-for="(rel,id) in edits" :key="id">
+           <div class="md-layout-item md-small-size-100 md-size-35" >       
         
-    <div class="md-layout-item md-small-size-100 md-size-25">
-  </div>
-   
- <div class="md-layout-item md-small-size-100 md-size-80">
-           <md-field>
-             <label>Laudo:<br>{{rel.Laudo}}</label>
-             <md-textarea v-model="Laudo" type="text"></md-textarea>   
+          </div>
+   <div   class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-30" >
+  
+    <h4  style="text-align:center"> Solicitante:</h4>
+        <md-field >   
+    <label >{{rel.Solicitante}}</label>
+    <md-input v-model="Solicitante" type="text"></md-input>   
+     </md-field>
+             
+   </div>
+    <div class="md-layout-item md-small-size-100 md-size-35" >       
+        
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25" >  
+              <h4  style="text-align:center"> Setor:</h4>
+        <md-field >
+          <label >{{rel.Setor}} </label>
+           <md-input v-model="Setor" type="text"></md-input>   
+      </md-field>
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-25">
+                  <h4  style="text-align:center"> Tag /Maquina:</h4>
+           <md-field >
+             <label>{{rel.Tag_Maquina}}</label>
+                 <md-input v-model="Tag_Maquina" type="text"></md-input>  
         </md-field>
           </div>
-    
-          <div class="md-layout-item md-small-size-100 md-size-80 ">
-            <md-field >
-              <label>Problema:<br>{{rel.Problema}}</label>
-                <md-textarea v-model="Problema" type="text"></md-textarea>
-             
-            </md-field>
-          </div>
-    <div class="md-layout-item md-small-size-100 md-size-25">
-  </div>
-  
-            <div class="md-layout-item md-small-size-100 md-size-80 ">
-            <md-field>
-             
-              <label>Resumo:<br>{{rel.Resumo}}</label>
-              <md-textarea v-model="Resumo" type="text"></md-textarea>
-            
-            </md-field>
-          </div>
-      <div class="md-layout-item md-small-size-100 md-size-25">
-  </div>
-   
-    <div class="md-layout-item md-small-size-100 md-size-80 ">
-            <md-field >
-              <label>Peças:<br>{{rel.Pecas}}</label>
-               <md-textarea v-model="Pecas" type="text"></md-textarea>
-           
-            </md-field>
+   <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
           </div>
 
-      <div class="md-layout-item md-small-size-100 md-size-25">
-  </div>
- 
-           <div class="md-layout-item md-small-size-100 md-size-25" v-for="(user,id) in usuario" :key="id" >
+<div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h4  style="text-align:center"> Problemas :</h4>
+
+   <md-field>
+             <label>{{rel.Problemas}}</label>
+             <md-textarea v-model="Problemas" type="text"></md-textarea>   
+              <md-icon>description</md-icon>
+        </md-field>
+                     
+          </div>
+
+             <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25" >  
+              <h4  style="text-align:center"> Tecnico responsavel:</h4>
+       <md-field >
+             <label>{{rel.Tecnico}}</label>
+                 <md-input v-model="Tecnico" type="text"></md-input>  
+        </md-field>
+      
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-25">
+                  <h4  style="text-align:center">Registro :</h4>
+             <md-field >
+             <label>{{rel.Registro}}</label>
+                 <md-input v-model="Registro" type="text"></md-input>  
+        </md-field>
+         
+          </div>
+   <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+
+           <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25" >  
+              <h4  style="text-align:center">Data de inicio:</h4>
+        
+               <md-field >
+             <label>{{rel.Data_inicio}}</label>
+                 <md-input v-model="Data_inicio" type="text"></md-input>  
+        </md-field>
+        
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-25">
+                  <h4  style="text-align:center">Hora de inicio:</h4>
+           
+                <md-field >
+             <label>{{rel.Hora_inicio}}</label>
+                 <md-input v-model="Hora_inicio" type="text"></md-input>  
+        </md-field>
+            
+          </div>
+   <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+           <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25" >  
+              <h4  style="text-align:center"> Data do termino:</h4>
+       
+                <md-field >
+             <label>{{rel.Data_fim}}</label>
+                 <md-input v-model="Data_fim" type="text"></md-input>  
+        </md-field>
+        
+      
+          </div>
+  
+          <div class="md-layout-item md-small-size-100 md-size-25">
+                  <h4  style="text-align:center">Hora do termino :</h4>
+                        <md-field >
+             <label>{{rel.Hora_fim}}</label>
+                 <md-input v-model="Hora_fim" type="text"></md-input>  
+        </md-field>
+        
+      
+          </div>
+   <div class="md-layout-item md-small-size-100 md-size-25" >       
+        
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h4  style="text-align:center"> Laudo:</h4>
+    <md-field>
+             <label>{{rel.Laudo}}</label>
+             <md-textarea v-model="Laudo" type="text"></md-textarea>   
+              <md-icon>description</md-icon>
+        </md-field>
+           
+          </div>
+             <div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h4  style="text-align:center"> Resumo:</h4>
+  <md-field>
+             <label>{{rel.Resumo}}</label>
+             <md-textarea v-model="Resumo" type="text"></md-textarea>   
+              <md-icon>description</md-icon>
+        </md-field>
+           
+          </div>
+            <div class="md-layout-item md-small-size-100 md-size-100 ">
+  <h4  style="text-align:center"> Peças utilizadas:</h4>
+   <md-field>
+             <label>{{rel.Pecas}}</label>
+             <md-textarea v-model="Pecas" type="text"></md-textarea>   
+              <md-icon>description</md-icon>
+        </md-field>
+           
+          </div>
+  <div class="md-layout-item md-small-size-100 md-size-25" v-for="(user,id) in usuario" :key="id" >
                <md-button  v-if="user.Tipo == 'Analista' || user.Tipo == 'Tecnico'"  @click="Editar(rel.id)" class="md-raised md-info">Criar Ordem</md-button>
           </div>
         </div>
-       
-      </md-card-content>
+          </md-card-content>
+          </div>
+ 
+        
     </md-card>
  
   </form>
@@ -1165,7 +1190,7 @@ Swal.fire({
           this.EditReport = !this.EditReport;
           this.View = !this.View;
           
- axios.get("http://localhost:8000/relatorio/" + id )
+ axios.get("http://localhost:8000/relatorio/utilizar/" + id )
  .then(res => { 
    console.log(res);
    this.edits = res.data; 
@@ -1173,8 +1198,9 @@ Swal.fire({
  })
     },
  Editar: function(id){
-    axios.put("http://localhost:8000/relatorio/" + id + "/atualizar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Solicitante:this.Solicitante, Registro:this.Registro,
-    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas, codigo:this.codigo
+    axios.put("http://localhost:8000/relatorio/" + id + "/atualizar",{Solicitante:this.Solicitante, Setor:this.Setor, Tag_Maquina:this.Tag_Maquina, Problemas:this.Problemas,
+      Tecnico:this.Tecnico, Registro:this.Registro, Data_inicio:this.Data_inicio, Data_fim:this.Data_fim,  Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim,
+        Laudo:this.Laudo, Resumo:this.Resumo, Pecas:this.Pecas,  Codigo:this.Codigo,  Status:this.Status
    
    
    
@@ -1369,4 +1395,14 @@ b {
   font: inherit;
 }
 
+.h5{
+text-align:center; 
+text-decoration: underline;
+}
+
+.h4{
+font-weight: bolder;
+ text-align:center; 
+text-decoration: underline;
+}
 </style>
