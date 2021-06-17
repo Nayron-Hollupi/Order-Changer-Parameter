@@ -3,27 +3,27 @@
     <header>
            <nav>
     <ol>
-      <li>
+      <la>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
-      </li>
-      <li v-if="PageMaquina">
+      </la>
+      <la v-if="PageMaquina">
         <b >Máquinas</b>
-      </li>
+      </la>
        
 
-         <li v-if="PageCadastro">
+         <la v-if="PageCadastro">
         <a @click="cadastro()">Maquinas</a>
-      </li>
-      <li v-if="PageCadastro">
+      </la>
+      <la v-if="PageCadastro">
         <b >Cadastrar máquinas</b>
-      </li>
+      </la>
 
-        <li v-if="PageEditar">
+        <la v-if="PageEditar">
         <a @click="editarbread()" >Máquinas</a>
-      </li>
-      <li v-if="PageEditar">
+      </la>
+      <la v-if="PageEditar">
         <b >Editar máquina</b>
-      </li>
+      </la>
     </ol>
   </nav>
     </header>
@@ -78,19 +78,25 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-35">
             <md-field>
-              <label>Digite o Setor</label>
-              <md-input v-model="Setor" type="text"></md-input>
+                <md-select  v-model="Setor" name="Setor" id="Setor" placeholder="Selecione o Setor">
+            <md-option value="Ferramentaria">Ferramentaria</md-option>
+            <md-option value="Usinagem ">Usinagem </md-option>
+            <md-option value="Fundição">Fundição</md-option>
+           
+          </md-select>
+          
             </md-field>
           </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
+            <div class="md-layout-item md-small-size-100 md-size-31">
            
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
+            
             <md-field>
               <label>Digite o Tag e Maquina</label>
               <md-input v-model="Tag_Maquina" type="text"></md-input>
@@ -130,13 +136,19 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
            
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-35">
             <md-field v-for="(editar,id) in EditarMaquina" :key="id">
-              <label>{{editar.Setor}}</label>
-              <md-input v-model="Setor" type="text"></md-input>
+             <label for="movie">{{editar.Setor}}</label>
+           <md-select v-model="Setor" name="Setor" id="Setor"  >
+            <md-option value="Ferramentaria">Ferramentaria</md-option>
+            <md-option value="Usinagem ">Usinagem </md-option>
+            <md-option value="Fundição">Fundição</md-option>
+           
+          </md-select>
+        
             </md-field>
           </div>
-            <div class="md-layout-item md-small-size-100 md-size-33">
+            <div class="md-layout-item md-small-size-100 md-size-31">
            
           </div>
             <div class="md-layout-item md-small-size-100 md-size-33">
@@ -191,7 +203,7 @@ export default {
     }
   },
   created: function(){
-    axios.get("http://localhost:8000/maquinas")
+    axios.get("http://localhost:8000/maquina")
     .then(res => {
       console.log(res);
       this.maquinas = res.data;
@@ -376,11 +388,12 @@ ol {
   text-align: center;
 }
 
-li {
+la {
   display: table-cell;
   vertical-align: middle;
   width: 33.33%;
 }
+
 
 a,
 b {

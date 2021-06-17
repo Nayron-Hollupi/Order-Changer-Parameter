@@ -48,6 +48,26 @@ class MaquinasController extends Controller
         //return response()->json(Maquinas::find($id));
     }
    
+
+    public function maquinasSetor($Setor){
+        if (Maquinas::where('Setor', $Setor)->exists()) {
+            $maquina = Maquinas::where('Setor', $Setor)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($maquina, 200);
+          }else{
+          return response(false);
+          }
+        //    return response()->json( Usuario::where('nivel' == $id));
+    }
+
+
+
+
+
+
+
+
+
+
     public function atualizarMaquinas($id, Request $request){
         
       

@@ -31,7 +31,8 @@ $router->post('/logout', 'UsuarioController@usuarioLogout');
 
 $router->group(['prefix' => 'usuario'], function() use($router){
 
-    $router->get('/mostrar/{id}', 'UsuarioController@usuario'); 
+    $router->get('/mostrar/{id}', 'UsuarioController@usuario');
+    $router->get('/session/{usuario}', 'UsuarioController@session');  
     $router->post('/cadastrar', 'UsuarioController@cadastrar'); 
     $router->get('/{Tipo}', 'UsuarioController@mostrarUsuario'); 
     $router->get('/{id}/atualizar', 'UsuarioController@atualizarUsuario'); 
@@ -42,13 +43,14 @@ $router->group(['prefix' => 'usuario'], function() use($router){
 
 
 //Cadastro das Maquinas
-$router->get('/maquinas', 'MaquinasController@mostrarMaquina'); 
+$router->get('/maquina', 'MaquinasController@mostrarMaquina'); 
 
 
 $router->group(['prefix' => 'maquinas'], function() use($router){
 
     $router->post('/cadastrar', 'MaquinasController@cadastrar'); 
     $router->get('/mostrar/{id}', 'MaquinasController@maquinas'); 
+    $router->get('/setor/{Setor}', 'MaquinasController@maquinasSetor'); 
     $router->get('/{id}/atualizar', 'MaquinasController@atualizarMaquinas'); 
     $router->put('/{id}/atualizar', 'MaquinasController@atualizarMaquinas');
     $router->delete('/deletar/{id}', 'MaquinasController@deletarMaquinas');

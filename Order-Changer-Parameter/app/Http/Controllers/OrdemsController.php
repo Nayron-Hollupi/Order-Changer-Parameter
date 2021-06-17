@@ -26,14 +26,15 @@ class OrdemsController extends Controller
     }
 
     public function cadastrar(Request $request){
+        $requester = $request->Solicitante;
         $sector = $request->Setor;
         $marcacao = $request->Tag_Maquina;
         $problem = $request->Problemas;
         $estado = $request->Status;
 
-        if ($sector != null && $marcacao != null &&  $problem != null &&  $estado != null  ) {
+        if ($requester != null &&$sector != null && $marcacao != null &&  $problem != null &&  $estado != null  ) {
         $ordem = new Ordems;
-        
+        $ordem->Solicitante = $request->Solicitante;
         $ordem->Setor = $request->Setor;
         $ordem->Tag_Maquina = $request->Tag_Maquina;
         $ordem->Problemas = $request->Problemas;
@@ -77,6 +78,7 @@ class OrdemsController extends Controller
     public function atualizar($id, Request $request){
 
         $ordem = Ordems::find($id);
+        $ordem->Solicitante = $request->Solicitante;
         $ordem->Setor = $request->Setor;
         $ordem->Tag_Maquina = $request->Tag_Maquina;
         $ordem->Problemas = $request->Problemas;

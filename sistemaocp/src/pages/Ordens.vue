@@ -4,86 +4,86 @@
          <header>
            <nav>
     <ul>  
-      <li>
+      <la>
         <a href="http://localhost:8080/#/dashboard">Dashboard</a>
-      </li>
+      </la>
 
 
    <!-----------------------------------bread crumbs from  order  page-------------------------------------------------->
-      <li v-if="PageOrder">
+      <la v-if="PageOrder">
         <b >ORDENS</b>
-      </li>
+      </la>
 
 
       <!-----------------------------------bread crumbs from the order open page-------------------------------------------------->
-        <li v-if="PageToOpen">
+        <la v-if="PageToOpen">
         <a @click="ToOpen()" >Ordens</a>
-      </li>
-      <li v-if="PageToOpen">
+      </la>
+      <la v-if="PageToOpen">
         <b >Abrir Ordem</b>
-      </li>
+      </la>
 
       <!-----------------------------------bread crumbs from  open order page-------------------------------------------------->
-       <li  v-if="PageOpen">
+       <la  v-if="PageOpen">
         <a @click="Open()">Ordens</a>
-      </li>
-      <li  v-if="PageOpen">
+      </la>
+      <la  v-if="PageOpen">
         <b >Ordens Abertas</b>
-      </li>
+      </la>
 
    <!-----------------------------------bread crumbs from  Progress orders page-------------------------------------------------->
-  <li v-if="PageProgress">
+  <la v-if="PageProgress">
         <a @click="Progress()">Ordens</a>
-      </li>
-      <li v-if="PageProgress">
+      </la>
+      <la v-if="PageProgress">
         <b >Ordens em andamento</b>
-      </li>
+      </la>
 
   <!-----------------------------------bread crumbs from  Write report page-------------------------------------------------->  
-        <li  v-if="PageWrite">
+        <la  v-if="PageWrite">
         <a @click="ToWrite()">Ordens</a>
-      </li>
-        <li  v-if="PageWrite">
+      </la>
+        <la  v-if="PageWrite">
         <a @click="ProgressWrite()">Ordens em andamento</a>
-      </li>
+      </la>
     
-      <li  v-if="PageWrite">
+      <la  v-if="PageWrite">
         <b >Escrever Relatorio</b>
-      </li>
+      </la>
 
  <!-----------------------------------bread crumbs from  finalized orders page-------------------------------------------------->
-          <li v-if="PageFinalized">
+          <la v-if="PageFinalized">
         <a  @click="Finalized()">Ordens</a>
-      </li>
-      <li v-if="PageFinalized" >
+      </la>
+      <la v-if="PageFinalized" >
         <b >Ordens Finalizadas</b>
-      </li>
+      </la>
       
 
   <!-----------------------------------bread crumbs from  View report page-------------------------------------------------->     
-       <li v-if="View">
+       <la v-if="View">
         <a @click="ToOpenview()" >Ordens</a>
-      </li>
- <li v-if="View" >
+      </la>
+ <la v-if="View" >
         <a  @click="FinalizedView()">Ordens Finalizadas</a>
-      </li>
- <li  v-if="View">
+      </la>
+ <la  v-if="View">
         <b >Visualizar Relatorio</b>
-      </li>  
+      </la>  
 
 <!-----------------------------------bread crumbs from  Edit report page--------------------------------------------------> 
-        <li v-if="EditReport">
+        <la v-if="EditReport">
         <a @click="ToOpen()" >Ordens</a>
-      </li>
-      <li v-if="EditReport" >
+      </la>
+      <la v-if="EditReport" >
         <a  @click="FinalizedView()">Ordens Finalizadas</a>
-      </li>  
-        <li  v-if="EditReport">
+      </la>  
+        <la  v-if="EditReport">
         <a @click="Edit()">Visualizar Relatorio</a>
-      </li>  
-         <li  v-if="EditReport">
+      </la>  
+         <la  v-if="EditReport">
         <b  >Editar Relatorio</b>
-      </li>  
+      </la>  
     </ul>
   </nav>
     </header>
@@ -93,13 +93,13 @@
     <div class="md-layout">
       <div class="md-layout-item">
    
-      <md-card>
+      <md-card v-for="(user,id) in usuario" :key="id">
         <md-card-header data-background-color="green">
           <h4 class="title" style="text-align:center">Ordens</h4>
         </md-card-header>
         <md-card-content>
           <div class="md-layout">
-            <div class="md-layout-item md-size-100">
+            <div class="md-layout-item md-size-100"   v-if="user.Tipo == 'Analista' || user.Tipo == 'Gestor'" >
                 <md-button class="md-success" style="width:300px" @click="ToOpen()" >Abrir Ordem</md-button> 
               </div>
               <div class="md-layout-item md-size-100">
@@ -135,13 +135,30 @@
 
       <md-card-content>
         <div class="md-layout">
+            <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+          <div class="md-layout-item md-small-size-100 md-size-50">
+           <md-field>
+             <label>Digite o solicitante</label>
+             <md-input v-model="Solicitante" type="text"></md-input>
+         
+        </md-field>
+          </div>
+           
   <div class="md-layout-item md-small-size-100 md-size-25">
+  </div>
+   <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
           <div class="md-layout-item md-small-size-100 md-size-50">       
         <md-field>
-          <label>Digite o Setor</label>
-          
-                    <md-input v-model="Setor" type="text"></md-input>
+      
+            <md-select v-model="Setor" name="Setor"    id="Setor" placeholder="Selecione o Setor">
+            <md-option value="Ferramentaria">Ferramentaria</md-option>
+            <md-option value="Usinagem ">Usinagem </md-option>
+            <md-option value="Fundição">Fundição</md-option>
+           
+          </md-select>
+                   
                 
         </md-field>
           </div>
@@ -151,10 +168,16 @@
    <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
-           <md-field>
-             <label>Digite  Maquina / Tag</label>
-             <md-input v-model="Tag_Maquina" type="text"></md-input>
-         
+           <md-field >
+                <md-select v-model="Tag_Maquina" name="Tag_Maquina"   id="Tag_Maquina" placeholder="Selecione a maquina">
+                  <div v-for="(maquina,id) in maquinas" :key="id"  >           
+          <md-option v-bind:value="maquina.Tag_Maquina">
+    {{ maquina.Tag_Maquina}}
+  </md-option>
+             
+  </div>
+           
+          </md-select>
         </md-field>
           </div>
            
@@ -201,17 +224,24 @@
   <div  v-if="PageOpen">
        <div class="md-layout">
   <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
-        <md-card>
+        <md-card v-for="(user,id) in usuario" :key="id">
           <md-card-header data-background-color="red">
             <h4 class="title" style="text-align:center">Ordens abertas</h4>
           </md-card-header>
           <md-card-content>
-           <md-table  v-for="(ordem,id) in ordemOpen" :key="id" >
-            <md-table-row slot="md-table-row" > 
+           <md-table  >
+                <md-table-row slot="md-table-row">
+        <md-table-head >Nº </md-table-head>
+        <md-table-head>Setor</md-table-head>
+        <md-table-head>Tag /Maquina</md-table-head>
+        <md-table-head>Problema</md-table-head>
+      </md-table-row >
+            <md-table-row slot="md-table-row" v-for="(ordem,id) in ordemOpen" :key="id" > 
         <md-table-cell md-label="id">{{ ordem.id }}</md-table-cell>
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
-        <md-table-cell md-label="Tag">{{ordem.Tag_Maquina }}</md-table-cell>
-   <md-table-cell >     <sidebar-link to="">
+        <md-table-cell md-label="Tag_Maquina">{{ordem.Tag_Maquina }}</md-table-cell>
+        <md-table-cell md-label="Problemas">{{ordem.Problemas }}</md-table-cell>
+   <md-table-cell  v-if="user.Tipo == 'Analista' || user.Tipo == 'Tecnico'">     <sidebar-link to="">
        <md-button type="button" @click="executar(ordem.id)" class="md-success "> Executar </md-button>
         </sidebar-link></md-table-cell>  
   </md-table-row>
@@ -232,20 +262,27 @@
   <div  v-if="PageProgress">
         <div class="md-layout">
   <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
-        <md-card>
+        <md-card v-for="(user,id) in usuario" :key="id">
           <md-card-header data-background-color="orange">
             <h4 class="title" style="text-align:center">Ordens em andamento</h4>
           </md-card-header>
-          <md-card-content>
-           <md-table  >
+          <md-card-content>     <md-table  >
+            <md-table-row slot="md-table-row">
+        <md-table-head >Nº </md-table-head>
+        <md-table-head>Setor</md-table-head>
+        <md-table-head>Tag /Maquina</md-table-head>
+        <md-table-head>Problema</md-table-head>
+      </md-table-row >
+ 
             <md-table-row slot="md-table-row"  v-for="(ordem,id) in ordemProgress" :key="id"  > 
           
         <md-table-cell md-label="id" >{{ ordem.id }}</md-table-cell>
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
         <md-table-cell md-label="Tag">{{ordem.Tag_Maquina }}</md-table-cell>
-   <md-table-cell   >     <sidebar-link to="">
+         <md-table-cell md-label="Problemas">{{ordem.Problemas }}</md-table-cell>
+   <md-table-cell   v-if="user.Tipo == 'Analista' || user.Tipo == 'Tecnico'"  >    
        <md-button type="button" @click="write(ordem.id)" class="md-warning">Escrever Relatorio</md-button>
-        </sidebar-link></md-table-cell>
+        </md-table-cell>
                
   </md-table-row>
   </md-table>
@@ -271,70 +308,85 @@
         <h4 class="title" style="text-align:center">Escrever Relatorio</h4>
       </md-card-header>
 
-      <md-card-content>
-        <div class="md-layout">
+      <md-card-content v-for="(user,id) in usuario" :key="id">
+        <div class="md-layout" v-for="(item,id) in writee" :key="id">
          
-  
-          <div class="md-layout-item md-small-size-100 md-size-40" >       
+         
+         <div class="md-layout-item md-small-size-100 md-size-50" >       
         <md-field>
-          <label>Digite o Setor </label>
-                    <md-input v-model="Setor" type="text"></md-input>              
+          <label>{{item.Solicitante}} </label>
+                    <md-input v-model="Solicitante" type="text"><label>{{item.Solicitante}}</label></md-input>              
+        </md-field>
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-50" >       
+        <md-field>
+          <label>{{item.Setor}} </label>
+                    <md-input v-model="Setor" type="text"><label>{{item.Setor}}</label></md-input>              
         </md-field>
           </div>
   
-          <div class="md-layout-item md-small-size-100 md-size-40">
+          <div class="md-layout-item md-small-size-100 md-size-50">
            <md-field>
-             <label>Digite o Maquina</label>
-             <md-input v-model="Tag_Maquina" type="text"></md-input>
+             <label>{{item.Tag_Maquina}}</label>
+             <md-input v-model="Tag_Maquina" type="text">{{item.Tag_Maquina}}</md-input>
         </md-field>
           </div>
   
-    
+       <div class="md-layout-item md-small-size-100 md-size-50">
+           <md-field>
+             <label>Digite o Tecnico</label>
+             <md-input v-model="Tecnico" type="text"></md-input>    
+        </md-field>
+          </div>
     
    
-         <div class="md-layout-item md-small-size-100 md-size-40">
+         <div class="md-layout-item md-small-size-100 md-size-50">
            <md-field>
              <label>Digite o Registro</label>
              <md-input v-model="Registro" type="text"></md-input>    
         </md-field>
           </div>
 
-<div class="md-layout-item md-small-size-100 md-size-30">
+<div class="md-layout-item md-small-size-100 md-size-25">
+   <label>Digite o Data de inicio </label>
            <md-field>
-             <label>Digite o Data de inicio </label>
-             <md-input v-model="Data_inicio" type="text"></md-input>    
+            
+             <md-input v-model="Data_inicio" type="date"></md-input>    
         </md-field>
           </div>
-    <div class="md-layout-item md-small-size-100 md-size-20">
+    <div class="md-layout-item md-small-size-100 md-size-25">
+      <label>Digite o Hora de inicio</label>
            <md-field>
-             <label>Digite o Hora de inicio</label>
-             <md-input v-model="Hora_inicio" type="text"></md-input>    
+             
+             <md-input v-model="Hora_inicio" type="time"></md-input>    
         </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-30">
+          <div class="md-layout-item md-small-size-100 md-size-25">
+               <label>Digite o Data do final</label>
            <md-field>
-             <label>Digite o Data do final</label>
-             <md-input v-model="Data_fim" type="text"></md-input>    
+          
+             <md-input v-model="Data_fim" type="date"></md-input>    
         </md-field>
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-20">
+           <div class="md-layout-item md-small-size-100 md-size-25">
+              <label>Digite o Hora final</label>
            <md-field>
-             <label>Digite o Hora final</label>
-             <md-input v-model="Hora_fim" type="text"></md-input>    
+            
+             <md-input v-model="Hora_fim" type="time"></md-input>    
         </md-field>
           </div>
         
     <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
    
- <div class="md-layout-item md-small-size-100 md-size-80">
+ <div class="md-layout-item md-small-size-100 md-size-100">
            <md-field>
              <label>Digite o Laudo</label>
              <md-textarea v-model="Laudo" type="text"></md-textarea>   
         </md-field>
           </div>
     
-          <div class="md-layout-item md-small-size-100 md-size-80 ">
+          <div class="md-layout-item md-small-size-100 md-size-100 ">
             <md-field>
               <label>Digite o Problema</label>
                 <md-textarea v-model="Problema" type="text"></md-textarea>
@@ -344,7 +396,7 @@
     <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
   
-            <div class="md-layout-item md-small-size-100 md-size-80 ">
+            <div class="md-layout-item md-small-size-100 md-size-100 ">
             <md-field>
               <label>Digite o Resumo</label>
               <md-textarea v-model="Resumo" type="text"></md-textarea>
@@ -354,7 +406,7 @@
       <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
    
-    <div class="md-layout-item md-small-size-100 md-size-80 ">
+    <div class="md-layout-item md-small-size-100 md-size-100 ">
             <md-field>
               <label>Digite as Peças Utilizadas</label>
                <md-textarea v-model="Pecas" type="text"></md-textarea>
@@ -384,7 +436,7 @@
   <div  v-if="PageFinalized">
     <div class="md-layout">
   <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100">
-        <md-card>
+        <md-card v-for="(user,id) in usuario" :key="id" >
           <md-card-header data-background-color="blue">
             <h4 class="title" style="text-align:center">Ordens Finalizadas</h4>
           </md-card-header>
@@ -393,11 +445,12 @@
             <md-table-row slot="md-table-row"  v-for="(ordem,id) in ordems" :key="id"  > 
         <md-table-cell md-label="id">{{ ordem.id }}</md-table-cell>
         <md-table-cell md-label="Setor">{{ ordem.Setor }}</md-table-cell>
-        <md-table-cell md-label="Tag">{{ordem.Tag }}</md-table-cell>
+        <md-table-cell md-label="Tag_Maquina">{{ordem.Tag_Maquina }}</md-table-cell>
+        <md-table-cell md-label="Problemas">{{ordem.Problemas }}</md-table-cell>
    <md-table-cell >     
        <md-button type="button"  @click="PageView(ordem.id)" class="md-success">Visualiar relatorio</md-button>
         </md-table-cell>
-        <md-table-cell ><md-button class="md-danger" @click="Delete(ordem.id)">Excluir</md-button></md-table-cell>  
+        <md-table-cell v-if="user.Tipo == 'Analista' "><md-button class="md-danger" @click="Delete(ordem.id)">Excluir</md-button></md-table-cell>  
   </md-table-row></md-table>
              
           </md-card-content>
@@ -421,7 +474,7 @@
     
 
     <div v-if="View">
-     <div class="md-layout">
+     <div class="md-layout" v-for="(rel,id) in relatorios" :key="id">
           
         <md-card>
           <div class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100" >
@@ -440,11 +493,11 @@
         <md-table-head>Registro</md-table-head>
     
       </md-table-row >
-      <md-table-row v-for="(rel,id) in relatorios" :key="id" slot="md-table-row">
+      <md-table-row v slot="md-table-row">
         <md-table-cell >{{rel.Setor}}</md-table-cell>
         <md-table-cell>{{rel.Tag_Maquina}}</md-table-cell>
-        <md-table-cell>Não possui ainda</md-table-cell>
-        <md-table-cell>Nayron</md-table-cell>
+        <md-table-cell>Daniel</md-table-cell>
+        <md-table-cell>{{rel.Tecnico}}</md-table-cell>
          <md-table-cell>{{rel.Registro}}</md-table-cell>
       </md-table-row>
        
@@ -491,7 +544,7 @@
       <md-table-row slot="md-table-row">
         <md-table-head style="text-align:center" >Laudo</md-table-head>
       </md-table-row >
-      <md-table-row v-for="(rel,id) in relatorios" :key="id" slot="md-table-row">
+      <md-table-row slot="md-table-row">
         <md-table-cell >{{rel.Laudo}}</md-table-cell>
       </md-table-row>
 
@@ -512,7 +565,7 @@
       <md-table-row slot="md-table-row">
         <md-table-head style="text-align:center" >Problema</md-table-head>
       </md-table-row >
-      <md-table-row v-for="(rel,id) in relatorios" :key="id" slot="md-table-row">
+      <md-table-row  slot="md-table-row">
         <md-table-cell >{{rel.Problema}}</md-table-cell>
       </md-table-row>
 
@@ -532,7 +585,7 @@
       <md-table-row slot="md-table-row">
         <md-table-head style="text-align:center" >Resumo</md-table-head>
       </md-table-row >
-      <md-table-row v-for="(rel,id) in relatorios" :key="id" slot="md-table-row">
+      <md-table-row  slot="md-table-row">
         <md-table-cell >{{rel.Resumo}}</md-table-cell>
       </md-table-row>
 
@@ -568,7 +621,7 @@
     </md-table>
 
    </div>
-<div class="md-layout-item md-small-size-100 md-size-25" v-for="(rel,id) in relatorios" :key="id" >
+<div class="md-layout-item md-small-size-100 md-size-25" v-for="(user,id) in usuario" :key="id" >
                <md-button   @click="Edit(rel.id)" class="md-raised md-info">Editar relatorio</md-button>
           </div>
 
@@ -588,53 +641,79 @@
       </md-card-header>
 
       <md-card-content >
-        <div class="md-layout" >
-         
-  
-          <div class="md-layout-item md-small-size-100 md-size-40" >       
-        <md-field v-for="(rel,id) in edits" :key="id" >
-          <label >{{rel.Setor}} </label>
+        <div class="md-layout" v-for="(rel,id) in edits" :key="id" >
+    <div class="md-layout-item md-small-size-100 md-size-25" >       
+        <md-field  >
+          <label >Setor:{{rel.Solicitante}} </label>
+                    <md-input v-model="Solicitante" type="text"></md-input>              
+        </md-field>
+          </div>
+
+          <div class="md-layout-item md-small-size-100 md-size-25" >       
+        <md-field  >
+          <label >Setor:{{rel.Setor}} </label>
                     <md-input v-model="Setor" type="text"></md-input>              
         </md-field>
           </div>
   
-          <div class="md-layout-item md-small-size-100 md-size-40">
-           <md-field v-for="(rel,id) in edits" :key="id" >
-             <label>{{rel.Tag_Maquina}}</label>
+          <div class="md-layout-item md-small-size-100 md-size-25">
+           <md-field  >
+             <label>Tag e Maquina:{{rel.Tag_Maquina}}</label>
              <md-input v-model="Tag_Maquina" type="text"></md-input>
         </md-field>
           </div>
-  
-    
-         <div class="md-layout-item md-small-size-100 md-size-40">
-           <md-field v-for="(rel,id) in edits" :key="id">
-             <label>{{rel.Registro}}</label>
+  <div class="md-layout-item md-small-size-100 md-size-25">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25">
+           
+          </div>
+    <div class="md-layout-item md-small-size-100 md-size-25">
+           <md-field >
+             <label>Tecnico:{{rel.Tecnico}}</label>
+             <md-input v-model="Tecnico" type="text"></md-input>    
+        </md-field>
+          </div>
+         <div class="md-layout-item md-small-size-100 md-size-25">
+           <md-field >
+             <label>Registro:{{rel.Registro}}</label>
              <md-input v-model="Registro" type="text"></md-input>    
         </md-field>
           </div>
-
-<div class="md-layout-item md-small-size-100 md-size-30">
-           <md-field v-for="(rel,id) in edits" :key="id">
-             <label>{{rel.Data_inicio}}</label>
-             <md-input v-model="Data_inicio" type="text"></md-input>    
+<div class="md-layout-item md-small-size-100 md-size-50">
+           
+          </div>
+<div class="md-layout-item md-small-size-100 md-size-25">
+  <label>Data de inicio:<br>{{rel.Data_inicio}}</label>
+           <md-field >
+             
+             <md-input v-model="Data_inicio" type="date"></md-input>    
         </md-field>
           </div>
-    <div class="md-layout-item md-small-size-100 md-size-20">
-           <md-field v-for="(rel,id) in edits" :key="id">
-             <label>{{rel.Hora_inicio}}</label>
-             <md-input v-model="Hora_inicio" type="text"></md-input>    
+    <div class="md-layout-item md-small-size-100 md-size-25">
+       <label>Hora de inicio:<br>{{rel.Hora_inicio}}</label>
+           <md-field >
+            
+             <md-input v-model="Hora_inicio" type="time"></md-input>    
         </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-30">
-           <md-field v-for="(rel,id) in edits" :key="id">
-             <label>{{rel.Data_fim}}</label>
-             <md-input v-model="Data_fim" type="text"></md-input>    
+          <div class="md-layout-item md-small-size-100 md-size-25">
+           
+          </div><div class="md-layout-item md-small-size-100 md-size-25">
+           
+          </div>
+          <div class="md-layout-item md-small-size-100 md-size-25">
+             <label>Data do fim:<br>{{rel.Data_fim}}</label>
+           <md-field >
+            
+             <md-input v-model="Data_fim" type="date"></md-input>    
         </md-field>
           </div>
-           <div class="md-layout-item md-small-size-100 md-size-20">
-           <md-field v-for="(rel,id) in edits" :key="id">
-             <label>{{rel.Hora_fim}}</label>
-             <md-input v-model="Hora_fim" type="text"></md-input>    
+           <div class="md-layout-item md-small-size-100 md-size-25">
+             <label>Hora do fim:<br>{{rel.Hora_fim}}</label>
+           <md-field >
+             
+             <md-input v-model="Hora_fim" type="time"></md-input>    
         </md-field>
           </div>
         
@@ -642,15 +721,15 @@
   </div>
    
  <div class="md-layout-item md-small-size-100 md-size-80">
-           <md-field v-for="(rel,id) in edits" :key="id">
-             <label>{{rel.Laudo}}</label>
+           <md-field>
+             <label>Laudo:<br>{{rel.Laudo}}</label>
              <md-textarea v-model="Laudo" type="text"></md-textarea>   
         </md-field>
           </div>
     
           <div class="md-layout-item md-small-size-100 md-size-80 ">
-            <md-field v-for="(rel,id) in edits" :key="id">
-              <label>{{rel.Problema}}</label>
+            <md-field >
+              <label>Problema:<br>{{rel.Problema}}</label>
                 <md-textarea v-model="Problema" type="text"></md-textarea>
              
             </md-field>
@@ -659,8 +738,9 @@
   </div>
   
             <div class="md-layout-item md-small-size-100 md-size-80 ">
-            <md-field v-for="(rel,id) in edits" :key="id">
-              <label>{{rel.Resumo}}</label>
+            <md-field>
+             
+              <label>Resumo:<br>{{rel.Resumo}}</label>
               <md-textarea v-model="Resumo" type="text"></md-textarea>
             
             </md-field>
@@ -669,8 +749,8 @@
   </div>
    
     <div class="md-layout-item md-small-size-100 md-size-80 ">
-            <md-field v-for="(rel,id) in edits" :key="id">
-              <label>{{rel.Pecas}}</label>
+            <md-field >
+              <label>Peças:<br>{{rel.Pecas}}</label>
                <md-textarea v-model="Pecas" type="text"></md-textarea>
            
             </md-field>
@@ -679,8 +759,8 @@
       <div class="md-layout-item md-small-size-100 md-size-25">
   </div>
  
-           <div class="md-layout-item md-small-size-100 md-size-25" v-for="(rel,id) in edits" :key="id" >
-               <md-button   @click="Editar(rel.id)" class="md-raised md-info">Criar Ordem</md-button>
+           <div class="md-layout-item md-small-size-100 md-size-25" v-for="(user,id) in usuario" :key="id" >
+               <md-button  v-if="user.Tipo == 'Analista' || user.Tipo == 'Tecnico'"  @click="Editar(rel.id)" class="md-raised md-info">Criar Ordem</md-button>
           </div>
         </div>
        
@@ -702,9 +782,12 @@ export default {
   data () {
     return {
       messagem: "Não há ordem  em aberto ",
+      Solicitante: null,
+      Codigo: null,
       Setor: null,
       Tag_Maquina: null,
       Registro: null,
+      Tecnico: null,
       Data_inicio: null,
       Hora_inicio: null,
       Hora_fim: null,
@@ -721,6 +804,8 @@ export default {
       ordems: [],
       writee: [],
       edits: [],
+      usuario: [],
+      maquinas:[],
 PageOrder: true,
 PageToOpen: false,
 PageOpen: false,
@@ -734,18 +819,48 @@ PageFinalized:false,
       relatorio: [],
       relatorios: []
     }
-  },
-  methods:{
+  },   created: function(){
 
+  axios.get("http://localhost:8000/usuario/session/" + this.loggedUser.usuario )
+ .then(res => { 
+   console.log(res);
+   this.usuario = res.data;
+  
+ })
+
+    } , 
+  computed: {
+      loggedUser() {
+        const token = window.localStorage.getItem('token')
+        const payload = JSON.parse(atob(token.split('.')[1]))
+        return payload
+      }},
+  methods:{
+      isLogged() {
+        window.localStorage.getItem('token')
+          ? this.logged = true
+          : this.logged = false
+      },
+     
+   
+   
+   
 /*----------------------------------Methods bread crumbs from the order open page-------------------------------------------*/
   ToOpen: function(){
       this.PageOrder = !this.PageOrder;
       this.PageToOpen = !this.PageToOpen;
+
+        axios.get("http://localhost:8000/maquina" )
+ .then(res => { 
+   console.log(res);
+   this.maquinas = res.data; 
+ })
+
     },
 
 /*--------------------------order opening page registration method----------------------------------------------*/
          cadastrar: function(){
-    axios.post("http://localhost:8000/ordem/cadastrar",{Setor:this.Setor, Tag_Maquina:this.Tag_Maquina, Problemas:this.Problemas, Status:this.Status})
+    axios.post("http://localhost:8000/ordem/cadastrar",{Solicitante:this.Solicitante, Setor:this.Setor, Tag_Maquina:this.Tag_Maquina, Problemas:this.Problemas, Status:this.Status})
    .then(res => {
      console.log(res)
      this.ordem = res.data;
@@ -872,9 +987,9 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this.Executar})
 
 /*-----------------------------------------------------Method to record page  to the write report page--------------------------------------------*/
   register: function(id){
-    axios.post("http://localhost:8000/relatorio/cadastrar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Registro:this.Registro,
-    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas,
-    Status:this.Status})
+    axios.post("http://localhost:8000/relatorio/cadastrar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina,Solicitante:this.Solicitante, Tecnico:this.Tecnico, Registro:this.Registro,
+    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas, 
+    Codigo:this.id})
    .then(res => {
      console.log(res);
     
@@ -992,8 +1107,8 @@ axios.put("http://localhost:8000/ordem/Status/"+ id, { Status:this. Ready})
  })
     },
  Editar: function(id){
-    axios.put("http://localhost:8000/relatorio/" + id + "/atualizar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Registro:this.Registro,
-    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas, Status:null
+    axios.put("http://localhost:8000/relatorio/" + id + "/atualizar",{Setor:this.Setor,  Tag_Maquina:this.Tag_Maquina, Solicitante:this.Solicitante, Registro:this.Registro,
+    Data_inicio:this.Data_inicio, Hora_inicio:this.Hora_inicio, Hora_fim:this.Hora_fim, Data_fim:this.Data_fim, Laudo:this.Laudo, Problema:this.Problema, Resumo:this.Resumo, Pecas:this.Pecas, Codigo:this.Codigo
    
    
    
@@ -1136,7 +1251,7 @@ ul {
   list-style: none;
   text-align: center;
 }
-li {
+la {
   display: table-cell;
   vertical-align: middle;
   width: 20.33%;

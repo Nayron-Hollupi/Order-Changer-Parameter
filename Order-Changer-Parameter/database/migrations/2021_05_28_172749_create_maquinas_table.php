@@ -15,6 +15,7 @@ class CreateMaquinasTable extends Migration
     {
         Schema::create('maquinas', function (Blueprint $table) {
             $table->increments('id');
+            
             $table->string('Setor');
             $table->string('Tag_Maquina');
             $table->timestamps();

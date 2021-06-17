@@ -8,7 +8,7 @@ import Dashboard from "@/pages/Dashboard.vue";
 import Usuarios from "@/pages/Usuarios.vue";
 import Maquinas from "@/pages/Maquinas.vue";
 import Ordens from "@/pages/Ordens.vue";
-
+import Manual from "@/pages/Manual.vue";
 
 
 import Logout from "@/pages/Logout.vue";
@@ -53,6 +53,11 @@ const routes = [
         path: "ordens",
         name: "Ordens",
         component: Ordens
+      },
+      {
+        path: "manual",
+        name: "Manual",
+        component: Manual
       },
  
       {

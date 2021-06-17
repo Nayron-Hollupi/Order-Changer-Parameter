@@ -24,6 +24,8 @@ class RelatoriosController extends Controller
        
         $sector = $request->Setor;
         $machine = $request->Tag_Maquina;
+        $requester = $request->Solicitante;
+        $technician = $request->Tecnico;
         $record = $request->Registro;
         $startdate = $request->Data_inicio;
     
@@ -34,19 +36,21 @@ class RelatoriosController extends Controller
         $problem = $request->Problema;
         $abstract = $request->Resumo;
         $parts = $request->Pecas;
-        $estado =  $request->Status; 
+        $code = $request->Codigo;
 
 
 
-        if ( $sector != null && $machine != null && $record != null &&  $startdate != null 
+        if ( $sector != null && $machine != null && $requester != null && $technician != null && $record != null &&  $startdate != null 
          &&  $enddate != null &&  $starttime != null &&  $endtime != null &&  $report != null
-        &&   $problem != null &&  $abstract != null &&  $parts != null &&  $estado != null ) {
+        &&   $problem != null &&  $abstract != null &&  $parts != null && $code != null  ) {
 
 
             
         $relatorio = new Relatorios;
         $relatorio->Setor = $request->Setor;
         $relatorio->Tag_Maquina = $request->Tag_Maquina;
+        $relatorio->Solicitante = $request->Solicitante;
+        $relatorio->Tecnico = $request->Tecnico;
         $relatorio->Registro = $request->Registro;
         $relatorio->Data_inicio = $request->Data_inicio;
        
@@ -57,7 +61,7 @@ class RelatoriosController extends Controller
         $relatorio->Problema = $request->Problema;
         $relatorio->Resumo = $request->Resumo;
         $relatorio->Pecas = $request->Pecas; 
-        $relatorio->Status =$request->Status;       
+        $relatorio->Codigo = $request->Codigo;   
   
 
         $relatorio->save();
@@ -81,6 +85,8 @@ class RelatoriosController extends Controller
     public function atualizarRelatorio($id, Request $request){
            $sector = $request->Setor;
            $machine = $request->Tag_Maquina;
+           $requester = $request->Solicitante;
+           $technician = $request->Tecnico;
            $record = $request->Registro;
            $startdate = $request->Data_inicio;
            $enddate = $request->Data_fim;
@@ -90,37 +96,69 @@ class RelatoriosController extends Controller
            $problem = $request->Problema;
            $abstract = $request->Resumo;
            $parts = $request->Pecas;
-           $estado =  $request->Status; 
+           $code = $request->Codigo;
 
         $relatorio = Relatorios::find($id);
           if($sector != null){
         $relatorio->Setor = $request->Setor;
-          } if($machine != null){
+          } 
+          
+          if($machine != null){
         $relatorio->Tag_Maquina = $request->Tag_Maquina;
-    } if($record != null){
-        $relatorio->Registro = $request->Registro;
-    } if($startdate != null){
-        $relatorio->Data_inicio = $request->Data_inicio;
-    } if($enddate != null){
-        $relatorio->Data_fim = $request->Data_fim;
-    }if($starttime != null){
-        $relatorio->Hora_inicio = $request->Hora_inicio;
-    } if($endtime!= null){
-        $relatorio->Hora_fim = $request->Hora_fim;
-    } if($report != null){
-        $relatorio->Laudo = $request->Laudo;
-    } if($problem  != null){
-        $relatorio->Problema = $request->Problema;
-    } if($abstract != null){
-        $relatorio->Resumo = $request->Resumo;
-    } if($parts != null){
-        $relatorio->Pecas = $request->Pecas;   
-    } if($estado != null){
-        $relatorio->Status = $request->Status;
     }
-    if ( $sector != null && $machine != null && $record != null &&  $startdate != null 
+
+
+    if($requester != null){
+        $relatorio->Solicitante = $request->Solicitante;
+    } 
+    
+    if($record != null){
+        $relatorio->Registro = $request->Registro;
+    } 
+    
+    if( $technician != null){
+        $relatorio->Tecnico = $request->Tecnico;
+    }
+    
+    if($startdate != null){
+        $relatorio->Data_inicio = $request->Data_inicio;
+    } 
+    
+    if($enddate != null){
+        $relatorio->Data_fim = $request->Data_fim;
+    }
+    
+    if($starttime != null){
+        $relatorio->Hora_inicio = $request->Hora_inicio;
+    }
+    
+    if($endtime!= null){
+        $relatorio->Hora_fim = $request->Hora_fim;
+    }
+    
+    if($report != null){
+        $relatorio->Laudo = $request->Laudo;
+    } 
+    
+    if($problem  != null){
+        $relatorio->Problema = $request->Problema;
+    } 
+    
+    if($abstract != null){
+        $relatorio->Resumo = $request->Resumo;
+    }
+    
+    if($parts != null){
+        $relatorio->Pecas = $request->Pecas;   
+    } 
+    
+    if($code != null){
+        $relatorio->Codigo = $request->Codigo;
+    }
+
+    if ( $sector != null && $machine != null && $requester != null && $record != null && $technician != null &&  $startdate != null 
      &&  $enddate != null &&  $starttime != null &&  $endtime != null &&  $report != null
-    &&   $problem != null &&  $abstract != null &&  $parts != null &&  $estado != null ) {
+    &&   $problem != null &&  $abstract != null &&  $parts != null  && $code != null) {
         return response()->json(false);
     }else{
         $relatorio->save();

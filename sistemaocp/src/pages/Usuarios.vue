@@ -186,12 +186,12 @@
           
            <div class="md-layout-item">
         <md-field>
-          
-          <md-select v-model="nivel" name="nivel" id="nivel"  placeholder="Selecione o tipo de Usuário">
+          <label>{{editar.Tipo}}</label>
+          <md-select v-model="Tipo" name="Tipo" id="Tipo"  >
 
-            <md-option value="0">Analista</md-option>
-            <md-option value="1">Gestor</md-option>
-            <md-option value="2">Tecnico</md-option>
+            <md-option value="Analista">Analista</md-option>
+            <md-option value="Gestor">Gestor</md-option>
+            <md-option value="Tecnico">Tecnico</md-option>
           </md-select>
         </md-field>
       </div>

@@ -17,6 +17,8 @@ class CreateRelatoriosTable extends Migration
             $table->increments('id');
             $table->string('Setor');
             $table->string('Tag_Maquina');
+            $table->string('Solicitante');
+            $table->string('Tecnico');
             $table->integer('Registro');
             $table->string('Data_inicio');
             $table->string('Data_fim');
@@ -26,6 +28,7 @@ class CreateRelatoriosTable extends Migration
             $table->string('Problema', 1000);
             $table->string('Resumo' , 1000);
             $table->string('Pecas' , 1000);
+            $table->string('Codigo');
             $table->timestamps();
         });
     }

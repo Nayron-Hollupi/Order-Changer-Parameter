@@ -50,18 +50,15 @@ import jwt from 'jsonwebtoken'
 import axios from 'axios';
 import Swal from 'sweetalert2'
 export default {
-
-  data(){
-    return{
-    title: "Login",
-
-
-       usuario: '',
+   data: () => ({
+      title: "Login",
+      usuario: '',
       password: '',
-     
-   } },
+    
+    }),
+
   props: {
-  
+
   
   },
   
@@ -73,14 +70,17 @@ export default {
      
      console.log(res.data);
  this.token = res.data; 
+
     if(this.token != false){
     jwt.sign({
             usuario: this.usuario,
             password: this.password,
             token: this.token
-          }, 'jwtSecret', (err, token) => {
+          }, 
+          'jwtSecret', (err, token) => {
             window.localStorage.setItem('token', token)
             this.$router.push('/')
+
           })}if(this.token == false){
             Swal.fire({
   position: 'top-end',

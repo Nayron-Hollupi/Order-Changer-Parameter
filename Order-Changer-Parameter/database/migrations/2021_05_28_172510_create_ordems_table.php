@@ -15,6 +15,7 @@ class CreateOrdemsTable extends Migration
     {
         Schema::create('ordems', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('Solicitante');
             $table->string('Setor');
             $table->string('Tag_Maquina');
             $table->string('Problemas', 1000);

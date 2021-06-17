@@ -22,7 +22,7 @@ class UsuarioController extends Controller
         $this->jwt = $jwt;
 
         $this->middleware('auth:api', [
-          'except' =>['usuarioLogin','auth','usuarioLogout','cadastrar','mostrarUsuario','usuario','deletarUsuario','atualizarUsuario']
+          'except' =>['usuarioLogin','auth','usuarioLogout','cadastrar','mostrarUsuario','usuario','deletarUsuario','atualizarUsuario','session']
       ]);
           
        
@@ -42,6 +42,8 @@ class UsuarioController extends Controller
         }
        
          return response()->json(compact('token'));
+  
+
        
     }
 
@@ -54,6 +56,7 @@ class UsuarioController extends Controller
 
 
 public function usuarioLogout(){
+  
   Auth::logout();
   return response()->json("Usuario deslogou com sucesso!");
 }
@@ -102,7 +105,7 @@ public function usuarioLogout(){
     public function mostrarUsuario($Tipo){
         if (Usuario::where('Tipo', $Tipo)->exists()) {
             $usuario = Usuario::where('Tipo', $Tipo)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($usuario, 200);
+            return response($usuario);
           }else{
           return response(false);
           }
@@ -119,7 +122,14 @@ public function usuarioLogout(){
         //return response()->json(Usuario::all());
     }
     
-
+    public function session($usuario){
+      if (Usuario::where('usuario', $usuario)->exists()) {
+          $usuario = Usuario::where('usuario', $usuario)->get()->toJson(JSON_PRETTY_PRINT);
+          return response($usuario);
+        }
+      
+      //return response()->json(Usuario::all());
+  }
     public function atualizarUsuario($id, Request $request){
        
         $this->validate($request,[
